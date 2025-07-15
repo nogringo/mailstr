@@ -19,6 +19,8 @@ class CreateScreen extends StatelessWidget {
             child: ContentPaddingView(
               maxWidth: 400,
               child: AppBar(
+                surfaceTintColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
                 title: Text("Create"),
                 titleSpacing: 8,
                 actions: [
@@ -32,7 +34,7 @@ class CreateScreen extends StatelessWidget {
             ),
           ),
           body: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            padding: EdgeInsets.only(top: 4, right: 8, left: 8, bottom: 100),
             child: ContentPaddingView(
               maxWidth: 400,
               child: Column(

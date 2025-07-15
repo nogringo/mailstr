@@ -1,4 +1,9 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+const appTitle = "Mailstr";
+
+const themeColor = Colors.orangeAccent;
 
 const difficulty = kDebugMode ? 1 : 6;
 

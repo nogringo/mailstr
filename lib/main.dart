@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mailstr/config.dart';
 import 'package:toastification/toastification.dart';
 import 'package:mailstr/app_routes.dart';
 import 'package:mailstr/screens/create/create_screen.dart';
@@ -17,9 +18,16 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ToastificationWrapper(
       child: GetMaterialApp(
-        title: "Uid",
-        theme: ThemeData.light(),
-        darkTheme: ThemeData.dark(),
+        title: appTitle,
+        theme: ThemeData.light().copyWith(
+          colorScheme: ColorScheme.fromSeed(seedColor: themeColor),
+        ),
+        darkTheme: ThemeData.dark().copyWith(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: themeColor,
+            brightness: Brightness.dark,
+          ),
+        ),
         getPages: [
           GetPage(name: AppRoutes.home, page: () => HomeScreen()),
           GetPage(name: AppRoutes.create, page: () => CreateScreen()),

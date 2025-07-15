@@ -26,6 +26,8 @@ class PayScreen extends StatelessWidget {
           child: ContentPaddingView(
             maxWidth: 500,
             child: AppBar(
+              surfaceTintColor: Colors.transparent,
+              backgroundColor: Colors.transparent,
               title: Text(
                 controller.emailUnlocked.value
                     ? "Email unlocked"
@@ -44,7 +46,7 @@ class PayScreen extends StatelessWidget {
           ),
         ),
         body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+          padding: EdgeInsets.only(top: 4, right: 8, left: 8, bottom: 100),
           child: ContentPaddingView(
             maxWidth: 500,
             child: Column(

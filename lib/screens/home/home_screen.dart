@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mailstr/app_routes.dart';
+import 'package:mailstr/config.dart';
 import 'package:mailstr/widgets/content_padding_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,7 +16,9 @@ class HomeScreen extends StatelessWidget {
         preferredSize: Size(double.infinity, kToolbarHeight),
         child: ContentPaddingView(
           child: AppBar(
-            title: Text('Uid'),
+            surfaceTintColor: Colors.transparent,
+            backgroundColor: Colors.transparent,
+            title: Text(appTitle),
             titleSpacing: 8,
             actions: [
               IconButton(
@@ -66,7 +69,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        padding: EdgeInsets.only(top: 4, right: 8, left: 8, bottom: 100),
         child: ContentPaddingView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
