@@ -83033,7 +83033,7 @@ n=A.bG(f,!0,!1)
 h=r
 o.sn("Invalid pubkey format: length="+p+", hex="+n.b.test(h))
 e.sn(!1)
-return}g.tP(A.m(r)+"@"+j,6)}else{o.sn("Invalid email format")
+return}g.tP(A.m(r)+"@"+j,7)}else{o.sn("Invalid email format")
 e.sn(!1)}},
 a_e(){var s,r=this
 r.ax.sn(!1)
