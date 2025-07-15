@@ -5,7 +5,7 @@ const appTitle = "Mailstr";
 
 const themeColor = Colors.orangeAccent;
 
-const difficulty = kDebugMode ? 1 : 6;
+const difficulty = kDebugMode ? 1 : 7;
 
 const unlockPrice = kDebugMode ? 1 : 100;
 
