@@ -15,9 +15,9 @@ class PayScreen extends StatelessWidget {
     final String email = Get.parameters['email'] ?? '';
     final controller = Get.put(PayController());
 
-    print('PayScreen - Email parameter: $email');
-    print('PayScreen - All parameters: ${Get.parameters}');
-    print('PayScreen - Current route: ${Get.currentRoute}');
+    // print('PayScreen - Email parameter: $email');
+    // print('PayScreen - All parameters: ${Get.parameters}');
+    // print('PayScreen - Current route: ${Get.currentRoute}');
 
     return Obx(
       () => Scaffold(
@@ -36,9 +36,12 @@ class PayScreen extends StatelessWidget {
               titleSpacing: 8,
               actions: controller.emailUnlocked.value
                   ? [
-                      IconButton(
-                        icon: Icon(Icons.home),
-                        onPressed: () => Get.offAllNamed('/'),
+                      Padding(
+                        padding: EdgeInsetsGeometry.only(right: 8),
+                        child: IconButton(
+                          icon: Icon(Icons.home),
+                          onPressed: () => Get.offAllNamed('/'),
+                        ),
                       ),
                     ]
                   : null,

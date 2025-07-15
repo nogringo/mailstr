@@ -86,7 +86,7 @@ class PayController extends GetxController {
         pubkey = base36ToHex(npubOrPubkey);
       }
       
-      print('Original: $npubOrPubkey, Pubkey: $pubkey, Length: ${pubkey.length}');
+      // print('Original: $npubOrPubkey, Pubkey: $pubkey, Length: ${pubkey.length}');
       
       // Validate pubkey format and length
       if (pubkey.length != 64 || !RegExp(r'^[0-9a-fA-F]+$').hasMatch(pubkey)) {
@@ -201,7 +201,7 @@ class PayController extends GetxController {
             pubkey = Nip19.npubToHex(npubOrPubkey);
             apiEmail = '$pubkey@$domain';
           } catch (e) {
-            print('Error decoding npub for API: $e');
+            // print('Error decoding npub for API: $e');
           }
         } else if (npubOrPubkey.length == 64) {
           // Already a pubkey
@@ -231,7 +231,7 @@ class PayController extends GetxController {
 
       Get.back(); // Close loading dialog
       
-      print('Cashu Response: ${response.statusCode} - ${response.body}');
+      // print('Cashu Response: ${response.statusCode} - ${response.body}');
       
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
@@ -273,7 +273,7 @@ class PayController extends GetxController {
       }
     } catch (e) {
       Get.back(); // Close loading dialog if still open
-      print('Error sending Cashu payment: $e');
+      // print('Error sending Cashu payment: $e');
       toastification.show(
         title: Text('Error'),
         description: Text('Failed to connect to server'),
@@ -307,7 +307,7 @@ class PayController extends GetxController {
             pubkey = Nip19.npubToHex(npubOrPubkey);
             apiEmail = '$pubkey@$domain';
           } catch (e) {
-            print('Error decoding npub for API: $e');
+            // print('Error decoding npub for API: $e');
           }
         } else if (npubOrPubkey.length == 64) {
           // Already a pubkey
@@ -328,7 +328,7 @@ class PayController extends GetxController {
         }),
       );
 
-      print('POW Response: ${response.statusCode} - ${response.body}');
+      // print('POW Response: ${response.statusCode} - ${response.body}');
       
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
@@ -362,7 +362,7 @@ class PayController extends GetxController {
         );
       }
     } catch (e) {
-      print('Error sending POW: $e');
+      // print('Error sending POW: $e');
       toastification.show(
         title: Text('Error'),
         description: Text('Failed to connect to server'),
