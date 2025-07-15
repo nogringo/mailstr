@@ -83129,7 +83129,7 @@ A.fu("Error decoding npub for API: "+A.m(h))}else if(J.cG(k)===64)l=n
 else{i=A.aDH(k)
 l=A.m(i)+"@"+A.m(j)}}a0=$.bA()
 A.aUK(a0,A.nY(new A.Ah(null,null,null,null,null,null,null),null,null),!1,t.z)
-a1=A.eq("http://127.0.0.1:5001/mailstr-6a9c4/us-central1/payWithCashu",0,null)
+a1=A.eq("https://paywithcashu-x52eiet4za-uc.a.run.app",0,null)
 a2=t.N
 a3=A.at(["Content-Type","application/json"],a2,a2)
 s=6
@@ -83195,7 +83195,7 @@ if(J.aAW(k,"npub"))try{i=A.aCa(k)
 l=A.m(i)+"@"+A.m(j)}catch(a7){h=A.aq(a7)
 A.fu("Error decoding npub for API: "+A.m(h))}else if(J.cG(k)===64)l=n
 else{i=A.aDH(k)
-l=A.m(i)+"@"+A.m(j)}}a=A.eq("http://127.0.0.1:5001/mailstr-6a9c4/us-central1/payWithProofOfWork",0,null)
+l=A.m(i)+"@"+A.m(j)}}a=A.eq("https://paywithproofofwork-x52eiet4za-uc.a.run.app",0,null)
 a0=t.N
 a1=A.at(["Content-Type","application/json"],a0,a0)
 s=6
