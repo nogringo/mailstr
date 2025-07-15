@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
               SizedBox(width: 8),
               IconButton(
                 onPressed: () async {
-                  final Uri url = Uri.parse('https://github.com/your-repo-url');
+                  final Uri url = Uri.parse('https://github.com/nogringo/mailstr');
                   if (await canLaunchUrl(url)) {
                     await launchUrl(url, mode: LaunchMode.externalApplication);
                   }
@@ -211,7 +211,7 @@ class HomeScreen extends StatelessWidget {
                   IconButton(
                     onPressed: () async {
                       final Uri url = Uri.parse(
-                        'https://github.com/your-repo-url',
+                        'https://github.com/nogringo/mailstr',
                       );
                       if (await canLaunchUrl(url)) {
                         await launchUrl(
