@@ -13,11 +13,11 @@ const emailDomain = "shakerbrain.com";
 
 const payWithCashuUrl = kDebugMode
     ? 'http://127.0.0.1:5001/mailstr-6a9c4/us-central1/payWithCashu'
-    : 'http://127.0.0.1:5001/mailstr-6a9c4/us-central1/payWithCashu';
+    : 'https://paywithcashu-x52eiet4za-uc.a.run.app';
 
 const payWithProofOfWorkUrl = kDebugMode
     ? 'http://127.0.0.1:5001/mailstr-6a9c4/us-central1/payWithProofOfWork'
-    : 'http://127.0.0.1:5001/mailstr-6a9c4/us-central1/payWithProofOfWork';
+    : 'https://paywithproofofwork-x52eiet4za-uc.a.run.app';
 
 const trustedMints = [
   "https://mint.coinos.io",
