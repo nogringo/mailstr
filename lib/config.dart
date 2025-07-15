@@ -7,7 +7,7 @@ const themeColor = Colors.orangeAccent;
 
 const difficulty = kDebugMode ? 1 : 6;
 
-const unlockPrice = 100;
+const unlockPrice = kDebugMode ? 1 : 100;
 
 const emailDomain = "shakerbrain.com";
 
