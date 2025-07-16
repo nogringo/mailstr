@@ -1,6 +1,91 @@
 {
+  "@@locale": "en",
   "helloWorld": "Hello World!",
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
+  },
+  "emailLocked": "Email locked",
+  "@emailLocked": {
+    "description": "Title shown when email is locked"
+  },
+  "emailUnlocked": "Email unlocked",
+  "@emailUnlocked": {
+    "description": "Title shown when email is unlocked"
+  },
+  "emailSuccessfullyUnlocked": "Email Successfully Unlocked!",
+  "@emailSuccessfullyUnlocked": {
+    "description": "Message shown when email is successfully unlocked"
+  },
+  "payWithProofOfWork": "Pay with Proof Of Work",
+  "@payWithProofOfWork": {
+    "description": "Header for proof of work payment option"
+  },
+  "proofOfWorkDescription": "It's like mining Bitcoin !\nYour device will search a code, it will take several minutes and once found your email will be unlocked.",
+  "@proofOfWorkDescription": {
+    "description": "Description of proof of work payment method"
+  },
+  "startProofOfWork": "Start Proof Of Work",
+  "@startProofOfWork": {
+    "description": "Button to start proof of work"
+  },
+  "resumeProofOfWork": "Resume Proof Of Work",
+  "@resumeProofOfWork": {
+    "description": "Button to resume proof of work"
+  },
+  "pauseProofOfWork": "Pause Proof Of Work",
+  "@pauseProofOfWork": {
+    "description": "Button to pause proof of work"
+  },
+  "searchingForCode": "Searching for code...",
+  "@searchingForCode": {
+    "description": "Status message while searching for proof of work"
+  },
+  "nonceAttempts": "Nonce: {nonce}",
+  "@nonceAttempts": {
+    "description": "Shows current nonce attempt number",
+    "placeholders": {
+      "nonce": {
+        "type": "int",
+        "example": "123456"
+      }
+    }
+  },
+  "proofOfWorkCompleted": "Proof of Work Completed",
+  "@proofOfWorkCompleted": {
+    "description": "Message when proof of work is completed"
+  },
+  "payWithCashu": "Pay with Cashu",
+  "@payWithCashu": {
+    "description": "Header for Cashu payment option"
+  },
+  "cashuDescription": "Cashu is electronic cash for payments online, in person, and around the world. It's Fast, Private, Simple and Secure.",
+  "@cashuDescription": {
+    "description": "Description of Cashu payment method"
+  },
+  "pasteCashuTokenHint": "Paste a Cashu token worth {amount} sat{plural} to unlock",
+  "@pasteCashuTokenHint": {
+    "description": "Hint text for Cashu token input field",
+    "placeholders": {
+      "amount": {
+        "type": "int",
+        "example": "100"
+      },
+      "plural": {
+        "type": "String",
+        "example": "s"
+      }
+    }
+  },
+  "submitPayment": "Submit Payment",
+  "@submitPayment": {
+    "description": "Button to submit Cashu payment"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Generic error title"
+  },
+  "pleasePasteCashuToken": "Please paste a Cashu token",
+  "@pleasePasteCashuToken": {
+    "description": "Error message when no Cashu token is provided"
   }
 }

@@ -103,6 +103,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hello World!'**
   String get helloWorld;
+
+  /// Title shown when email is locked
+  ///
+  /// In en, this message translates to:
+  /// **'Email locked'**
+  String get emailLocked;
+
+  /// Title shown when email is unlocked
+  ///
+  /// In en, this message translates to:
+  /// **'Email unlocked'**
+  String get emailUnlocked;
+
+  /// Message shown when email is successfully unlocked
+  ///
+  /// In en, this message translates to:
+  /// **'Email Successfully Unlocked!'**
+  String get emailSuccessfullyUnlocked;
+
+  /// Header for proof of work payment option
+  ///
+  /// In en, this message translates to:
+  /// **'Pay with Proof Of Work'**
+  String get payWithProofOfWork;
+
+  /// Description of proof of work payment method
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s like mining Bitcoin !\nYour device will search a code, it will take several minutes and once found your email will be unlocked.'**
+  String get proofOfWorkDescription;
+
+  /// Button to start proof of work
+  ///
+  /// In en, this message translates to:
+  /// **'Start Proof Of Work'**
+  String get startProofOfWork;
+
+  /// Button to resume proof of work
+  ///
+  /// In en, this message translates to:
+  /// **'Resume Proof Of Work'**
+  String get resumeProofOfWork;
+
+  /// Button to pause proof of work
+  ///
+  /// In en, this message translates to:
+  /// **'Pause Proof Of Work'**
+  String get pauseProofOfWork;
+
+  /// Status message while searching for proof of work
+  ///
+  /// In en, this message translates to:
+  /// **'Searching for code...'**
+  String get searchingForCode;
+
+  /// Shows current nonce attempt number
+  ///
+  /// In en, this message translates to:
+  /// **'Nonce: {nonce}'**
+  String nonceAttempts(int nonce);
+
+  /// Message when proof of work is completed
+  ///
+  /// In en, this message translates to:
+  /// **'Proof of Work Completed'**
+  String get proofOfWorkCompleted;
+
+  /// Header for Cashu payment option
+  ///
+  /// In en, this message translates to:
+  /// **'Pay with Cashu'**
+  String get payWithCashu;
+
+  /// Description of Cashu payment method
+  ///
+  /// In en, this message translates to:
+  /// **'Cashu is electronic cash for payments online, in person, and around the world. It\'s Fast, Private, Simple and Secure.'**
+  String get cashuDescription;
+
+  /// Hint text for Cashu token input field
+  ///
+  /// In en, this message translates to:
+  /// **'Paste a Cashu token worth {amount} sat{plural} to unlock'**
+  String pasteCashuTokenHint(int amount, String plural);
+
+  /// Button to submit Cashu payment
+  ///
+  /// In en, this message translates to:
+  /// **'Submit Payment'**
+  String get submitPayment;
+
+  /// Generic error title
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// Error message when no Cashu token is provided
+  ///
+  /// In en, this message translates to:
+  /// **'Please paste a Cashu token'**
+  String get pleasePasteCashuToken;
 }
 
 class _AppLocalizationsDelegate

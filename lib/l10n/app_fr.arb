@@ -1,3 +1,21 @@
 {
-    "helloWorld": "Bonjour monde"
+    "@@locale": "fr",
+    "helloWorld": "Bonjour monde",
+    "emailLocked": "Email verrouillé",
+    "emailUnlocked": "Email déverrouillé",
+    "emailSuccessfullyUnlocked": "Email déverrouillé avec succès !",
+    "payWithProofOfWork": "Payer avec Preuve de Travail",
+    "proofOfWorkDescription": "C'est comme miner du Bitcoin !\nVotre appareil cherchera un code, cela prendra plusieurs minutes et une fois trouvé, votre email sera déverrouillé.",
+    "startProofOfWork": "Démarrer la Preuve de Travail",
+    "resumeProofOfWork": "Reprendre la Preuve de Travail",
+    "pauseProofOfWork": "Mettre en pause la Preuve de Travail",
+    "searchingForCode": "Recherche du code...",
+    "nonceAttempts": "Nonce : {nonce}",
+    "proofOfWorkCompleted": "Preuve de Travail terminée",
+    "payWithCashu": "Payer avec Cashu",
+    "cashuDescription": "Cashu est de l'argent électronique pour les paiements en ligne, en personne et dans le monde entier. C'est Rapide, Privé, Simple et Sécurisé.",
+    "pasteCashuTokenHint": "Collez un jeton Cashu d'une valeur de {amount} sat{plural} pour déverrouiller",
+    "submitPayment": "Soumettre le paiement",
+    "error": "Erreur",
+    "pleasePasteCashuToken": "Veuillez coller un jeton Cashu"
 }
