@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mailstr/l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:nip19/nip19.dart';
 import 'package:mailstr/screens/create/create_controller.dart';
@@ -21,12 +22,12 @@ class CreateScreen extends StatelessWidget {
               child: AppBar(
                 surfaceTintColor: Colors.transparent,
                 backgroundColor: Colors.transparent,
-                title: Text("Create"),
+                title: Text(AppLocalizations.of(context)!.create),
                 titleSpacing: 8,
                 actions: [
                   FilledButton(
                     onPressed: c.payNow,
-                    child: Text("Pay now"),
+                    child: Text(AppLocalizations.of(context)!.payNow),
                   ),
                   SizedBox(width: 8),
                 ],
@@ -51,13 +52,13 @@ class CreateScreen extends StatelessWidget {
                     children: [
                       TextButton.icon(
                         onPressed: c.newEmail,
-                        label: Text("New email"),
+                        label: Text(AppLocalizations.of(context)!.newEmail),
                         icon: Icon(Icons.refresh),
                       ),
                       SizedBox(width: 8),
                       TextButton.icon(
                         onPressed: () => c.copy(c.keypair.nsec),
-                        label: Text("Copy nsec"),
+                        label: Text(AppLocalizations.of(context)!.copyNsec),
                         icon: Icon(Icons.copy),
                       ),
                     ],

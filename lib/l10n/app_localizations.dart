@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
 import 'app_localizations_fr.dart';
 
 // ignore_for_file: type=lint
@@ -95,6 +96,7 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
+    Locale('es'),
     Locale('fr'),
   ];
 
@@ -205,6 +207,204 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please paste a Cashu token'**
   String get pleasePasteCashuToken;
+
+  /// Create button text
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get create;
+
+  /// Pay now button text
+  ///
+  /// In en, this message translates to:
+  /// **'Pay now'**
+  String get payNow;
+
+  /// New email button text
+  ///
+  /// In en, this message translates to:
+  /// **'New email'**
+  String get newEmail;
+
+  /// Copy nsec button text
+  ///
+  /// In en, this message translates to:
+  /// **'Copy nsec'**
+  String get copyNsec;
+
+  /// Main headline on home screen
+  ///
+  /// In en, this message translates to:
+  /// **'Nostr based Email service'**
+  String get nostrBasedEmailService;
+
+  /// Subtitle on home screen
+  ///
+  /// In en, this message translates to:
+  /// **'Create secure email addresses using Nostr keys.'**
+  String get createSecureEmailAddresses;
+
+  /// Section title on home screen
+  ///
+  /// In en, this message translates to:
+  /// **'Why {appTitle}?'**
+  String whyAppTitle(String appTitle);
+
+  /// Long description about why the app is different
+  ///
+  /// In en, this message translates to:
+  /// **'Traditional email providers control your data and can shut down your account at any time. {appTitle} is different. Built on the Nostr protocol, your email address is generated from cryptographic keys only you control - no one can revoke your identity.\n\nYou will never be asked to verify personal information here because we believe anyone should have access to e-mail without requiring to connect it to the growing surveillance state. Our work here is in service to this idea.\n\nLots of services are free because they feast on your personal data for profit or control.'**
+  String whyAppTitleDescription(String appTitle);
+
+  /// Section title on home screen
+  ///
+  /// In en, this message translates to:
+  /// **'How can I trust you?'**
+  String get howCanITrustYou;
+
+  /// Long description about trust and security
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t. {appTitle} doesn\'t read or scan your e-mail content in any way, but it\'s possible for any e-mail provider to read your e-mail, so you\'ll just have to take our word for it. No \"encrypted e-mail\" provider is preventing this: even if they encrypt incoming mail before storing it, the provider still receives the e-mail in plaintext first, meaning you\'re only protected if you assume no one was reading or copying the e-mail as it came in.'**
+  String trustDescription(String appTitle);
+
+  /// Feature pill text
+  ///
+  /// In en, this message translates to:
+  /// **'No Accounts'**
+  String get noAccounts;
+
+  /// Feature pill text
+  ///
+  /// In en, this message translates to:
+  /// **'No Logs'**
+  String get noLogs;
+
+  /// Feature pill text
+  ///
+  /// In en, this message translates to:
+  /// **'Just Privacy'**
+  String get justPrivacy;
+
+  /// Call to action button text
+  ///
+  /// In en, this message translates to:
+  /// **'Create An Email Address Now'**
+  String get createEmailAddressNow;
+
+  /// Subtitle for call to action
+  ///
+  /// In en, this message translates to:
+  /// **'Takes less than 30 seconds. No registration required.'**
+  String get takesLessThan30Seconds;
+
+  /// Success message after email unlock
+  ///
+  /// In en, this message translates to:
+  /// **'You can now receive emails at this address.'**
+  String get youCanNowReceiveEmails;
+
+  /// Link text for Cashu website
+  ///
+  /// In en, this message translates to:
+  /// **'Cashu.space'**
+  String get cashuSpace;
+
+  /// Toast message when something is copied
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get copied;
+
+  /// Status message when starting proof of work
+  ///
+  /// In en, this message translates to:
+  /// **'Starting Proof of Work...'**
+  String get startingProofOfWork;
+
+  /// Status message when resuming proof of work
+  ///
+  /// In en, this message translates to:
+  /// **'Resuming Proof of Work from nonce: {nonce}'**
+  String resumingProofOfWork(int nonce);
+
+  /// Status message when proof of work is paused
+  ///
+  /// In en, this message translates to:
+  /// **'Proof of Work paused at nonce: {nonce}'**
+  String proofOfWorkPaused(int nonce);
+
+  /// Status message when proof of work is reset
+  ///
+  /// In en, this message translates to:
+  /// **'Proof of Work reset'**
+  String get proofOfWorkReset;
+
+  /// Status message when proof of work is completed
+  ///
+  /// In en, this message translates to:
+  /// **'Proof of Work completed! Nonce: {nonce}'**
+  String proofOfWorkCompletedWithNonce(int nonce);
+
+  /// Status message showing search progress with hash rate
+  ///
+  /// In en, this message translates to:
+  /// **'Searching... Nonce: {nonce} | Hash rate: {hashRate} H/s'**
+  String searchingWithHashRate(int nonce, String hashRate);
+
+  /// Error message when decoding npub fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error decoding npub: {error}'**
+  String errorDecodingNpub(String error);
+
+  /// Error message for invalid pubkey format
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid pubkey format: length={length}, hex={isHex}'**
+  String invalidPubkeyFormat(int length, String isHex);
+
+  /// Error message for invalid email format
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email format'**
+  String get invalidEmailFormat;
+
+  /// Success toast title
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get success;
+
+  /// Success message when payment is accepted
+  ///
+  /// In en, this message translates to:
+  /// **'Payment accepted, email unlocked!'**
+  String get paymentAcceptedEmailUnlocked;
+
+  /// Success message when email is unlocked with proof of work
+  ///
+  /// In en, this message translates to:
+  /// **'Email unlocked with Proof of Work!'**
+  String get emailUnlockedWithProofOfWork;
+
+  /// Error message when proof of work verification fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to verify proof of work'**
+  String get failedToVerifyProofOfWork;
+
+  /// Error message when server connection fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to connect to server'**
+  String get failedToConnectToServer;
+
+  /// Duration label showing elapsed time
+  ///
+  /// In en, this message translates to:
+  /// **'Duration: {duration}'**
+  String duration(String duration);
 }
 
 class _AppLocalizationsDelegate
@@ -218,7 +418,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'fr'].contains(locale.languageCode);
+      <String>['en', 'es', 'fr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -229,6 +429,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'en':
       return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
     case 'fr':
       return AppLocalizationsFr();
   }

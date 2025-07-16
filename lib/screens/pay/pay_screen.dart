@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:toastification/toastification.dart';
 import 'package:mailstr/config.dart';
+import 'package:mailstr/l10n/app_localizations.dart';
 import 'package:mailstr/screens/pay/pay_controller.dart';
 import 'package:mailstr/widgets/content_padding_view.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -31,8 +32,8 @@ class PayScreen extends StatelessWidget {
               backgroundColor: Colors.transparent,
               title: Text(
                 controller.emailUnlocked.value
-                    ? "Email unlocked"
-                    : "Email locked",
+                    ? AppLocalizations.of(context)!.emailUnlocked
+                    : AppLocalizations.of(context)!.emailLocked,
               ),
               titleSpacing: 8,
               actions: controller.emailUnlocked.value
@@ -85,7 +86,7 @@ class PayScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 12),
                                   Text(
-                                    'Email Successfully Unlocked!',
+                                    AppLocalizations.of(context)!.emailSuccessfullyUnlocked,
                                     style: Theme.of(
                                       context,
                                     ).textTheme.headlineSmall,
@@ -93,7 +94,7 @@ class PayScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 8),
                                   Text(
-                                    'You can now receive emails at this address.',
+                                    AppLocalizations.of(context)!.youCanNowReceiveEmails,
                                     style: Theme.of(
                                       context,
                                     ).textTheme.bodyMedium,
@@ -133,11 +134,11 @@ class PayWithProofOfWorkView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          "Pay with Proof Of Work",
+          AppLocalizations.of(context)!.payWithProofOfWork,
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         Text(
-          "It's like mining Bitcoin !\nYour device will search a code, it will take several minutes and once found your email will be unlocked.",
+          AppLocalizations.of(context)!.proofOfWorkDescription,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         SizedBox(height: 8),
@@ -151,14 +152,14 @@ class PayWithProofOfWorkView extends StatelessWidget {
                     controller.searchingCode.value
                         ? FilledButton(
                             onPressed: controller.stopProofOfWork,
-                            child: Text("Pause Proof Of Work"),
+                            child: Text(AppLocalizations.of(context)!.pauseProofOfWork),
                           )
                         : FilledButton(
                             onPressed: controller.startProofOfWork,
                             child: Text(
                               controller.nonce.value > 0
-                                  ? "Resume Proof Of Work"
-                                  : "Start Proof Of Work",
+                                  ? AppLocalizations.of(context)!.resumeProofOfWork
+                                  : AppLocalizations.of(context)!.startProofOfWork,
                             ),
                           ),
                   ],
@@ -213,11 +214,11 @@ class _PayWithCashuViewState extends State<PayWithCashuView> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          "Pay with Cashu",
+          AppLocalizations.of(context)!.payWithCashu,
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         Text(
-          "Cashu is electronic cash for payments online, in person, and around the world. It's Fast, Private, Simple and Secure.",
+          AppLocalizations.of(context)!.cashuDescription,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         Align(
@@ -229,7 +230,7 @@ class _PayWithCashuViewState extends State<PayWithCashuView> {
                 await launchUrl(url, mode: LaunchMode.externalApplication);
               }
             },
-            label: Text("Cashu.space"),
+            label: Text(AppLocalizations.of(context)!.cashuSpace),
             icon: Icon(Icons.launch),
           ),
         ),
@@ -254,7 +255,7 @@ class _PayWithCashuViewState extends State<PayWithCashuView> {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(8),
                   border: InputBorder.none,
-                  hintText: "Paste a Cashu token worth $unlockPrice sat${unlockPrice == 1 ? '' : 's'} to unlock",
+                  hintText: AppLocalizations.of(context)!.pasteCashuTokenHint(unlockPrice, unlockPrice == 1 ? '' : 's'),
                 ),
                 maxLines: 10,
               ),
@@ -283,8 +284,8 @@ class _PayWithCashuViewState extends State<PayWithCashuView> {
                   controller.payWithCashu(tokenController.text);
                 } else {
                   toastification.show(
-                    title: Text('Error'),
-                    description: Text('Please paste a Cashu token'),
+                    title: Text(AppLocalizations.of(context)!.error),
+                    description: Text(AppLocalizations.of(context)!.pleasePasteCashuToken),
                     type: ToastificationType.error,
                     style: ToastificationStyle.fillColored,
                     alignment: Alignment.bottomRight,
@@ -298,7 +299,7 @@ class _PayWithCashuViewState extends State<PayWithCashuView> {
                   );
                 }
               },
-              child: Text('Submit Payment'),
+              child: Text(AppLocalizations.of(context)!.submitPayment),
             ),
           ],
         ),

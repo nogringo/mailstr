@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mailstr/l10n/app_localizations.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:nip01/nip01.dart';
@@ -25,7 +26,7 @@ class CreateController extends GetxController {
   void copy(String text) {
     Clipboard.setData(ClipboardData(text: text));
     toastification.show(
-      title: Text('Copied'),
+      title: Text(AppLocalizations.of(Get.context!)!.copied),
       alignment: Alignment.bottomRight,
       style: ToastificationStyle.fillColored,
       icon: Icon(Icons.copy),

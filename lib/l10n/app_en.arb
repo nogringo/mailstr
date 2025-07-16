@@ -87,5 +87,205 @@
   "pleasePasteCashuToken": "Please paste a Cashu token",
   "@pleasePasteCashuToken": {
     "description": "Error message when no Cashu token is provided"
+  },
+  "create": "Create",
+  "@create": {
+    "description": "Create button text"
+  },
+  "payNow": "Pay now",
+  "@payNow": {
+    "description": "Pay now button text"
+  },
+  "newEmail": "New email",
+  "@newEmail": {
+    "description": "New email button text"
+  },
+  "copyNsec": "Copy nsec",
+  "@copyNsec": {
+    "description": "Copy nsec button text"
+  },
+  "nostrBasedEmailService": "Nostr based Email service",
+  "@nostrBasedEmailService": {
+    "description": "Main headline on home screen"
+  },
+  "createSecureEmailAddresses": "Create secure email addresses using Nostr keys.",
+  "@createSecureEmailAddresses": {
+    "description": "Subtitle on home screen"
+  },
+  "whyAppTitle": "Why {appTitle}?",
+  "@whyAppTitle": {
+    "description": "Section title on home screen",
+    "placeholders": {
+      "appTitle": {
+        "type": "String",
+        "example": "Mailstr"
+      }
+    }
+  },
+  "whyAppTitleDescription": "Traditional email providers control your data and can shut down your account at any time. {appTitle} is different. Built on the Nostr protocol, your email address is generated from cryptographic keys only you control - no one can revoke your identity.\n\nYou will never be asked to verify personal information here because we believe anyone should have access to e-mail without requiring to connect it to the growing surveillance state. Our work here is in service to this idea.\n\nLots of services are free because they feast on your personal data for profit or control.",
+  "@whyAppTitleDescription": {
+    "description": "Long description about why the app is different",
+    "placeholders": {
+      "appTitle": {
+        "type": "String",
+        "example": "Mailstr"
+      }
+    }
+  },
+  "howCanITrustYou": "How can I trust you?",
+  "@howCanITrustYou": {
+    "description": "Section title on home screen"
+  },
+  "trustDescription": "You can't. {appTitle} doesn't read or scan your e-mail content in any way, but it's possible for any e-mail provider to read your e-mail, so you'll just have to take our word for it. No \"encrypted e-mail\" provider is preventing this: even if they encrypt incoming mail before storing it, the provider still receives the e-mail in plaintext first, meaning you're only protected if you assume no one was reading or copying the e-mail as it came in.",
+  "@trustDescription": {
+    "description": "Long description about trust and security",
+    "placeholders": {
+      "appTitle": {
+        "type": "String",
+        "example": "Mailstr"
+      }
+    }
+  },
+  "noAccounts": "No Accounts",
+  "@noAccounts": {
+    "description": "Feature pill text"
+  },
+  "noLogs": "No Logs",
+  "@noLogs": {
+    "description": "Feature pill text"
+  },
+  "justPrivacy": "Just Privacy",
+  "@justPrivacy": {
+    "description": "Feature pill text"
+  },
+  "createEmailAddressNow": "Create An Email Address Now",
+  "@createEmailAddressNow": {
+    "description": "Call to action button text"
+  },
+  "takesLessThan30Seconds": "Takes less than 30 seconds. No registration required.",
+  "@takesLessThan30Seconds": {
+    "description": "Subtitle for call to action"
+  },
+  "youCanNowReceiveEmails": "You can now receive emails at this address.",
+  "@youCanNowReceiveEmails": {
+    "description": "Success message after email unlock"
+  },
+  "cashuSpace": "Cashu.space",
+  "@cashuSpace": {
+    "description": "Link text for Cashu website"
+  },
+  "copied": "Copied",
+  "@copied": {
+    "description": "Toast message when something is copied"
+  },
+  "startingProofOfWork": "Starting Proof of Work...",
+  "@startingProofOfWork": {
+    "description": "Status message when starting proof of work"
+  },
+  "resumingProofOfWork": "Resuming Proof of Work from nonce: {nonce}",
+  "@resumingProofOfWork": {
+    "description": "Status message when resuming proof of work",
+    "placeholders": {
+      "nonce": {
+        "type": "int",
+        "example": "12345"
+      }
+    }
+  },
+  "proofOfWorkPaused": "Proof of Work paused at nonce: {nonce}",
+  "@proofOfWorkPaused": {
+    "description": "Status message when proof of work is paused",
+    "placeholders": {
+      "nonce": {
+        "type": "int",
+        "example": "12345"
+      }
+    }
+  },
+  "proofOfWorkReset": "Proof of Work reset",
+  "@proofOfWorkReset": {
+    "description": "Status message when proof of work is reset"
+  },
+  "proofOfWorkCompletedWithNonce": "Proof of Work completed! Nonce: {nonce}",
+  "@proofOfWorkCompletedWithNonce": {
+    "description": "Status message when proof of work is completed",
+    "placeholders": {
+      "nonce": {
+        "type": "int",
+        "example": "12345"
+      }
+    }
+  },
+  "searchingWithHashRate": "Searching... Nonce: {nonce} | Hash rate: {hashRate} H/s",
+  "@searchingWithHashRate": {
+    "description": "Status message showing search progress with hash rate",
+    "placeholders": {
+      "nonce": {
+        "type": "int",
+        "example": "12345"
+      },
+      "hashRate": {
+        "type": "String",
+        "example": "1.23"
+      }
+    }
+  },
+  "errorDecodingNpub": "Error decoding npub: {error}",
+  "@errorDecodingNpub": {
+    "description": "Error message when decoding npub fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Invalid format"
+      }
+    }
+  },
+  "invalidPubkeyFormat": "Invalid pubkey format: length={length}, hex={isHex}",
+  "@invalidPubkeyFormat": {
+    "description": "Error message for invalid pubkey format",
+    "placeholders": {
+      "length": {
+        "type": "int",
+        "example": "32"
+      },
+      "isHex": {
+        "type": "String",
+        "example": "true"
+      }
+    }
+  },
+  "invalidEmailFormat": "Invalid email format",
+  "@invalidEmailFormat": {
+    "description": "Error message for invalid email format"
+  },
+  "success": "Success",
+  "@success": {
+    "description": "Success toast title"
+  },
+  "paymentAcceptedEmailUnlocked": "Payment accepted, email unlocked!",
+  "@paymentAcceptedEmailUnlocked": {
+    "description": "Success message when payment is accepted"
+  },
+  "emailUnlockedWithProofOfWork": "Email unlocked with Proof of Work!",
+  "@emailUnlockedWithProofOfWork": {
+    "description": "Success message when email is unlocked with proof of work"
+  },
+  "failedToVerifyProofOfWork": "Failed to verify proof of work",
+  "@failedToVerifyProofOfWork": {
+    "description": "Error message when proof of work verification fails"
+  },
+  "failedToConnectToServer": "Failed to connect to server",
+  "@failedToConnectToServer": {
+    "description": "Error message when server connection fails"
+  },
+  "duration": "Duration: {duration}",
+  "@duration": {
+    "description": "Duration label showing elapsed time",
+    "placeholders": {
+      "duration": {
+        "type": "String",
+        "example": "02:30"
+      }
+    }
   }
 }

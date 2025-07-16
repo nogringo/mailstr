@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mailstr/app_routes.dart';
 import 'package:mailstr/config.dart';
+import 'package:mailstr/l10n/app_localizations.dart';
 import 'package:mailstr/widgets/content_padding_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -61,7 +62,7 @@ class HomeScreen extends StatelessWidget {
               SizedBox(width: 8),
               FilledButton(
                 onPressed: () => Get.toNamed(AppRoutes.create),
-                child: Text('Create'),
+                child: Text(AppLocalizations.of(context)!.create),
               ),
               SizedBox(width: 8),
             ],
@@ -78,7 +79,7 @@ class HomeScreen extends StatelessWidget {
 
               // Hero Section
               Text(
-                'Nostr based Email service',
+                AppLocalizations.of(context)!.nostrBasedEmailService,
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -87,7 +88,7 @@ class HomeScreen extends StatelessWidget {
               SizedBox(height: 16),
 
               Text(
-                'Create secure email addresses using Nostr keys.',
+                AppLocalizations.of(context)!.createSecureEmailAddresses,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: Theme.of(
                     context,
@@ -113,15 +114,13 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Why Uid?',
+                      AppLocalizations.of(context)!.whyAppTitle(appTitle),
                       style: Theme.of(context).textTheme.headlineSmall
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 16),
                     Text(
-                      'Traditional email providers control your data and can shut down your account at any time. Uid is different. Built on the Nostr protocol, your email address is generated from cryptographic keys only you control - no one can revoke your identity.\n\n'
-                      'You will never be asked to verify personal information here because we believe anyone should have access to e-mail without requiring to connect it to the growing surveillance state. Our work here is in service to this idea.\n\n'
-                      'Lots of services are free because they feast on your personal data for profit or control.',
+                      AppLocalizations.of(context)!.whyAppTitleDescription(appTitle),
                       style: Theme.of(
                         context,
                       ).textTheme.bodyMedium?.copyWith(height: 1.6),
@@ -145,13 +144,13 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'How can I trust you?',
+                      AppLocalizations.of(context)!.howCanITrustYou,
                       style: Theme.of(context).textTheme.headlineSmall
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 16),
                     Text(
-                      'You can\'t. Uid doesn\'t read or scan your e-mail content in any way, but it\'s possible for any e-mail provider to read your e-mail, so you\'ll just have to take our word for it. No "encrypted e-mail" provider is preventing this: even if they encrypt incoming mail before storing it, the provider still receives the e-mail in plaintext first, meaning you\'re only protected if you assume no one was reading or copying the e-mail as it came in.',
+                      AppLocalizations.of(context)!.trustDescription(appTitle),
                       style: Theme.of(
                         context,
                       ).textTheme.bodyMedium?.copyWith(height: 1.6),
@@ -168,10 +167,10 @@ class HomeScreen extends StatelessWidget {
                   _buildSimpleFeature(
                     context,
                     Icons.no_accounts,
-                    'No Accounts',
+                    AppLocalizations.of(context)!.noAccounts,
                   ),
-                  _buildSimpleFeature(context, Icons.visibility_off, 'No Logs'),
-                  _buildSimpleFeature(context, Icons.gpp_good, 'Just Privacy'),
+                  _buildSimpleFeature(context, Icons.visibility_off, AppLocalizations.of(context)!.noLogs),
+                  _buildSimpleFeature(context, Icons.gpp_good, AppLocalizations.of(context)!.justPrivacy),
                 ],
               ),
               SizedBox(height: 48),
@@ -188,13 +187,13 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      'Create An Email Address Now',
+                      AppLocalizations.of(context)!.createEmailAddressNow,
                       style: TextStyle(fontSize: 16),
                     ),
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'Takes less than 30 seconds. No registration required.',
+                    AppLocalizations.of(context)!.takesLessThan30Seconds,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: Theme.of(
                         context,
