@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:toastification/toastification.dart';
+import 'package:mailstr/config.dart';
 import 'package:mailstr/screens/pay/pay_controller.dart';
 import 'package:mailstr/widgets/content_padding_view.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -253,7 +254,7 @@ class _PayWithCashuViewState extends State<PayWithCashuView> {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(8),
                   border: InputBorder.none,
-                  hintText: "Paste your Cashu token here",
+                  hintText: "Paste a Cashu token worth $unlockPrice sat${unlockPrice == 1 ? '' : 's'} to unlock",
                 ),
                 maxLines: 10,
               ),
