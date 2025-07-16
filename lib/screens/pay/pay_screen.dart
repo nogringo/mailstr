@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mailstr/app_routes.dart';
 import 'package:toastification/toastification.dart';
 import 'package:mailstr/config.dart';
 import 'package:mailstr/l10n/app_localizations.dart';
@@ -40,9 +41,9 @@ class PayScreen extends StatelessWidget {
                   ? [
                       Padding(
                         padding: EdgeInsetsGeometry.only(right: 8),
-                        child: IconButton(
-                          icon: Icon(Icons.home),
-                          onPressed: () => Get.offAllNamed('/'),
+                        child: FilledButton(
+                          onPressed: () => Get.offAllNamed(AppRoutes.home),
+                          child: Text(AppLocalizations.of(context)!.home),
                         ),
                       ),
                     ]
@@ -179,7 +180,7 @@ class PayWithProofOfWorkView extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Duration: ${controller.miningDuration.value}',
+                      AppLocalizations.of(context)!.duration(controller.miningDuration.value),
                       style: GoogleFonts.robotoMono(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,

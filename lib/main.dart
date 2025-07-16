@@ -24,7 +24,7 @@ class MainApp extends StatelessWidget {
         supportedLocales: AppLocalizations.supportedLocales,
         // Uncomment one of these to test different languages:
         // locale: Locale('en'), // English
-        locale: Locale('fr'), // French
+        // locale: Locale('fr'), // French
         // locale: Locale('es'), // Spanish
         theme: ThemeData.light().copyWith(
           colorScheme: ColorScheme.fromSeed(seedColor: themeColor),

@@ -8,6 +8,7 @@ import 'package:nip19/nip19.dart';
 import 'package:toastification/toastification.dart';
 import 'package:mailstr/config.dart';
 import 'package:mailstr/hex_to_base_36.dart';
+import 'package:mailstr/l10n/app_localizations.dart';
 
 class PayController extends GetxController {
   static PayController get to => Get.find();
@@ -33,12 +34,12 @@ class PayController extends GetxController {
     // Check if this is a resume or a fresh start
     if (nonce.value == 0) {
       // Fresh start
-      powStatus.value = 'Starting Proof of Work...';
+      powStatus.value = AppLocalizations.of(Get.context!)!.startingProofOfWork;
       miningDuration.value = '00:00';
       pausedDuration = Duration.zero;
     } else {
       // Resuming
-      powStatus.value = 'Resuming Proof of Work from nonce: ${nonce.value}';
+      powStatus.value = AppLocalizations.of(Get.context!)!.resumingProofOfWork(nonce.value);
       // Parse the current duration to preserve it
       final parts = miningDuration.value.split(':');
       if (parts.length == 2) {
@@ -74,7 +75,7 @@ class PayController extends GetxController {
         try {
           pubkey = Nip19.npubToHex(npubOrPubkey);
         } catch (e) {
-          powStatus.value = 'Error decoding npub: $e';
+          powStatus.value = AppLocalizations.of(Get.context!)!.errorDecodingNpub(e.toString());
           searchingCode.value = false;
           return;
         }
@@ -90,7 +91,7 @@ class PayController extends GetxController {
       
       // Validate pubkey format and length
       if (pubkey.length != 64 || !RegExp(r'^[0-9a-fA-F]+$').hasMatch(pubkey)) {
-        powStatus.value = 'Invalid pubkey format: length=${pubkey.length}, hex=${RegExp(r'^[0-9a-fA-F]+$').hasMatch(pubkey)}';
+        powStatus.value = AppLocalizations.of(Get.context!)!.invalidPubkeyFormat(pubkey.length, RegExp(r'^[0-9a-fA-F]+$').hasMatch(pubkey).toString());
         searchingCode.value = false;
         return;
       }
@@ -98,7 +99,7 @@ class PayController extends GetxController {
       final pubkeyEmail = '$pubkey@$domain';
       _performProofOfWork(pubkeyEmail, difficulty);
     } else {
-      powStatus.value = 'Invalid email format';
+      powStatus.value = AppLocalizations.of(Get.context!)!.invalidEmailFormat;
       searchingCode.value = false;
     }
   }
@@ -108,7 +109,7 @@ class PayController extends GetxController {
     shouldStopPow = true;
     powTimer?.cancel();
     durationTimer?.cancel();
-    powStatus.value = 'Proof of Work paused at nonce: ${nonce.value}';
+    powStatus.value = AppLocalizations.of(Get.context!)!.proofOfWorkPaused(nonce.value);
     // Keep the current nonce and duration values
   }
   
@@ -120,7 +121,7 @@ class PayController extends GetxController {
     nonce.value = 0;
     miningDuration.value = '00:00';
     pausedDuration = Duration.zero;
-    powStatus.value = 'Proof of Work reset';
+    powStatus.value = AppLocalizations.of(Get.context!)!.proofOfWorkReset;
     hashRate.value = 0.0;
   }
   
@@ -156,7 +157,7 @@ class PayController extends GetxController {
           durationTimer?.cancel();
           searchingCode.value = false;
           powCompleted.value = true;
-          powStatus.value = 'Proof of Work completed! Nonce: ${nonce.value}';
+          powStatus.value = AppLocalizations.of(Get.context!)!.proofOfWorkCompletedWithNonce(nonce.value);
           
           // Create proof object
           final proof = {
@@ -175,7 +176,7 @@ class PayController extends GetxController {
       
       // Update status every 10 batches to reduce UI updates
       if (nonce.value % 10000 == 0) {
-        powStatus.value = 'Searching... Nonce: ${nonce.value} | Hash rate: ${hashRate.value.toStringAsFixed(2)} H/s';
+        powStatus.value = AppLocalizations.of(Get.context!)!.searchingWithHashRate(nonce.value, hashRate.value.toStringAsFixed(2));
       }
       
       // Allow UI to update with minimal delay
@@ -238,8 +239,8 @@ class PayController extends GetxController {
         emailUnlocked.value = true;
         
         toastification.show(
-          title: Text('Success'),
-          description: Text(data['message'] ?? 'Payment accepted, email unlocked!'),
+          title: Text(AppLocalizations.of(Get.context!)!.success),
+          description: Text(data['message'] ?? AppLocalizations.of(Get.context!)!.paymentAcceptedEmailUnlocked),
           type: ToastificationType.success,
           style: ToastificationStyle.fillColored,
           alignment: Alignment.bottomRight,
@@ -259,7 +260,7 @@ class PayController extends GetxController {
         }
         
         toastification.show(
-          title: Text('Error'),
+          title: Text(AppLocalizations.of(Get.context!)!.error),
           description: Text(errorMessage),
           type: ToastificationType.error,
           style: ToastificationStyle.fillColored,
@@ -276,7 +277,7 @@ class PayController extends GetxController {
       // print('Error sending Cashu payment: $e');
       toastification.show(
         title: Text('Error'),
-        description: Text('Failed to connect to server'),
+        description: Text(AppLocalizations.of(Get.context!)!.failedToConnectToServer),
         type: ToastificationType.error,
         style: ToastificationStyle.fillColored,
         alignment: Alignment.bottomRight,
@@ -318,6 +319,7 @@ class PayController extends GetxController {
           apiEmail = '$pubkey@$domain';
         }
       }
+      print(apiEmail);
       
       final response = await http.post(
         Uri.parse(payWithProofOfWorkUrl),
@@ -335,8 +337,8 @@ class PayController extends GetxController {
         emailUnlocked.value = true;
         
         toastification.show(
-          title: Text('Success'),
-          description: Text(data['message'] ?? 'Email unlocked with Proof of Work!'),
+          title: Text(AppLocalizations.of(Get.context!)!.success),
+          description: Text(data['message'] ?? AppLocalizations.of(Get.context!)!.emailUnlockedWithProofOfWork),
           type: ToastificationType.success,
           style: ToastificationStyle.fillColored,
           alignment: Alignment.bottomRight,
@@ -349,8 +351,8 @@ class PayController extends GetxController {
       } else {
         final error = jsonDecode(response.body);
         toastification.show(
-          title: Text('Error'),
-          description: Text(error['error'] ?? 'Failed to verify proof of work'),
+          title: Text(AppLocalizations.of(Get.context!)!.error),
+          description: Text(error['error'] ?? AppLocalizations.of(Get.context!)!.failedToVerifyProofOfWork),
           type: ToastificationType.error,
           style: ToastificationStyle.fillColored,
           alignment: Alignment.bottomRight,
@@ -365,7 +367,7 @@ class PayController extends GetxController {
       // print('Error sending POW: $e');
       toastification.show(
         title: Text('Error'),
-        description: Text('Failed to connect to server'),
+        description: Text(AppLocalizations.of(Get.context!)!.failedToConnectToServer),
         type: ToastificationType.error,
         style: ToastificationStyle.fillColored,
         alignment: Alignment.bottomRight,

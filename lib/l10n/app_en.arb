@@ -287,5 +287,9 @@
         "example": "02:30"
       }
     }
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home button text"
   }
 }

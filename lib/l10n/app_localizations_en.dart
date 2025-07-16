@@ -191,4 +191,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String duration(String duration) {
     return 'Duration: $duration';
   }
+
+  @override
+  String get home => 'Home';
 }

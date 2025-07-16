@@ -50,5 +50,6 @@
     "emailUnlockedWithProofOfWork": "¡Email desbloqueado con Prueba de Trabajo!",
     "failedToVerifyProofOfWork": "Error al verificar prueba de trabajo",
     "failedToConnectToServer": "Error al conectar con el servidor",
-    "duration": "Duración: {duration}"
+    "duration": "Duración: {duration}",
+    "home": "Inicio"
 }

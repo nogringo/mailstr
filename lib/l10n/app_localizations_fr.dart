@@ -21,7 +21,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get emailSuccessfullyUnlocked => 'Email déverrouillé avec succès !';
 
   @override
-  String get payWithProofOfWork => 'Payer avec Preuve de Travail';
+  String get payWithProofOfWork => 'Payer avec une Preuve de Travail';
 
   @override
   String get proofOfWorkDescription =>
@@ -102,7 +102,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String trustDescription(String appTitle) {
-    return 'Vous ne pouvez pas. $appTitle ne lit ni ne scanne le contenu de vos emails d\'aucune manière, mais il est possible pour tout fournisseur d\'email de lire vos emails, donc vous devrez nous faire confiance. Aucun fournisseur d\'\"email crypté\" n\'empêche cela : même s\'ils chiffrent les emails entrants avant de les stocker, le fournisseur reçoit toujours l\'email en texte brut en premier, ce qui signifie que vous n\'êtes protégé que si vous supposez que personne ne lisait ou ne copiait l\'email à son arrivée.';
+    return 'Vous ne pouvez pas. $appTitle ne lit ni ne scanne le contenu de vos emails d\'aucune manière, mais il est possible pour tout fournisseur d\'email de lire vos emails, donc vous devrez nous faire confiance. Aucun fournisseur d\'email crypté n\'empêche cela : même s\'ils chiffrent les emails entrants avant de les stocker, le fournisseur reçoit toujours l\'email en texte brut en premier, ce qui signifie que vous n\'êtes protégé que si personne ne lisait ou ne copiait l\'email à son arrivée.';
   }
 
   @override
@@ -192,4 +192,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String duration(String duration) {
     return 'Durée : $duration';
   }
+
+  @override
+  String get home => 'Accueil';
 }
