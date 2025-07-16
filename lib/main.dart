@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mailstr/config.dart';
+import 'package:mailstr/l10n/app_localizations.dart';
 import 'package:toastification/toastification.dart';
 import 'package:mailstr/app_routes.dart';
 import 'package:mailstr/screens/create/create_screen.dart';
@@ -19,6 +20,8 @@ class MainApp extends StatelessWidget {
     return ToastificationWrapper(
       child: GetMaterialApp(
         title: appTitle,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: ThemeData.light().copyWith(
           colorScheme: ColorScheme.fromSeed(seedColor: themeColor),
         ),

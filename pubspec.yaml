@@ -10,10 +10,13 @@ dependencies:
   crypto: ^3.0.6
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   flutter_svg: ^2.2.0
   get: ^4.7.2
   google_fonts: ^6.2.1
   http: ^1.4.0
+  intl: any
   nip01: ^0.3.0+1
   nip19: ^0.2.0
   toastification: ^3.0.3
@@ -25,6 +28,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 flutter:
+  generate: true
   uses-material-design: true
   assets:
     - assets/
