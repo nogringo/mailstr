@@ -261,7 +261,7 @@ class _PayWithCashuViewState extends State<PayWithCashuView> {
                 maxLines: 10,
               ),
               Positioned(
-                top: 4,
+                bottom: 4,
                 right: 4,
                 child: IconButton(
                   onPressed: () async {
