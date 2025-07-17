@@ -19,7 +19,7 @@
     "error": "Erreur",
     "pleasePasteCashuToken": "Veuillez coller un jeton Cashu",
     "create": "Créer",
-    "payNow": "Payer maintenant",
+    "unlockNow": "Débloquer maintenant",
     "newEmail": "Nouvel email",
     "copyNsec": "Copier nsec",
     "nostrBasedEmailService": "Service d'email basé sur Nostr",

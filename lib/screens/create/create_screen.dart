@@ -27,7 +27,7 @@ class CreateScreen extends StatelessWidget {
                 actions: [
                   FilledButton(
                     onPressed: c.payNow,
-                    child: Text(AppLocalizations.of(context)!.payNow),
+                    child: Text(AppLocalizations.of(context)!.unlockNow),
                   ),
                   SizedBox(width: 8),
                 ],

@@ -72,7 +72,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get create => 'Create';
 
   @override
-  String get payNow => 'Pay now';
+  String get unlockNow => 'Unlock now';
 
   @override
   String get newEmail => 'New email';

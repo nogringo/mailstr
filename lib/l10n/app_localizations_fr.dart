@@ -72,7 +72,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get create => 'Créer';
 
   @override
-  String get payNow => 'Payer maintenant';
+  String get unlockNow => 'Débloquer maintenant';
 
   @override
   String get newEmail => 'Nouvel email';

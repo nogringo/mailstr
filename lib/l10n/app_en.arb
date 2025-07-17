@@ -92,9 +92,9 @@
   "@create": {
     "description": "Create button text"
   },
-  "payNow": "Pay now",
-  "@payNow": {
-    "description": "Pay now button text"
+  "unlockNow": "Unlock now",
+  "@unlockNow": {
+    "description": "Unlock now button text"
   },
   "newEmail": "New email",
   "@newEmail": {

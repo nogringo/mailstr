@@ -214,11 +214,11 @@ abstract class AppLocalizations {
   /// **'Create'**
   String get create;
 
-  /// Pay now button text
+  /// Unlock now button text
   ///
   /// In en, this message translates to:
-  /// **'Pay now'**
-  String get payNow;
+  /// **'Unlock now'**
+  String get unlockNow;
 
   /// New email button text
   ///
