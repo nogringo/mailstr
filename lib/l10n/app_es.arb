@@ -12,7 +12,7 @@
     "searchingForCode": "Buscando código...",
     "nonceAttempts": "Nonce: {nonce}",
     "proofOfWorkCompleted": "Prueba de Trabajo completada",
-    "payWithCashu": "Pagar con Cashu",
+    "unlockWithCashu": "Desbloquear con Cashu",
     "cashuDescription": "Cashu es dinero electrónico para pagos en línea, en persona y alrededor del mundo. Es Rápido, Privado, Simple y Seguro.",
     "pasteCashuTokenHint": "Pega un token Cashu de {amount} sat{plural} para desbloquear",
     "submitPayment": "Enviar Pago",

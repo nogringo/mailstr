@@ -172,11 +172,11 @@ abstract class AppLocalizations {
   /// **'Proof of Work Completed'**
   String get proofOfWorkCompleted;
 
-  /// Header for Cashu payment option
+  /// Header for Cashu unlock option
   ///
   /// In en, this message translates to:
-  /// **'Pay with Cashu'**
-  String get payWithCashu;
+  /// **'Unlock with Cashu'**
+  String get unlockWithCashu;
 
   /// Description of Cashu payment method
   ///

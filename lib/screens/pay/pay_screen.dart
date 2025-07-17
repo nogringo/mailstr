@@ -215,7 +215,7 @@ class _PayWithCashuViewState extends State<PayWithCashuView> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          AppLocalizations.of(context)!.payWithCashu,
+          AppLocalizations.of(context)!.unlockWithCashu,
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         Text(
