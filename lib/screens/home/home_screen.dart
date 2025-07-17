@@ -159,6 +159,119 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 48),
+              Container(
+                padding: EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.outline.withValues(alpha: 0.3),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Ou lire mes emails ?",
+                      style: Theme.of(context).textTheme.headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      "Vos emails vous sont evoyé par message privé sur Nostr. Vous pouvez les lire sur n'importe quelle application Nostr qui supporte les messages privés comme :",
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(height: 1.6),
+                    ),
+                    SizedBox(height: 16),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        TextButton(
+                          onPressed: () async {
+                            final Uri url = Uri.parse('https://yakihonne.com');
+                            if (await canLaunchUrl(url)) {
+                              await launchUrl(url, mode: LaunchMode.externalApplication);
+                            }
+                          },
+                          child: Text('Yakihonne'),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            final Uri url = Uri.parse('https://amethyst.social');
+                            if (await canLaunchUrl(url)) {
+                              await launchUrl(url, mode: LaunchMode.externalApplication);
+                            }
+                          },
+                          child: Text('Amethyst'),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            final Uri url = Uri.parse('https://0xchat.com');
+                            if (await canLaunchUrl(url)) {
+                              await launchUrl(url, mode: LaunchMode.externalApplication);
+                            }
+                          },
+                          child: Text('0xchat'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 48),
+              Container(
+                padding: EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.outline.withValues(alpha: 0.3),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "J'ai deja un compte Nostr, puis-je recevoir mes emails sur ce compte ?",
+                      style: Theme.of(context).textTheme.headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 16),
+                    RichText(
+                      text: TextSpan(
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(height: 1.6),
+                        children: [
+                          TextSpan(
+                            text: "Oui",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(
+                            text: ", vous avez juste a ajouter ",
+                          ),
+                          TextSpan(
+                            text: "@$emailDomain",
+                            style: TextStyle(
+                              fontFamily: 'monospace',
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                          TextSpan(
+                            text: " a la fin de votre Npub et vous avez votre adresse email.",
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 48),
 
               // Simple Features
               Row(
@@ -203,7 +316,6 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 64),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

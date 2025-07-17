@@ -43,10 +43,10 @@ class CreateScreen extends StatelessWidget {
                 children: [
                   EmailView(email: c.npubEmail),
                   SizedBox(height: 8),
-                  EmailView(email: c.pubkeyEmail),
-                  SizedBox(height: 8),
-                  EmailView(email: c.compactEmail),
-                  SizedBox(height: 8),
+                  // EmailView(email: c.pubkeyEmail),
+                  // SizedBox(height: 8),
+                  // EmailView(email: c.compactEmail),
+                  // SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
