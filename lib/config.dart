@@ -9,7 +9,7 @@ const difficulty = kDebugMode ? 1 : 7;
 
 const unlockPrice = kDebugMode ? 1 : 100;
 
-const emailDomain = "shakerbrain.com";
+const emailDomain = "uid.ovh";
 
 const payWithCashuUrl = kDebugMode
     ? 'http://127.0.0.1:5001/mailstr-6a9c4/us-central1/payWithCashu'

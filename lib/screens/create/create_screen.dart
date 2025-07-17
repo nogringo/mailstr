@@ -41,23 +41,15 @@ class CreateScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  RichText(
-                    text: TextSpan(
-                      style: Theme.of(context).textTheme.bodySmall,
-                      children: [
-                        TextSpan(
-                          text:
-                              "Votre clé privée (Nsec) est la clé pour lire vos emails, conservez la dans un endroit sécurisé comme votre gestionnaire de mot de passe.\n",
-                        ),
-                        TextSpan(
-                          text:
-                              "Sans votre Nsec vous n'aurez pas accès à vos emails.",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
+                  Text(
+                    "Votre clé privée (Nsec) est la clé pour lire vos emails, conservez la dans un endroit sécurisé comme votre gestionnaire de mot de passe.",
                   ),
                   SizedBox(height: 8),
+                  Text(
+                    "Sans votre Nsec vous n'aurez pas accès à vos emails.",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 16),
                   EmailView(email: c.npubEmail),
                   SizedBox(height: 8),
                   // EmailView(email: c.pubkeyEmail),

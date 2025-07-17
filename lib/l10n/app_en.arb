@@ -310,7 +310,7 @@
     "placeholders": {
       "domain": {
         "type": "String",
-        "example": "shakerbrain.com"
+        "example": "uid.ovh"
       }
     }
   }
