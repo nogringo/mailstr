@@ -41,6 +41,23 @@ class CreateScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  RichText(
+                    text: TextSpan(
+                      style: Theme.of(context).textTheme.bodySmall,
+                      children: [
+                        TextSpan(
+                          text:
+                              "Votre Nsec est la clé pour lire vos emails, conservez la dans un endroit sécurisé comme votre gestionnaire de mot de passe.\n",
+                        ),
+                        TextSpan(
+                          text:
+                              "Sans votre Nsec vous n'avez pas acces a vos email.",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 8),
                   EmailView(email: c.npubEmail),
                   SizedBox(height: 8),
                   // EmailView(email: c.pubkeyEmail),
@@ -55,7 +72,6 @@ class CreateScreen extends StatelessWidget {
                         label: Text(AppLocalizations.of(context)!.newEmail),
                         icon: Icon(Icons.refresh),
                       ),
-                      SizedBox(width: 8),
                       TextButton.icon(
                         onPressed: () => c.copy(c.keypair.nsec),
                         label: Text(AppLocalizations.of(context)!.copyNsec),
@@ -109,7 +125,9 @@ class EmailView extends StatelessWidget {
                     TextSpan(
                       text: beforeAt,
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withValues(alpha: 0.5),
                       ),
                     ),
                   TextSpan(text: atAndAfter),

@@ -102,7 +102,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String trustDescription(String appTitle) {
-    return 'No puedes. $appTitle no lee ni escanea el contenido de tu email de ninguna manera, pero es posible para cualquier proveedor de email leer tu email, así que tendrás que confiar en nuestra palabra. Ningún proveedor de \"email encriptado\" está evitando esto: incluso si encriptan el correo entrante antes de almacenarlo, el proveedor aún recibe el email en texto plano primero, lo que significa que solo estás protegido si asumes que nadie estaba leyendo o copiando el email mientras llegaba.';
+    return '$appTitle no lee ni escanea el contenido de tu email de ninguna manera, pero es posible para cualquier proveedor de email leer tu email, así que tendrás que confiar en nuestra palabra. Ningún proveedor de \"email encriptado\" está evitando esto: incluso si encriptan el correo entrante antes de almacenarlo, el proveedor aún recibe el email en texto plano primero, lo que significa que solo estás protegido si asumes que nadie estaba leyendo o copiando el email mientras llegaba.';
   }
 
   @override

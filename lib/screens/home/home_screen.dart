@@ -190,32 +190,25 @@ class HomeScreen extends StatelessWidget {
                       spacing: 8,
                       runSpacing: 8,
                       children: [
-                        TextButton(
+                        OutlinedButton.icon(
                           onPressed: () async {
                             final Uri url = Uri.parse('https://yakihonne.com');
                             if (await canLaunchUrl(url)) {
                               await launchUrl(url, mode: LaunchMode.externalApplication);
                             }
                           },
-                          child: Text('Yakihonne'),
+                          label: Text('Yakihonne'),
+                          icon: Icon(Icons.language),
                         ),
-                        TextButton(
-                          onPressed: () async {
-                            final Uri url = Uri.parse('https://amethyst.social');
-                            if (await canLaunchUrl(url)) {
-                              await launchUrl(url, mode: LaunchMode.externalApplication);
-                            }
-                          },
-                          child: Text('Amethyst'),
-                        ),
-                        TextButton(
+                        OutlinedButton.icon(
                           onPressed: () async {
                             final Uri url = Uri.parse('https://0xchat.com');
                             if (await canLaunchUrl(url)) {
                               await launchUrl(url, mode: LaunchMode.externalApplication);
                             }
                           },
-                          child: Text('0xchat'),
+                          label: Text('0xchat'),
+                          icon: Icon(Icons.phone_android_outlined),
                         ),
                       ],
                     ),

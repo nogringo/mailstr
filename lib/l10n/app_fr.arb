@@ -21,13 +21,13 @@
     "create": "Créer",
     "unlockNow": "Débloquer maintenant",
     "newEmail": "Nouvel email",
-    "copyNsec": "Copier nsec",
+    "copyNsec": "Copier le nsec",
     "nostrBasedEmailService": "Service d'email basé sur Nostr",
     "createSecureEmailAddresses": "Créez des adresses email sécurisées en utilisant les clés Nostr.",
     "whyAppTitle": "Pourquoi {appTitle} ?",
     "whyAppTitleDescription": "Les fournisseurs d'email traditionnels contrôlent vos données et peuvent fermer votre compte à tout moment. {appTitle} est différent. Basé sur le protocole Nostr, votre adresse email est générée à partir de clés cryptographiques que vous seul contrôlez - personne ne peut révoquer votre identité.\n\nOn ne vous demandera jamais de vérifier des informations personnelles car nous pensons que tout le monde devrait avoir accès aux emails sans devoir se connecter à l'état de surveillance croissant. Notre travail ici est au service de cette idée.\n\nBeaucoup de services sont gratuits car ils se nourrissent de vos données personnelles pour le profit ou le contrôle.",
     "howCanITrustYou": "Comment puis-je vous faire confiance ?",
-    "trustDescription": "Vous ne pouvez pas. {appTitle} ne lit ni ne scanne le contenu de vos emails d'aucune manière, mais il est possible pour tout fournisseur d'email de lire vos emails, donc vous devrez nous faire confiance. Aucun fournisseur d'email crypté n'empêche cela : même s'ils chiffrent les emails entrants avant de les stocker, le fournisseur reçoit toujours l'email en texte brut en premier, ce qui signifie que vous n'êtes protégé que si personne ne lisait ou ne copiait l'email à son arrivée.",
+    "trustDescription": "{appTitle} ne lit ni ne scanne le contenu de vos emails d'aucune manière, mais il est possible pour tout fournisseur d'email de lire vos emails. Aucun fournisseur d'email crypté n'empêche cela : même s'ils chiffrent les emails entrants avant de les stocker, le fournisseur reçoit toujours l'email en texte brut en premier, ce qui signifie que vous n'êtes protégé que si personne ne lisait ou ne copiait l'email à son arrivée.",
     "noAccounts": "Pas de comptes",
     "noLogs": "Pas de logs",
     "justPrivacy": "Juste la confidentialité",
@@ -52,8 +52,8 @@
     "failedToConnectToServer": "Échec de la connexion au serveur",
     "duration": "Durée : {duration}",
     "home": "Accueil",
-    "whereToReadEmails": "Ou lire mes emails ?",
-    "whereToReadEmailsDescription": "Vos emails vous sont evoyé par message privé sur Nostr. Vous pouvez les lire sur n'importe quelle application Nostr qui supporte les messages privés comme :",
-    "alreadyHaveNostrAccount": "J'ai deja un compte Nostr, puis-je recevoir mes emails sur ce compte ?",
-    "yesAddDomainToNpub": "Oui, vous avez juste a ajouter @{domain} a la fin de votre Npub et vous avez votre adresse email."
+    "whereToReadEmails": "Où lire mes emails ?",
+    "whereToReadEmailsDescription": "Vos emails vous sont evoyés par message privé sur Nostr. Vous pouvez les lire sur n'importe quelle application Nostr qui supporte les messages privés comme :",
+    "alreadyHaveNostrAccount": "J'ai déjà un compte Nostr, puis-je recevoir mes emails sur ce compte ?",
+    "yesAddDomainToNpub": "Oui, vous avez juste à ajouter @{domain} à la fin de votre Npub et vous avez votre adresse email."
 }

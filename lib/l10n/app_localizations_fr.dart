@@ -78,7 +78,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get newEmail => 'Nouvel email';
 
   @override
-  String get copyNsec => 'Copier nsec';
+  String get copyNsec => 'Copier le nsec';
 
   @override
   String get nostrBasedEmailService => 'Service d\'email basé sur Nostr';
@@ -102,7 +102,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String trustDescription(String appTitle) {
-    return 'Vous ne pouvez pas. $appTitle ne lit ni ne scanne le contenu de vos emails d\'aucune manière, mais il est possible pour tout fournisseur d\'email de lire vos emails, donc vous devrez nous faire confiance. Aucun fournisseur d\'email crypté n\'empêche cela : même s\'ils chiffrent les emails entrants avant de les stocker, le fournisseur reçoit toujours l\'email en texte brut en premier, ce qui signifie que vous n\'êtes protégé que si personne ne lisait ou ne copiait l\'email à son arrivée.';
+    return '$appTitle ne lit ni ne scanne le contenu de vos emails d\'aucune manière, mais il est possible pour tout fournisseur d\'email de lire vos emails. Aucun fournisseur d\'email crypté n\'empêche cela : même s\'ils chiffrent les emails entrants avant de les stocker, le fournisseur reçoit toujours l\'email en texte brut en premier, ce qui signifie que vous n\'êtes protégé que si personne ne lisait ou ne copiait l\'email à son arrivée.';
   }
 
   @override
@@ -197,18 +197,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get home => 'Accueil';
 
   @override
-  String get whereToReadEmails => 'Ou lire mes emails ?';
+  String get whereToReadEmails => 'Où lire mes emails ?';
 
   @override
   String get whereToReadEmailsDescription =>
-      'Vos emails vous sont evoyé par message privé sur Nostr. Vous pouvez les lire sur n\'importe quelle application Nostr qui supporte les messages privés comme :';
+      'Vos emails vous sont evoyés par message privé sur Nostr. Vous pouvez les lire sur n\'importe quelle application Nostr qui supporte les messages privés comme :';
 
   @override
   String get alreadyHaveNostrAccount =>
-      'J\'ai deja un compte Nostr, puis-je recevoir mes emails sur ce compte ?';
+      'J\'ai déjà un compte Nostr, puis-je recevoir mes emails sur ce compte ?';
 
   @override
   String yesAddDomainToNpub(String domain) {
-    return 'Oui, vous avez juste a ajouter @$domain a la fin de votre Npub et vous avez votre adresse email.';
+    return 'Oui, vous avez juste à ajouter @$domain à la fin de votre Npub et vous avez votre adresse email.';
   }
 }
