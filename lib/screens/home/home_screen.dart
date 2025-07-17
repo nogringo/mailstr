@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mailstr/app_routes.dart';
@@ -78,23 +79,33 @@ class HomeScreen extends StatelessWidget {
               SizedBox(height: 32),
 
               // Hero Section
-              Text(
-                AppLocalizations.of(context)!.nostrBasedEmailService,
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+              RichText(
                 textAlign: TextAlign.center,
+                text: TextSpan(
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                  children: _buildTextWithNostrLink(
+                    context,
+                    AppLocalizations.of(context)!.nostrBasedEmailService,
+                  ),
+                ),
               ),
               SizedBox(height: 16),
 
-              Text(
-                AppLocalizations.of(context)!.createSecureEmailAddresses,
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.onSurface.withValues(alpha: 0.7),
-                ),
+              RichText(
                 textAlign: TextAlign.center,
+                text: TextSpan(
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.onSurface.withValues(alpha: 0.7),
+                  ),
+                  children: _buildTextWithNostrLink(
+                    context,
+                    AppLocalizations.of(context)!.createSecureEmailAddresses,
+                  ),
+                ),
               ),
               SizedBox(height: 48),
 
@@ -119,11 +130,16 @@ class HomeScreen extends StatelessWidget {
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 16),
-                    Text(
-                      AppLocalizations.of(context)!.whyAppTitleDescription(appTitle),
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyMedium?.copyWith(height: 1.6),
+                    RichText(
+                      text: TextSpan(
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodyMedium?.copyWith(height: 1.6),
+                        children: _buildTextWithNostrLink(
+                          context,
+                          AppLocalizations.of(context)!.whyAppTitleDescription(appTitle),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -179,11 +195,16 @@ class HomeScreen extends StatelessWidget {
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 16),
-                    Text(
-                      AppLocalizations.of(context)!.whereToReadEmailsDescription,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyMedium?.copyWith(height: 1.6),
+                    RichText(
+                      text: TextSpan(
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodyMedium?.copyWith(height: 1.6),
+                        children: _buildTextWithNostrLink(
+                          context,
+                          AppLocalizations.of(context)!.whereToReadEmailsDescription,
+                        ),
+                      ),
                     ),
                     SizedBox(height: 16),
                     Wrap(
@@ -230,10 +251,15 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      AppLocalizations.of(context)!.alreadyHaveNostrAccount,
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(fontWeight: FontWeight.bold),
+                    RichText(
+                      text: TextSpan(
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                        children: _buildTextWithNostrLink(
+                          context,
+                          AppLocalizations.of(context)!.alreadyHaveNostrAccount,
+                        ),
+                      ),
                     ),
                     SizedBox(height: 16),
                     RichText(
@@ -413,5 +439,39 @@ class HomeScreen extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  List<TextSpan> _buildTextWithNostrLink(BuildContext context, String text) {
+    final spans = <TextSpan>[];
+    final nostrRegExp = RegExp(r'Nostr', caseSensitive: false);
+    int lastMatchEnd = 0;
+
+    for (final match in nostrRegExp.allMatches(text)) {
+      if (match.start > lastMatchEnd) {
+        spans.add(TextSpan(text: text.substring(lastMatchEnd, match.start)));
+      }
+      
+      spans.add(TextSpan(
+        text: text.substring(match.start, match.end),
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.primary,
+        ),
+        recognizer: TapGestureRecognizer()
+          ..onTap = () async {
+            final Uri url = Uri.parse('https://nstart.me/');
+            if (await canLaunchUrl(url)) {
+              await launchUrl(url, mode: LaunchMode.externalApplication);
+            }
+          },
+      ));
+      
+      lastMatchEnd = match.end;
+    }
+
+    if (lastMatchEnd < text.length) {
+      spans.add(TextSpan(text: text.substring(lastMatchEnd)));
+    }
+
+    return spans;
   }
 }

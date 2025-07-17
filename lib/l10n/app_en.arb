@@ -58,7 +58,7 @@
   "@unlockWithCashu": {
     "description": "Header for Cashu unlock option"
   },
-  "cashuDescription": "Cashu is electronic cash for payments online, in person, and around the world. It's Fast, Private, Simple and Secure.",
+  "cashuDescription": "Cashu is electronic cash for payments online and around the world. It's Fast, Private, Simple and Secure.",
   "@cashuDescription": {
     "description": "Description of Cashu payment method"
   },
@@ -146,7 +146,7 @@
       }
     }
   },
-  "noAccounts": "No Accounts",
+  "noAccounts": "No Account",
   "@noAccounts": {
     "description": "Feature pill text"
   },
@@ -304,7 +304,7 @@
   "@alreadyHaveNostrAccount": {
     "description": "Question about using existing Nostr account"
   },
-  "yesAddDomainToNpub": "Yes, you just have to add @{domain} at the end of your Npub and you have your email address.",
+  "yesAddDomainToNpub": "Yes, you just have to add @{domain} at the end of your public key (Npub) and you have your email address.",
   "@yesAddDomainToNpub": {
     "description": "Answer explaining how to create email from existing Npub",
     "placeholders": {

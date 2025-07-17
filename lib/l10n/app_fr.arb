@@ -13,7 +13,7 @@
     "nonceAttempts": "Nonce : {nonce}",
     "proofOfWorkCompleted": "Preuve de Travail terminée",
     "unlockWithCashu": "Débloquer avec Cashu",
-    "cashuDescription": "Cashu est de l'argent électronique pour les paiements en ligne, en personne et dans le monde entier. C'est Rapide, Privé, Simple et Sécurisé.",
+    "cashuDescription": "Cashu est de l'argent électronique pour les paiements en ligne et dans le monde entier. C'est Rapide, Privé, Simple et Sécurisé.",
     "pasteCashuTokenHint": "Collez un jeton Cashu d'une valeur de {amount} sat{plural} pour déverrouiller",
     "submitPayment": "Soumettre le paiement",
     "error": "Erreur",
@@ -28,7 +28,7 @@
     "whyAppTitleDescription": "Les fournisseurs d'email traditionnels contrôlent vos données et peuvent fermer votre compte à tout moment. {appTitle} est différent. Basé sur le protocole Nostr, votre adresse email est générée à partir de clés cryptographiques que vous seul contrôlez - personne ne peut révoquer votre identité.\n\nOn ne vous demandera jamais de vérifier des informations personnelles car nous pensons que tout le monde devrait avoir accès aux emails sans devoir se connecter à l'état de surveillance croissant. Notre travail ici est au service de cette idée.\n\nBeaucoup de services sont gratuits car ils se nourrissent de vos données personnelles pour le profit ou le contrôle.",
     "howCanITrustYou": "Comment puis-je vous faire confiance ?",
     "trustDescription": "{appTitle} ne lit ni ne scanne le contenu de vos emails d'aucune manière, mais il est possible pour tout fournisseur d'email de lire vos emails. Aucun fournisseur d'email crypté n'empêche cela : même s'ils chiffrent les emails entrants avant de les stocker, le fournisseur reçoit toujours l'email en texte brut en premier, ce qui signifie que vous n'êtes protégé que si personne ne lisait ou ne copiait l'email à son arrivée.",
-    "noAccounts": "Pas de comptes",
+    "noAccounts": "Pas de compte",
     "noLogs": "Pas de logs",
     "justPrivacy": "Juste la confidentialité",
     "createEmailAddressNow": "Créer une adresse email maintenant",
@@ -55,5 +55,5 @@
     "whereToReadEmails": "Où lire mes emails ?",
     "whereToReadEmailsDescription": "Vos emails vous sont evoyés par message privé sur Nostr. Vous pouvez les lire sur n'importe quelle application Nostr qui supporte les messages privés comme :",
     "alreadyHaveNostrAccount": "J'ai déjà un compte Nostr, puis-je recevoir mes emails sur ce compte ?",
-    "yesAddDomainToNpub": "Oui, vous avez juste à ajouter @{domain} à la fin de votre Npub et vous avez votre adresse email."
+    "yesAddDomainToNpub": "Oui, vous avez juste à ajouter @{domain} à la fin de votre clé publique (Npub) et vous avez votre adresse email."
 }

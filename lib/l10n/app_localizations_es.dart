@@ -52,7 +52,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get cashuDescription =>
-      'Cashu es dinero electrónico para pagos en línea, en persona y alrededor del mundo. Es Rápido, Privado, Simple y Seguro.';
+      'Cashu es dinero electrónico para pagos en línea y alrededor del mundo. Es Rápido, Privado, Simple y Seguro.';
 
   @override
   String pasteCashuTokenHint(int amount, String plural) {
@@ -106,7 +106,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get noAccounts => 'Sin cuentas';
+  String get noAccounts => 'Sin cuenta';
 
   @override
   String get noLogs => 'Sin logs';
@@ -209,6 +209,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String yesAddDomainToNpub(String domain) {
-    return 'Sí, solo tienes que agregar @$domain al final de tu Npub y tienes tu dirección de email.';
+    return 'Sí, solo tienes que agregar @$domain al final de tu clave pública (Npub) y tienes tu dirección de email.';
   }
 }

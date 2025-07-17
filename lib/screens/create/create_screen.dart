@@ -47,11 +47,11 @@ class CreateScreen extends StatelessWidget {
                       children: [
                         TextSpan(
                           text:
-                              "Votre Nsec est la clé pour lire vos emails, conservez la dans un endroit sécurisé comme votre gestionnaire de mot de passe.\n",
+                              "Votre clé privée (Nsec) est la clé pour lire vos emails, conservez la dans un endroit sécurisé comme votre gestionnaire de mot de passe.\n",
                         ),
                         TextSpan(
                           text:
-                              "Sans votre Nsec vous n'avez pas acces a vos email.",
+                              "Sans votre Nsec vous n'aurez pas accès à vos emails.",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],

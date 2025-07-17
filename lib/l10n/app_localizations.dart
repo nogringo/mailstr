@@ -181,7 +181,7 @@ abstract class AppLocalizations {
   /// Description of Cashu payment method
   ///
   /// In en, this message translates to:
-  /// **'Cashu is electronic cash for payments online, in person, and around the world. It\'s Fast, Private, Simple and Secure.'**
+  /// **'Cashu is electronic cash for payments online and around the world. It\'s Fast, Private, Simple and Secure.'**
   String get cashuDescription;
 
   /// Hint text for Cashu token input field
@@ -271,7 +271,7 @@ abstract class AppLocalizations {
   /// Feature pill text
   ///
   /// In en, this message translates to:
-  /// **'No Accounts'**
+  /// **'No Account'**
   String get noAccounts;
 
   /// Feature pill text
@@ -433,7 +433,7 @@ abstract class AppLocalizations {
   /// Answer explaining how to create email from existing Npub
   ///
   /// In en, this message translates to:
-  /// **'Yes, you just have to add @{domain} at the end of your Npub and you have your email address.'**
+  /// **'Yes, you just have to add @{domain} at the end of your public key (Npub) and you have your email address.'**
   String yesAddDomainToNpub(String domain);
 }
 
