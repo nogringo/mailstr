@@ -80,6 +80,10 @@ class EmailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final atIndex = email.indexOf('@');
+    final beforeAt = atIndex > 0 ? email.substring(0, atIndex) : '';
+    final atAndAfter = atIndex > 0 ? email.substring(atIndex) : email;
+
     return Container(
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -94,7 +98,25 @@ class EmailView extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Expanded(child: Text(email, style: GoogleFonts.robotoMono())),
+          Expanded(
+            child: RichText(
+              text: TextSpan(
+                style: GoogleFonts.robotoMono(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+                children: [
+                  if (beforeAt.isNotEmpty)
+                    TextSpan(
+                      text: beforeAt,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
+                      ),
+                    ),
+                  TextSpan(text: atAndAfter),
+                ],
+              ),
+            ),
+          ),
           Align(
             alignment: Alignment.bottomRight,
             child: IconButton(
