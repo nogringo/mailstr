@@ -4,7 +4,7 @@
     "emailLocked": "Email bloqueado",
     "emailUnlocked": "Email desbloqueado",
     "emailSuccessfullyUnlocked": "¡Email desbloqueado con éxito!",
-    "payWithProofOfWork": "Pagar con Prueba de Trabajo",
+    "unlockWithProofOfWork": "Desbloquear con Prueba de Trabajo",
     "proofOfWorkDescription": "¡Es como minar Bitcoin!\nTu dispositivo buscará un código, tomará varios minutos y una vez encontrado tu email será desbloqueado.",
     "startProofOfWork": "Iniciar Prueba de Trabajo",
     "resumeProofOfWork": "Reanudar Prueba de Trabajo",

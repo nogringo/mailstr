@@ -135,7 +135,7 @@ class PayWithProofOfWorkView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          AppLocalizations.of(context)!.payWithProofOfWork,
+          AppLocalizations.of(context)!.unlockWithProofOfWork,
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         Text(

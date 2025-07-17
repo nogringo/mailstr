@@ -21,7 +21,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emailSuccessfullyUnlocked => 'Email Successfully Unlocked!';
 
   @override
-  String get payWithProofOfWork => 'Pay with Proof Of Work';
+  String get unlockWithProofOfWork => 'Unlock with Proof Of Work';
 
   @override
   String get proofOfWorkDescription =>

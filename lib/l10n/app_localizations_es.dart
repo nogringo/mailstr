@@ -21,7 +21,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get emailSuccessfullyUnlocked => '¡Email desbloqueado con éxito!';
 
   @override
-  String get payWithProofOfWork => 'Pagar con Prueba de Trabajo';
+  String get unlockWithProofOfWork => 'Desbloquear con Prueba de Trabajo';
 
   @override
   String get proofOfWorkDescription =>

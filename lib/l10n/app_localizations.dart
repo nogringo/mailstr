@@ -124,11 +124,11 @@ abstract class AppLocalizations {
   /// **'Email Successfully Unlocked!'**
   String get emailSuccessfullyUnlocked;
 
-  /// Header for proof of work payment option
+  /// Header for proof of work unlock option
   ///
   /// In en, this message translates to:
-  /// **'Pay with Proof Of Work'**
-  String get payWithProofOfWork;
+  /// **'Unlock with Proof Of Work'**
+  String get unlockWithProofOfWork;
 
   /// Description of proof of work payment method
   ///

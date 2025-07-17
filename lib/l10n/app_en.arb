@@ -16,9 +16,9 @@
   "@emailSuccessfullyUnlocked": {
     "description": "Message shown when email is successfully unlocked"
   },
-  "payWithProofOfWork": "Pay with Proof Of Work",
-  "@payWithProofOfWork": {
-    "description": "Header for proof of work payment option"
+  "unlockWithProofOfWork": "Unlock with Proof Of Work",
+  "@unlockWithProofOfWork": {
+    "description": "Header for proof of work unlock option"
   },
   "proofOfWorkDescription": "It's like mining Bitcoin !\nYour device will search a code, it will take several minutes and once found your email will be unlocked.",
   "@proofOfWorkDescription": {

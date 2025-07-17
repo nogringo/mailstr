@@ -21,7 +21,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get emailSuccessfullyUnlocked => 'Email déverrouillé avec succès !';
 
   @override
-  String get payWithProofOfWork => 'Payer avec une Preuve de Travail';
+  String get unlockWithProofOfWork => 'Débloquer avec une Preuve de Travail';
 
   @override
   String get proofOfWorkDescription =>

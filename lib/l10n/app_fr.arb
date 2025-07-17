@@ -4,7 +4,7 @@
     "emailLocked": "Email verrouillé",
     "emailUnlocked": "Email déverrouillé",
     "emailSuccessfullyUnlocked": "Email déverrouillé avec succès !",
-    "payWithProofOfWork": "Payer avec une Preuve de Travail",
+    "unlockWithProofOfWork": "Débloquer avec une Preuve de Travail",
     "proofOfWorkDescription": "C'est comme miner du Bitcoin !\nVotre appareil cherchera un code, cela prendra plusieurs minutes et une fois trouvé, votre email sera déverrouillé.",
     "startProofOfWork": "Démarrer la Preuve de Travail",
     "resumeProofOfWork": "Reprendre la Preuve de Travail",
