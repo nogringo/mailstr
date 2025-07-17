@@ -174,13 +174,13 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Ou lire mes emails ?",
+                      AppLocalizations.of(context)!.whereToReadEmails,
                       style: Theme.of(context).textTheme.headlineSmall
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 16),
                     Text(
-                      "Vos emails vous sont evoyé par message privé sur Nostr. Vous pouvez les lire sur n'importe quelle application Nostr qui supporte les messages privés comme :",
+                      AppLocalizations.of(context)!.whereToReadEmailsDescription,
                       style: Theme.of(
                         context,
                       ).textTheme.bodyMedium?.copyWith(height: 1.6),
@@ -238,7 +238,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "J'ai deja un compte Nostr, puis-je recevoir mes emails sur ce compte ?",
+                      AppLocalizations.of(context)!.alreadyHaveNostrAccount,
                       style: Theme.of(context).textTheme.headlineSmall
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),
@@ -246,26 +246,7 @@ class HomeScreen extends StatelessWidget {
                     RichText(
                       text: TextSpan(
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(height: 1.6),
-                        children: [
-                          TextSpan(
-                            text: "Oui",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          TextSpan(
-                            text: ", vous avez juste a ajouter ",
-                          ),
-                          TextSpan(
-                            text: "@$emailDomain",
-                            style: TextStyle(
-                              fontFamily: 'monospace',
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
-                          TextSpan(
-                            text: " a la fin de votre Npub et vous avez votre adresse email.",
-                          ),
-                        ],
+                        children: _buildYesAnswerSpans(context),
                       ),
                     ),
                   ],
@@ -371,6 +352,55 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<TextSpan> _buildYesAnswerSpans(BuildContext context) {
+    final text = AppLocalizations.of(context)!.yesAddDomainToNpub(emailDomain);
+    final parts = text.split('@$emailDomain');
+    
+    List<TextSpan> spans = [];
+    
+    if (parts.isNotEmpty) {
+      // Add the "Oui" part with bold styling
+      final firstPart = parts[0];
+      final yesIndex = firstPart.toLowerCase().indexOf('yes');
+      final ouiIndex = firstPart.toLowerCase().indexOf('oui');
+      
+      if (yesIndex >= 0) {
+        spans.add(TextSpan(text: firstPart.substring(0, yesIndex)));
+        spans.add(TextSpan(
+          text: firstPart.substring(yesIndex, yesIndex + 3),
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ));
+        spans.add(TextSpan(text: firstPart.substring(yesIndex + 3)));
+      } else if (ouiIndex >= 0) {
+        spans.add(TextSpan(text: firstPart.substring(0, ouiIndex)));
+        spans.add(TextSpan(
+          text: firstPart.substring(ouiIndex, ouiIndex + 3),
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ));
+        spans.add(TextSpan(text: firstPart.substring(ouiIndex + 3)));
+      } else {
+        spans.add(TextSpan(text: firstPart));
+      }
+      
+      // Add the styled domain
+      spans.add(TextSpan(
+        text: "@$emailDomain",
+        style: TextStyle(
+          fontFamily: 'monospace',
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).colorScheme.primary,
+        ),
+      ));
+      
+      // Add the remaining text
+      if (parts.length > 1) {
+        spans.add(TextSpan(text: parts[1]));
+      }
+    }
+    
+    return spans;
   }
 
   Widget _buildSimpleFeature(

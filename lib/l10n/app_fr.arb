@@ -51,5 +51,9 @@
     "failedToVerifyProofOfWork": "Échec de la vérification de la preuve de travail",
     "failedToConnectToServer": "Échec de la connexion au serveur",
     "duration": "Durée : {duration}",
-    "home": "Accueil"
+    "home": "Accueil",
+    "whereToReadEmails": "Ou lire mes emails ?",
+    "whereToReadEmailsDescription": "Vos emails vous sont evoyé par message privé sur Nostr. Vous pouvez les lire sur n'importe quelle application Nostr qui supporte les messages privés comme :",
+    "alreadyHaveNostrAccount": "J'ai deja un compte Nostr, puis-je recevoir mes emails sur ce compte ?",
+    "yesAddDomainToNpub": "Oui, vous avez juste a ajouter @{domain} a la fin de votre Npub et vous avez votre adresse email."
 }

@@ -51,5 +51,9 @@
     "failedToVerifyProofOfWork": "Error al verificar prueba de trabajo",
     "failedToConnectToServer": "Error al conectar con el servidor",
     "duration": "Duración: {duration}",
-    "home": "Inicio"
+    "home": "Inicio",
+    "whereToReadEmails": "¿Dónde leer mis emails?",
+    "whereToReadEmailsDescription": "Tus emails te son enviados por mensaje privado en Nostr. Puedes leerlos en cualquier aplicación Nostr que soporte mensajes privados como:",
+    "alreadyHaveNostrAccount": "Ya tengo una cuenta Nostr, ¿puedo recibir mis emails en esta cuenta?",
+    "yesAddDomainToNpub": "Sí, solo tienes que agregar @{domain} al final de tu Npub y tienes tu dirección de email."
 }

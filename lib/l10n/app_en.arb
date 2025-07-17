@@ -291,5 +291,27 @@
   "home": "Home",
   "@home": {
     "description": "Home button text"
+  },
+  "whereToReadEmails": "Where to read my emails?",
+  "@whereToReadEmails": {
+    "description": "Section title asking where to read emails"
+  },
+  "whereToReadEmailsDescription": "Your emails are sent to you via private message on Nostr. You can read them on any Nostr application that supports private messages like:",
+  "@whereToReadEmailsDescription": {
+    "description": "Description explaining how to read emails via Nostr apps"
+  },
+  "alreadyHaveNostrAccount": "I already have a Nostr account, can I receive my emails on this account?",
+  "@alreadyHaveNostrAccount": {
+    "description": "Question about using existing Nostr account"
+  },
+  "yesAddDomainToNpub": "Yes, you just have to add @{domain} at the end of your Npub and you have your email address.",
+  "@yesAddDomainToNpub": {
+    "description": "Answer explaining how to create email from existing Npub",
+    "placeholders": {
+      "domain": {
+        "type": "String",
+        "example": "shakerbrain.com"
+      }
+    }
   }
 }

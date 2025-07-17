@@ -194,4 +194,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get home => 'Home';
+
+  @override
+  String get whereToReadEmails => 'Where to read my emails?';
+
+  @override
+  String get whereToReadEmailsDescription =>
+      'Your emails are sent to you via private message on Nostr. You can read them on any Nostr application that supports private messages like:';
+
+  @override
+  String get alreadyHaveNostrAccount =>
+      'I already have a Nostr account, can I receive my emails on this account?';
+
+  @override
+  String yesAddDomainToNpub(String domain) {
+    return 'Yes, you just have to add @$domain at the end of your Npub and you have your email address.';
+  }
 }

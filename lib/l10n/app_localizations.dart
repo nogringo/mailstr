@@ -411,6 +411,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Home'**
   String get home;
+
+  /// Section title asking where to read emails
+  ///
+  /// In en, this message translates to:
+  /// **'Where to read my emails?'**
+  String get whereToReadEmails;
+
+  /// Description explaining how to read emails via Nostr apps
+  ///
+  /// In en, this message translates to:
+  /// **'Your emails are sent to you via private message on Nostr. You can read them on any Nostr application that supports private messages like:'**
+  String get whereToReadEmailsDescription;
+
+  /// Question about using existing Nostr account
+  ///
+  /// In en, this message translates to:
+  /// **'I already have a Nostr account, can I receive my emails on this account?'**
+  String get alreadyHaveNostrAccount;
+
+  /// Answer explaining how to create email from existing Npub
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, you just have to add @{domain} at the end of your Npub and you have your email address.'**
+  String yesAddDomainToNpub(String domain);
 }
 
 class _AppLocalizationsDelegate
