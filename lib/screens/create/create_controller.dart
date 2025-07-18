@@ -40,7 +40,7 @@ class CreateController extends GetxController {
 
   void payNow() {
     Get.toNamed(
-      '${AppRoutes.pay}/$npubEmail',
+      '${AppRoutes.unlockEmail}/$npubEmail',
     );
   }
 }
