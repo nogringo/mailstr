@@ -20,8 +20,6 @@ class CreateScreen extends StatelessWidget {
             child: ContentPaddingView(
               maxWidth: 400,
               child: AppBar(
-                surfaceTintColor: Colors.transparent,
-                backgroundColor: Colors.transparent,
                 title: Text(AppLocalizations.of(context)!.create),
                 titleSpacing: 8,
                 actions: [

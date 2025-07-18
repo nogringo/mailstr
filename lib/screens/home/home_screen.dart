@@ -18,8 +18,6 @@ class HomeScreen extends StatelessWidget {
         preferredSize: Size(double.infinity, kToolbarHeight),
         child: ContentPaddingView(
           child: AppBar(
-            surfaceTintColor: Colors.transparent,
-            backgroundColor: Colors.transparent,
             title: Text(appTitle),
             titleSpacing: 8,
             actions: [

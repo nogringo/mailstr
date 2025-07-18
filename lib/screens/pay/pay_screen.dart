@@ -29,8 +29,6 @@ class PayScreen extends StatelessWidget {
           child: ContentPaddingView(
             maxWidth: 500,
             child: AppBar(
-              surfaceTintColor: Colors.transparent,
-              backgroundColor: Colors.transparent,
               title: Text(
                 controller.emailUnlocked.value
                     ? AppLocalizations.of(context)!.emailUnlocked
