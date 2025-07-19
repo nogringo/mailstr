@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 const appTitle = "Mailstr";
 
-const defaultThemeColor = Colors.orangeAccent;
+Color defaultThemeColor = Colors.orangeAccent;
 
 const difficulty = kDebugMode ? 1 : 7;
 

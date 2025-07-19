@@ -29,6 +29,7 @@ dependencies:
   path_provider: ^2.1.5
   path: ^1.9.1
   sembast: ^3.8.5+1
+  get_storage: ^2.1.1
 
 dev_dependencies:
   flutter_test:

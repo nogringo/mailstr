@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mailstr/config.dart';
 import 'package:mailstr/controllers/auth_controller.dart';
 import 'package:mailstr/controllers/theme_controller.dart';
@@ -38,6 +39,8 @@ ThemeData _buildTheme(Brightness brightness, Color seedColor) {
 }
 
 void main() async {
+  await GetStorage.init();
+  
   Get.put(
     Ndk(
       NdkConfig(
