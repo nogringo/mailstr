@@ -7,6 +7,7 @@ import 'package:ndk/ndk.dart';
 import 'package:nip19/nip19.dart';
 import 'package:toastification/toastification.dart';
 import 'package:mailstr/config.dart';
+import 'package:mailstr/screens/mailbox/mailbox_controller.dart';
 
 class Nip05Controller extends GetxController {
   static Nip05Controller get to => Get.find();
@@ -88,6 +89,19 @@ class Nip05Controller extends GetxController {
         final data = jsonDecode(response.body);
         if (data['success'] == true) {
           _showSuccessToast('NIP-05 registered successfully!');
+          
+          // Add the new alias to the mailbox controller
+          try {
+            final mailboxController = Get.find<MailboxController>();
+            final newAlias = '$name@$emailDomain';
+            if (!mailboxController.aliases.contains(newAlias)) {
+              mailboxController.aliases.add(newAlias);
+            }
+          } catch (e) {
+            // Mailbox controller might not be initialized, that's ok
+            print('Could not update mailbox aliases: $e');
+          }
+          
           Get.back();
         } else {
           _showErrorToast(data['error'] ?? 'Registration failed');

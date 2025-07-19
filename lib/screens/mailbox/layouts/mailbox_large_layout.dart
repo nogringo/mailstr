@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mailstr/app_routes.dart';
 import 'package:mailstr/screens/mailbox/mailbox_controller.dart';
 import 'package:mailstr/screens/mailbox/mailbox_tabs.dart';
 import 'package:mailstr/widgets/user_avatar.dart';
@@ -45,7 +46,7 @@ class MailboxLargeLayout extends StatelessWidget {
         ),
         floatingActionButton: MailboxController.to.selectedIndex.value == 1
             ? FloatingActionButton(
-                onPressed: () => MailboxController.to.showCreateAliasDialog(context),
+                onPressed: () => Get.toNamed(AppRoutes.nip05),
                 child: const Icon(Icons.add),
               )
             : null,

@@ -49,7 +49,9 @@ class Nip05Screen extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Theme.of(context).colorScheme.outline),
+                      border: Border.all(
+                        color: Theme.of(context).colorScheme.outline,
+                      ),
                     ),
                     child: Row(
                       children: [
@@ -80,61 +82,17 @@ class Nip05Screen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                    
-                  // User info (always logged in due to middleware)
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.5)),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.check_circle,
-                          color: Theme.of(context).colorScheme.primary,
-                          size: 20,
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Logged in',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              const SizedBox(height: 2),
-                              Text(
-                                controller.pubkeyController.text.length > 20 
-                                    ? '${controller.pubkeyController.text.substring(0, 8)}...${controller.pubkeyController.text.substring(controller.pubkeyController.text.length - 8)}'
-                                    : controller.pubkeyController.text,
-                                style: TextStyle(
-                                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
-                                  fontSize: 12,
-                                  fontFamily: 'monospace',
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                    
+
                   // Private toggle
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     child: Row(
                       children: [
                         Icon(
-                          Icons.lock_outline, 
-                          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6), 
+                          Icons.lock_outline,
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onSurface.withValues(alpha: 0.6),
                           size: 20,
                         ),
                         const SizedBox(width: 12),
@@ -142,30 +100,31 @@ class Nip05Screen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'Private',
-                                style: TextStyle(fontSize: 14),
-                              ),
+                              Text('Private', style: TextStyle(fontSize: 14)),
                               Text(
                                 'Hide from public directory',
                                 style: TextStyle(
-                                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6), 
+                                  color: Theme.of(context).colorScheme.onSurface
+                                      .withValues(alpha: 0.6),
                                   fontSize: 12,
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        Obx(() => Switch(
-                          value: controller.isPrivate.value,
-                          onChanged: (value) => controller.isPrivate.value = value,
-                        )),
+                        Obx(
+                          () => Switch(
+                            value: controller.isPrivate.value,
+                            onChanged: (value) =>
+                                controller.isPrivate.value = value,
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                    
+
                   const SizedBox(height: 24),
-                    
+
                   // Register button
                   SizedBox(
                     width: double.infinity,
@@ -198,7 +157,7 @@ class Nip05Screen extends StatelessWidget {
                 ],
               ),
               // const SizedBox(height: 24),
-      
+
               // // Registered users counter
               // Container(
               //   width: double.infinity,
