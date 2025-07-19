@@ -94,14 +94,14 @@ class MailboxController extends GetxController {
       final pubkeyEmail = "$pubkey@$emailDomain";
       final compactEmail = "${hexToBase36(pubkey)}@$emailDomain";
       
-      aliases.value = [
+      aliases.assignAll([
         npubEmail,
         pubkeyEmail,
         compactEmail,
-      ];
+      ]);
     } catch (e) {
       // Fallback to simple hex alias
-      aliases.value = ['${pubkey.substring(0, 8)}@$emailDomain'];
+      aliases.assignAll(['${pubkey.substring(0, 8)}@$emailDomain']);
     }
   }
 

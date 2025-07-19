@@ -8,6 +8,7 @@ import 'package:mailstr/controllers/auth_controller.dart';
 import 'package:mailstr/controllers/theme_controller.dart';
 import 'package:mailstr/l10n/app_localizations.dart';
 import 'package:mailstr/widgets/content_padding_view.dart';
+import 'package:mailstr/widgets/user_avatar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -71,22 +72,30 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
               SizedBox(width: 8),
-              GetBuilder<AuthController>(
-                builder: (authController) {
-                  if (!authController.isLoggedIn) {
-                    return Row(
-                      children: [
-                        OutlinedButton(
-                          onPressed: () => Get.toNamed(AppRoutes.login),
-                          child: Text('Login'),
-                        ),
-                        SizedBox(width: 8),
-                      ],
-                    );
-                  }
-                  return SizedBox.shrink();
-                },
-              ),
+              Obx(() {
+                final authController = Get.find<AuthController>();
+                if (!authController.isLoggedIn) {
+                  return Row(
+                    children: [
+                      OutlinedButton(
+                        onPressed: () => Get.toNamed(AppRoutes.login),
+                        child: Text('Login'),
+                      ),
+                      SizedBox(width: 8),
+                    ],
+                  );
+                } else {
+                  // Show user profile picture when logged in
+                  return Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(right: 8),
+                        child: UserAvatar(radius: 16),
+                      ),
+                    ],
+                  );
+                }
+              }),
               FilledButton(
                 onPressed: () => Get.toNamed(AppRoutes.mailbox),
                 child: Text('Mailbox'),

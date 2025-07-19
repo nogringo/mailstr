@@ -80,7 +80,6 @@ class Nip05Controller extends GetxController {
           'name': name,
           'pubkey': hexPubkey,
           'domain': emailDomain,
-          'relays': relays,
           'private': isPrivate.value,
         }),
       );

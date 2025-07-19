@@ -392,12 +392,10 @@ packages:
   ndk_ui:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: cf5d649ac40be806e9ecdccfa2ffc1f46296af83
-      url: "https://github.com/nogringo/ndk-ui"
-    source: git
-    version: "0.0.1"
+      path: "../ndk_ui"
+      relative: true
+    source: path
+    version: "0.0.2"
   nip01:
     dependency: "direct main"
     description:

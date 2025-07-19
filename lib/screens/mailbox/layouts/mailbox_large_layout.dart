@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mailstr/screens/mailbox/logout_button_view.dart';
 import 'package:mailstr/screens/mailbox/mailbox_controller.dart';
 import 'package:mailstr/screens/mailbox/mailbox_tabs.dart';
+import 'package:mailstr/widgets/user_avatar.dart';
 
 class MailboxLargeLayout extends StatelessWidget {
   const MailboxLargeLayout({super.key});
@@ -13,7 +13,13 @@ class MailboxLargeLayout extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
           title: Text("Mailbox"),
-          actions: [LogoutButtonView(), SizedBox(width: 8)],
+          actions: [
+            // User profile picture
+            Container(
+              margin: EdgeInsets.only(right: 8),
+              child: UserAvatar(radius: 16),
+            ),
+          ],
         ),
         body: Row(
           children: [

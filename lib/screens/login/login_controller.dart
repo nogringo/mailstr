@@ -7,7 +7,14 @@ class LoginController extends GetxController {
 
   void onLoginSuccess() {
     // Update auth state
-    Get.find<AuthController>().update();
+    final authController = Get.find<AuthController>();
+    authController.updateAuthState();
+    
+    // Double check if now logged in
+    if (!authController.isLoggedIn) {
+      // Login didn't succeed, don't navigate
+      return;
+    }
     
     // Check if we have a return route
     final dynamic args = Get.arguments;
