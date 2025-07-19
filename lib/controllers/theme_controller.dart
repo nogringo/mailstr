@@ -126,7 +126,6 @@ class ThemeController extends GetxController {
         update();
       }
     } catch (e) {
-      print('Error extracting color from image: $e');
       // Fallback to default color
       if (_accentColorType.value == type) {
         _customAccentColor.value = defaultThemeColor;

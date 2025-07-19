@@ -18,10 +18,6 @@ class PayScreen extends StatelessWidget {
     final String email = Get.parameters['email'] ?? '';
     final controller = Get.put(PayController());
 
-    // print('PayScreen - Email parameter: $email');
-    // print('PayScreen - All parameters: ${Get.parameters}');
-    // print('PayScreen - Current route: ${Get.currentRoute}');
-
     return Obx(
       () => Scaffold(
         appBar: PreferredSize(

@@ -507,7 +507,7 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                 await themeController.extractColorFromPicture(imageProvider);
               }
             } catch (e) {
-              print('Error loading picture metadata: $e');
+              // Error loading picture metadata
             }
           } else if (type == AccentColorType.bannerColor && userController.pubkey.value.isNotEmpty) {
             try {
@@ -517,7 +517,7 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                 await themeController.extractColorFromBanner(imageProvider);
               }
             } catch (e) {
-              print('Error loading banner metadata: $e');
+              // Error loading banner metadata
             }
           }
         },

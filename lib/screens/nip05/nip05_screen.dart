@@ -156,26 +156,6 @@ class Nip05Screen extends StatelessWidget {
                   ),
                 ],
               ),
-              // const SizedBox(height: 24),
-
-              // // Registered users counter
-              // Container(
-              //   width: double.infinity,
-              //   padding: const EdgeInsets.all(16),
-              //   decoration: BoxDecoration(
-              //     color: Color(0xFF2a2a2a),
-              //     borderRadius: BorderRadius.circular(8),
-              //     border: Border.all(color: Color(0xFF404040)),
-              //   ),
-              //   child: Text(
-              //     'Registered users: 860 🔥',
-              //     style: TextStyle(
-              //       color: Theme.of(context).colorScheme.primary,
-              //       fontSize: 14,
-              //       fontWeight: FontWeight.w500,
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

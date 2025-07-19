@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ndk/ndk.dart';
 import 'package:ndk_ui/ndk_ui.dart';
@@ -105,68 +104,6 @@ class MailboxController extends GetxController {
     }
   }
 
-  void showCreateAliasDialog(BuildContext context) {
-    final TextEditingController aliasController = TextEditingController();
-    
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Create New Alias'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: aliasController,
-              decoration: const InputDecoration(
-                labelText: 'Alias name',
-                hintText: 'Enter alias name (without @domain)',
-                border: OutlineInputBorder(),
-              ),
-              autofocus: true,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'This will create: [alias]@$emailDomain',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () {
-              final aliasName = aliasController.text.trim();
-              if (aliasName.isNotEmpty) {
-                createNewAlias(aliasName);
-                Navigator.of(context).pop();
-              }
-            },
-            child: const Text('Create'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Future<void> createNewAlias(String aliasName) async {
-    if (!ndk.accounts.isLoggedIn) return;
-    
-    try {
-      final newAlias = '$aliasName@$emailDomain';
-      
-      // TODO: Call API to register the new alias on the server
-      // For now, just add it to the local list
-      if (!aliases.contains(newAlias)) {
-        aliases.add(newAlias);
-      }
-    } catch (e) {
-      // Show error toast
-      print('Error creating alias: $e');
-    }
-  }
 
   void cancelMessagesSubscription() {
     if (_messagesSubscription != null) {

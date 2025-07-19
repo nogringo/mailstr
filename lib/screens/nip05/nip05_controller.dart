@@ -99,7 +99,6 @@ class Nip05Controller extends GetxController {
             }
           } catch (e) {
             // Mailbox controller might not be initialized, that's ok
-            print('Could not update mailbox aliases: $e');
           }
           
           Get.back();

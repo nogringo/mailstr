@@ -106,11 +106,6 @@ class HomeScreen extends StatelessWidget {
                 child: Text('NIP-05'),
               ),
               SizedBox(width: 8),
-              // FilledButton(
-              //   onPressed: () => Get.toNamed(AppRoutes.create),
-              //   child: Text(AppLocalizations.of(context)!.create),
-              // ),
-              // SizedBox(width: 8),
             ],
           ),
         ),
