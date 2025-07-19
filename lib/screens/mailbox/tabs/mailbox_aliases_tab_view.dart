@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:toastification/toastification.dart';
 import 'package:mailstr/l10n/app_localizations.dart';
 import 'package:mailstr/screens/mailbox/mailbox_controller.dart';
+import 'package:ndk/ndk.dart';
+import 'package:mailstr/app_routes.dart';
 
 class MailboxAliasesTabView extends StatelessWidget {
   const MailboxAliasesTabView({super.key});
@@ -11,8 +13,12 @@ class MailboxAliasesTabView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = MailboxController.to;
+    final ndk = Get.find<Ndk>();
+    
     
     return Obx(() {
+      final canSign = ndk.accounts.canSign;
+      
       if (controller.aliases.isEmpty) {
         return Center(
           child: Column(
@@ -43,66 +49,131 @@ class MailboxAliasesTabView extends StatelessWidget {
         );
       }
       
-      return ListView.builder(
-        itemCount: controller.aliases.length,
-        itemBuilder: (context, index) {
-          final alias = controller.aliases[index];
-          return Card(
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(12),
-              onTap: () {
-                Clipboard.setData(ClipboardData(text: alias));
-                toastification.show(
-                  title: Text(AppLocalizations.of(Get.context!)!.copied),
-                  alignment: Alignment.bottomRight,
-                  style: ToastificationStyle.fillColored,
-                  icon: Icon(Icons.copy),
-                  applyBlurEffect: true,
-                  primaryColor: Get.theme.colorScheme.primaryContainer,
-                  backgroundColor: Get.theme.colorScheme.onPrimaryContainer,
-                  autoCloseDuration: Duration(seconds: 3),
-                  closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.alternate_email,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            alias,
-                            style: Theme.of(context).textTheme.titleMedium,
+      return Column(
+        children: [
+          // Show warning when user can't sign
+          if (!canSign) ...[
+            Container(
+              margin: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.3),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
+                ),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.info_outline,
+                    color: Theme.of(context).colorScheme.primary,
+                    size: 20,
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Limited View',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
-                          const SizedBox(height: 4),
-                          Text(
-                            'Tap to copy',
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          'You can only see defaults aliases. To view all your aliases, log in with signing capability.',
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Theme.of(context).colorScheme.primary,
+                            height: 1.4,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  FilledButton.icon(
+                    onPressed: () => Get.toNamed(AppRoutes.login, arguments: {'returnRoute': AppRoutes.mailbox}),
+                    icon: Icon(Icons.login, size: 16),
+                    label: Text('Login'),
+                    style: FilledButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      textStyle: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+          // Show aliases list
+          Expanded(
+            child: ListView.builder(
+              itemCount: controller.aliases.length,
+              itemBuilder: (context, index) {
+                final alias = controller.aliases[index];
+                return Card(
+                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(12),
+                    onTap: () {
+                      Clipboard.setData(ClipboardData(text: alias));
+                      toastification.show(
+                        title: Text(AppLocalizations.of(Get.context!)!.copied),
+                        alignment: Alignment.bottomRight,
+                        style: ToastificationStyle.fillColored,
+                        icon: Icon(Icons.copy),
+                        applyBlurEffect: true,
+                        primaryColor: Get.theme.colorScheme.primaryContainer,
+                        backgroundColor: Get.theme.colorScheme.onPrimaryContainer,
+                        autoCloseDuration: Duration(seconds: 3),
+                        closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.alternate_email,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  alias,
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  'Tap to copy',
+                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                                  ),
+                                ),
+                              ],
                             ),
+                          ),
+                          Icon(
+                            Icons.copy,
+                            size: 20,
+                            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
                           ),
                         ],
                       ),
                     ),
-                    Icon(
-                      Icons.copy,
-                      size: 20,
-                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
-                    ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              },
             ),
-          );
-        },
+          ),
+        ],
       );
     });
   }

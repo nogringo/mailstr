@@ -49,7 +49,6 @@ void main() async {
 
   Get.put(AuthController());
   Get.put(ThemeController());
-
   Get.put(MailboxController());
 
   runApp(const MainApp());
@@ -74,8 +73,8 @@ class MainApp extends StatelessWidget {
             ],
             supportedLocales: AppLocalizations.supportedLocales,
             locale: kDebugMode ? Locale('en') : null,
-            theme: _buildTheme(Brightness.light, themeColor),
-            darkTheme: _buildTheme(Brightness.dark, themeColor),
+            theme: _buildTheme(Brightness.light, themeController.accentColor),
+            darkTheme: _buildTheme(Brightness.dark, themeController.accentColor),
             themeMode: themeController.themeMode,
             getPages: [
               GetPage(name: AppRoutes.home, page: () => HomeScreen()),

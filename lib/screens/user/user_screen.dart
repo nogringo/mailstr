@@ -8,6 +8,7 @@ import 'package:ndk_ui/widgets/n_banner.dart';
 import 'package:ndk_ui/widgets/n_name.dart';
 import 'package:ndk_ui/functions/n_logout.dart';
 import 'package:mailstr/controllers/auth_controller.dart';
+import 'package:mailstr/controllers/theme_controller.dart';
 import 'package:ndk/ndk.dart';
 
 class UserScreen extends StatefulWidget {
@@ -231,6 +232,38 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                             ),
                           ),
                         ),
+                        const SizedBox(height: 24),
+
+                        // Theme settings
+                        Card(
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Appearance',
+                                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).colorScheme.onSurface,
+                                  ),
+                                ),
+                                const SizedBox(height: 16),
+
+                                // Theme mode selection
+                                _buildThemeModeSelector(context),
+                                const SizedBox(height: 16),
+
+                                // Accent color selection
+                                _buildAccentColorSelector(context),
+                              ],
+                            ),
+                          ),
+                        ),
                         const SizedBox(height: 48),
                       ],
                     ),
@@ -345,6 +378,184 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
               color: Theme.of(context).colorScheme.error.withValues(alpha: 0.5),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildThemeModeSelector(BuildContext context) {
+    return GetBuilder<ThemeController>(
+      builder: (themeController) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Theme Mode',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w500,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                _buildThemeOption(context, ThemeMode.light, 'Light', Icons.light_mode),
+                const SizedBox(width: 8),
+                _buildThemeOption(context, ThemeMode.dark, 'Dark', Icons.dark_mode),
+                const SizedBox(width: 8),
+                _buildThemeOption(context, ThemeMode.system, 'System', Icons.brightness_auto),
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildThemeOption(BuildContext context, ThemeMode mode, String label, IconData icon) {
+    final themeController = Get.find<ThemeController>();
+    final isSelected = themeController.themeMode == mode;
+
+    return Expanded(
+      child: InkWell(
+        onTap: () => themeController.setThemeMode(mode),
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+          decoration: BoxDecoration(
+            color: isSelected 
+                ? Theme.of(context).colorScheme.primaryContainer
+                : Theme.of(context).colorScheme.surface,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: isSelected
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.outline.withValues(alpha: 0.3),
+            ),
+          ),
+          child: Column(
+            children: [
+              Icon(
+                icon,
+                size: 24,
+                color: isSelected
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                label,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                  color: isSelected
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAccentColorSelector(BuildContext context) {
+    return GetBuilder<ThemeController>(
+      builder: (themeController) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Accent Color',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w500,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                _buildAccentOption(context, AccentColorType.defaultColor, 'Default', Icons.palette),
+                const SizedBox(width: 8),
+                _buildAccentOption(context, AccentColorType.pictureColor, 'Picture', Icons.account_circle),
+                const SizedBox(width: 8),
+                _buildAccentOption(context, AccentColorType.bannerColor, 'Banner', Icons.image),
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildAccentOption(BuildContext context, AccentColorType type, String label, IconData icon) {
+    final themeController = Get.find<ThemeController>();
+    final userController = Get.find<UserController>();
+    final isSelected = themeController.accentColorType == type;
+
+    return Expanded(
+      child: InkWell(
+        onTap: () async {
+          themeController.setAccentColorType(type);
+          
+          // Extract color from appropriate image
+          if (type == AccentColorType.pictureColor && userController.pubkey.value.isNotEmpty) {
+            try {
+              final metadata = await userController.ndk.metadata.loadMetadata(userController.pubkey.value);
+              if (metadata?.picture != null && metadata!.picture!.isNotEmpty) {
+                final imageProvider = NetworkImage(metadata.picture!);
+                await themeController.extractColorFromPicture(imageProvider);
+              }
+            } catch (e) {
+              print('Error loading picture metadata: $e');
+            }
+          } else if (type == AccentColorType.bannerColor && userController.pubkey.value.isNotEmpty) {
+            try {
+              final metadata = await userController.ndk.metadata.loadMetadata(userController.pubkey.value);
+              if (metadata?.banner != null && metadata!.banner!.isNotEmpty) {
+                final imageProvider = NetworkImage(metadata.banner!);
+                await themeController.extractColorFromBanner(imageProvider);
+              }
+            } catch (e) {
+              print('Error loading banner metadata: $e');
+            }
+          }
+        },
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+          decoration: BoxDecoration(
+            color: isSelected 
+                ? Theme.of(context).colorScheme.primaryContainer
+                : Theme.of(context).colorScheme.surface,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: isSelected
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.outline.withValues(alpha: 0.3),
+            ),
+          ),
+          child: Column(
+            children: [
+              Icon(
+                icon,
+                size: 24,
+                color: isSelected
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                label,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                  color: isSelected
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
