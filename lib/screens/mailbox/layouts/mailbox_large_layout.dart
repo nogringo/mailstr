@@ -9,13 +9,13 @@ class MailboxLargeLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Mailbox"),
-        actions: [LogoutButtonView(), SizedBox(width: 8)],
-      ),
-      body: Obx(() {
-        return Row(
+    return Obx(() {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("Mailbox"),
+          actions: [LogoutButtonView(), SizedBox(width: 8)],
+        ),
+        body: Row(
           children: [
             NavigationRail(
               labelType: NavigationRailLabelType.all,
@@ -36,8 +36,14 @@ class MailboxLargeLayout extends StatelessWidget {
                   mailboxTabs[MailboxController.to.selectedIndex.value].content,
             ),
           ],
-        );
-      }),
-    );
+        ),
+        floatingActionButton: MailboxController.to.selectedIndex.value == 1
+            ? FloatingActionButton(
+                onPressed: () => MailboxController.to.showCreateAliasDialog(context),
+                child: const Icon(Icons.add),
+              )
+            : null,
+      );
+    });
   }
 }

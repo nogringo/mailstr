@@ -12,10 +12,11 @@ class LogoutButtonView extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () async {
-        // Clear messages and cancel subscription
+        // Clear messages, aliases and cancel subscription
         if (Get.isRegistered<MailboxController>()) {
           final controller = MailboxController.to;
           controller.messages.clear();
+          controller.aliases.clear();
           controller.cancelMessagesSubscription();
         }
         

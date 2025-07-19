@@ -34,8 +34,9 @@ class _MailboxScreenState extends State<MailboxScreen> {
     return GetBuilder<AuthController>(
       builder: (authController) {
         if (authController.isLoggedIn) {
-          // Start listening when user logs in
+          // Start listening when user logs in and fetch aliases
           MailboxController.to.listenMessages();
+          MailboxController.to.fetchAliases();
           
           return LayoutBuilder(
             builder: (context, constraints) {

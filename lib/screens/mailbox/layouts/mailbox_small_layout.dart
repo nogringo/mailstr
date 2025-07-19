@@ -9,21 +9,27 @@ class MailboxSmallLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Mailbox"), actions: [LogoutButtonView(),SizedBox(width: 8,)],),
-      body: Obx(() {
-        return mailboxTabs[MailboxController.to.selectedIndex.value].content;
-      }),
-      bottomNavigationBar: NavigationBar(
-        destinations: mailboxTabs
-            .map(
-              (tab) => NavigationDestination(icon: tab.icon, label: tab.label),
-            )
-            .toList(),
-        selectedIndex: MailboxController.to.selectedIndex.value,
-        onDestinationSelected: (i) =>
-            MailboxController.to.selectedIndex.value = i,
-      ),
-    );
+    return Obx(() {
+      return Scaffold(
+        appBar: AppBar(title: Text("Mailbox"), actions: [LogoutButtonView(),SizedBox(width: 8,)],),
+        body: mailboxTabs[MailboxController.to.selectedIndex.value].content,
+        bottomNavigationBar: NavigationBar(
+          destinations: mailboxTabs
+              .map(
+                (tab) => NavigationDestination(icon: tab.icon, label: tab.label),
+              )
+              .toList(),
+          selectedIndex: MailboxController.to.selectedIndex.value,
+          onDestinationSelected: (i) =>
+              MailboxController.to.selectedIndex.value = i,
+        ),
+        floatingActionButton: MailboxController.to.selectedIndex.value == 1
+            ? FloatingActionButton(
+                onPressed: () => MailboxController.to.showCreateAliasDialog(context),
+                child: const Icon(Icons.add),
+              )
+            : null,
+      );
+    });
   }
 }
