@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mailstr/screens/mailbox/layouts/mailbox_large_layout.dart';
 import 'package:mailstr/screens/mailbox/layouts/mailbox_small_layout.dart';
-import 'package:mailstr/screens/mailbox/login_page.dart';
 import 'package:mailstr/controllers/auth_controller.dart';
 import 'package:mailstr/screens/mailbox/mailbox_controller.dart';
+import 'package:mailstr/app_routes.dart';
 
 class MailboxScreen extends StatefulWidget {
   const MailboxScreen({super.key});
@@ -48,7 +48,17 @@ class _MailboxScreenState extends State<MailboxScreen> {
           );
         }
 
-        return LoginPage();
+        // If not logged in, redirect to login screen
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          Get.offNamed(AppRoutes.login, arguments: {'returnRoute': AppRoutes.mailbox});
+        });
+        
+        // Show loading while redirecting
+        return Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
       },
     );
   }
