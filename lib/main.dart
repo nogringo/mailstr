@@ -14,6 +14,7 @@ import 'package:mailstr/app_routes.dart';
 import 'package:mailstr/screens/create/create_screen.dart';
 import 'package:mailstr/screens/home/home_screen.dart';
 import 'package:mailstr/screens/mailbox/mailbox_screen.dart';
+import 'package:mailstr/screens/nip05/nip05_screen.dart';
 import 'package:mailstr/screens/pay/pay_screen.dart';
 
 import 'screens/mailbox/mailbox_controller.dart';
@@ -72,6 +73,7 @@ class MainApp extends StatelessWidget {
           GetPage(name: AppRoutes.home, page: () => HomeScreen()),
           GetPage(name: AppRoutes.create, page: () => CreateScreen()),
           GetPage(name: AppRoutes.mailbox, page: () => MailboxScreen()),
+          GetPage(name: AppRoutes.nip05, page: () => Nip05Screen()),
           GetPage(name: AppRoutes.unlockEmail, page: () => PayScreen()),
         ],
       ),

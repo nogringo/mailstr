@@ -64,6 +64,11 @@ class HomeScreen extends StatelessWidget {
                 child: Text('Mailbox'),
               ),
               SizedBox(width: 8),
+              OutlinedButton(
+                onPressed: () => Get.toNamed(AppRoutes.nip05),
+                child: Text('NIP-05'),
+              ),
+              SizedBox(width: 8),
               // FilledButton(
               //   onPressed: () => Get.toNamed(AppRoutes.create),
               //   child: Text(AppLocalizations.of(context)!.create),
