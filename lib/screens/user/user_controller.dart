@@ -54,8 +54,8 @@ class UserController extends GetxController {
   void _loadUserMetadata(String pubkey) {
     // This would typically fetch user metadata from relays
     // For now, we'll set some placeholder values
-    displayName.value = 'Nostr User';
-    about.value = 'Welcome to my Nostr profile';
+    displayName.value = AppLocalizations.of(Get.context!)!.nostrUser;
+    about.value = AppLocalizations.of(Get.context!)!.welcomeToMyNostrProfile;
     // Other fields would be loaded from user's metadata event
   }
 

@@ -27,7 +27,7 @@ class MailboxLargeLayout extends StatelessWidget {
           children: [
             NavigationRail(
               labelType: NavigationRailLabelType.all,
-              destinations: mailboxTabs
+              destinations: getMailboxTabs(context)
                   .map(
                     (tab) => NavigationRailDestination(
                       icon: tab.icon,
@@ -41,7 +41,7 @@ class MailboxLargeLayout extends StatelessWidget {
             ),
             Expanded(
               child:
-                  mailboxTabs[MailboxController.to.selectedIndex.value].content,
+                  getMailboxTabs(context)[MailboxController.to.selectedIndex.value].content,
             ),
           ],
         ),

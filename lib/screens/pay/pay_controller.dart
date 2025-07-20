@@ -187,30 +187,31 @@ class PayController extends GetxController {
     try {
       final email = Get.parameters['email'] ?? '';
       
-      // Convert email to hex@domain format for API
+      // Extract pubkey from email
       final emailParts = email.split('@');
-      String apiEmail = email; // fallback
+      String pubkey = '';
       
       if (emailParts.length == 2) {
         final npubOrPubkey = emailParts[0];
-        final domain = emailParts[1];
         
-        String pubkey;
         if (npubOrPubkey.startsWith('npub')) {
           try {
             pubkey = Nip19.npubToHex(npubOrPubkey);
-            apiEmail = '$pubkey@$domain';
           } catch (e) {
             // Error decoding npub
+            return;
           }
         } else if (npubOrPubkey.length == 64) {
           // Already a pubkey
-          apiEmail = email;
+          pubkey = npubOrPubkey;
         } else {
           // Convert from base36 to hex
           pubkey = base36ToHex(npubOrPubkey);
-          apiEmail = '$pubkey@$domain';
         }
+      }
+      
+      if (pubkey.isEmpty) {
+        return; // Invalid email format
       }
       
       Get.dialog(
@@ -221,10 +222,10 @@ class PayController extends GetxController {
       );
       
       final response = await http.post(
-        Uri.parse(payWithCashuUrl),
+        Uri.parse(unlockWithCashuUrl),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
-          'email': apiEmail,
+          'pubkey': pubkey,
           'cashuToken': token,
         }),
       );
@@ -273,7 +274,7 @@ class PayController extends GetxController {
     } catch (e) {
       Get.back(); // Close loading dialog if still open
       toastification.show(
-        title: Text('Error'),
+        title: Text(AppLocalizations.of(Get.context!)!.error),
         description: Text(AppLocalizations.of(Get.context!)!.failedToConnectToServer),
         type: ToastificationType.error,
         style: ToastificationStyle.fillColored,
@@ -291,37 +292,38 @@ class PayController extends GetxController {
     try {
       final email = Get.parameters['email'] ?? '';
       
-      // Convert email to hex@domain format for API
+      // Extract pubkey from email
       final emailParts = email.split('@');
-      String apiEmail = email; // fallback
+      String pubkey = '';
       
       if (emailParts.length == 2) {
         final npubOrPubkey = emailParts[0];
-        final domain = emailParts[1];
         
-        String pubkey;
         if (npubOrPubkey.startsWith('npub')) {
           try {
             pubkey = Nip19.npubToHex(npubOrPubkey);
-            apiEmail = '$pubkey@$domain';
           } catch (e) {
             // Error decoding npub
+            return;
           }
         } else if (npubOrPubkey.length == 64) {
           // Already a pubkey
-          apiEmail = email;
+          pubkey = npubOrPubkey;
         } else {
           // Convert from base36 to hex
           pubkey = base36ToHex(npubOrPubkey);
-          apiEmail = '$pubkey@$domain';
         }
       }
       
+      if (pubkey.isEmpty) {
+        return; // Invalid email format
+      }
+      
       final response = await http.post(
-        Uri.parse(payWithProofOfWorkUrl),
+        Uri.parse(unlockWithProofOfWorkUrl),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
-          'email': apiEmail,
+          'pubkey': pubkey,
           'nonce': proof['nonce'].toString(),
         }),
       );
@@ -360,7 +362,7 @@ class PayController extends GetxController {
       }
     } catch (e) {
       toastification.show(
-        title: Text('Error'),
+        title: Text(AppLocalizations.of(Get.context!)!.error),
         description: Text(AppLocalizations.of(Get.context!)!.failedToConnectToServer),
         type: ToastificationType.error,
         style: ToastificationStyle.fillColored,

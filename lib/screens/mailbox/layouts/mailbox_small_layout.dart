@@ -23,9 +23,9 @@ class MailboxSmallLayout extends StatelessWidget {
             ),
           ],
         ),
-        body: mailboxTabs[MailboxController.to.selectedIndex.value].content,
+        body: getMailboxTabs(context)[MailboxController.to.selectedIndex.value].content,
         bottomNavigationBar: NavigationBar(
-          destinations: mailboxTabs
+          destinations: getMailboxTabs(context)
               .map(
                 (tab) => NavigationDestination(icon: tab.icon, label: tab.label),
               )

@@ -11,15 +11,8 @@ const unlockPrice = kDebugMode ? 1 : 100;
 
 const emailDomain = "uid.ovh";
 
-const serverPubkey = "0d365385f474d4b025377b4ade6ad241f847d514a9e9b475069f69a20f886c68";
-
-const payWithCashuUrl = kDebugMode
-    ? 'http://127.0.0.1:5001/mailstr-6a9c4/us-central1/payWithCashu'
-    : 'https://paywithcashu-x52eiet4za-uc.a.run.app';
-
-const payWithProofOfWorkUrl = kDebugMode
-    ? 'http://127.0.0.1:5001/mailstr-6a9c4/us-central1/payWithProofOfWork'
-    : 'https://paywithproofofwork-x52eiet4za-uc.a.run.app';
+const serverPubkey =
+    "0d365385f474d4b025377b4ade6ad241f847d514a9e9b475069f69a20f886c68";
 
 const trustedMints = [
   "https://mint.coinos.io",
@@ -38,3 +31,12 @@ const relays = [
   "wss://nos.lol",
   "wss://bwcervpt.mooo.com",
 ];
+
+// API endpoints - based on Firebase hosting configuration
+const baseUrl = kDebugMode ? "http://localhost:5000" : "https://uid.ovh";
+const unlockWithCashuUrl = "$baseUrl/api/unlock/cashu";
+const unlockWithProofOfWorkUrl = "$baseUrl/api/unlock/proof-of-work";
+const addAddressUrl = "$baseUrl/api/addresses/add";
+const removeAddressUrl = "$baseUrl/api/addresses/remove";
+const getAddressesByPubkeyUrl = "$baseUrl/api/addresses/get-by-pubkey";
+const wellKnownNostrUrl = "$baseUrl/.well-known/nostr.json";

@@ -681,6 +681,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tap to copy'**
   String get tapToCopy;
+
+  /// Toggle option to use address as NIP-05 identifier
+  ///
+  /// In en, this message translates to:
+  /// **'Use this address as my Nostr address'**
+  String get useThisAddressAsMyNostrAddress;
+
+  /// Dialog title for unregistering alias
+  ///
+  /// In en, this message translates to:
+  /// **'Unregister Alias'**
+  String get unregisterAlias;
+
+  /// Confirmation message for alias unregistration
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to unregister'**
+  String get areYouSureUnregister;
+
+  /// Success message when alias is unregistered
+  ///
+  /// In en, this message translates to:
+  /// **'Alias unregistered'**
+  String get aliasUnregistered;
+
+  /// Error message when alias unregistration fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to unregister alias'**
+  String get failedToUnregisterAlias;
+
+  /// Button text to unregister alias
+  ///
+  /// In en, this message translates to:
+  /// **'Unregister'**
+  String get unregister;
+
+  /// Inbox tab label
+  ///
+  /// In en, this message translates to:
+  /// **'Inbox'**
+  String get inbox;
+
+  /// Aliases tab label
+  ///
+  /// In en, this message translates to:
+  /// **'Aliases'**
+  String get aliases;
+
+  /// Default display name for Nostr user
+  ///
+  /// In en, this message translates to:
+  /// **'Nostr User'**
+  String get nostrUser;
+
+  /// Default about text for Nostr user profile
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to my Nostr profile'**
+  String get welcomeToMyNostrProfile;
 }
 
 class _AppLocalizationsDelegate

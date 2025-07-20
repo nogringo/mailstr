@@ -483,5 +483,45 @@
   "tapToCopy": "Tap to copy",
   "@tapToCopy": {
     "description": "Hint text for copying aliases"
+  },
+  "useThisAddressAsMyNostrAddress": "Use this address as my Nostr address",
+  "@useThisAddressAsMyNostrAddress": {
+    "description": "Toggle option to use address as NIP-05 identifier"
+  },
+  "unregisterAlias": "Unregister Alias",
+  "@unregisterAlias": {
+    "description": "Dialog title for unregistering alias"
+  },
+  "areYouSureUnregister": "Are you sure you want to unregister",
+  "@areYouSureUnregister": {
+    "description": "Confirmation message for alias unregistration"
+  },
+  "aliasUnregistered": "Alias unregistered",
+  "@aliasUnregistered": {
+    "description": "Success message when alias is unregistered"
+  },
+  "failedToUnregisterAlias": "Failed to unregister alias",
+  "@failedToUnregisterAlias": {
+    "description": "Error message when alias unregistration fails"
+  },
+  "unregister": "Unregister",
+  "@unregister": {
+    "description": "Button text to unregister alias"
+  },
+  "inbox": "Inbox",
+  "@inbox": {
+    "description": "Inbox tab label"
+  },
+  "aliases": "Aliases",
+  "@aliases": {
+    "description": "Aliases tab label"
+  },
+  "nostrUser": "Nostr User",
+  "@nostrUser": {
+    "description": "Default display name for Nostr user"
+  },
+  "welcomeToMyNostrProfile": "Welcome to my Nostr profile",
+  "@welcomeToMyNostrProfile": {
+    "description": "Default about text for Nostr user profile"
   }
 }

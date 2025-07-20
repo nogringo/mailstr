@@ -346,4 +346,36 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tapToCopy => 'Appuyez pour copier';
+
+  @override
+  String get useThisAddressAsMyNostrAddress =>
+      'Utiliser cette adresse comme mon adresse Nostr';
+
+  @override
+  String get unregisterAlias => 'Désinscrire l\'Alias';
+
+  @override
+  String get areYouSureUnregister => 'Êtes-vous sûr de vouloir désinscrire';
+
+  @override
+  String get aliasUnregistered => 'Alias désinscrit';
+
+  @override
+  String get failedToUnregisterAlias =>
+      'Échec de la désinscription de l\'alias';
+
+  @override
+  String get unregister => 'Désinscrire';
+
+  @override
+  String get inbox => 'Boîte de réception';
+
+  @override
+  String get aliases => 'Alias';
+
+  @override
+  String get nostrUser => 'Utilisateur Nostr';
+
+  @override
+  String get welcomeToMyNostrProfile => 'Bienvenue sur mon profil Nostr';
 }

@@ -341,4 +341,35 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tapToCopy => 'Tap to copy';
+
+  @override
+  String get useThisAddressAsMyNostrAddress =>
+      'Use this address as my Nostr address';
+
+  @override
+  String get unregisterAlias => 'Unregister Alias';
+
+  @override
+  String get areYouSureUnregister => 'Are you sure you want to unregister';
+
+  @override
+  String get aliasUnregistered => 'Alias unregistered';
+
+  @override
+  String get failedToUnregisterAlias => 'Failed to unregister alias';
+
+  @override
+  String get unregister => 'Unregister';
+
+  @override
+  String get inbox => 'Inbox';
+
+  @override
+  String get aliases => 'Aliases';
+
+  @override
+  String get nostrUser => 'Nostr User';
+
+  @override
+  String get welcomeToMyNostrProfile => 'Welcome to my Nostr profile';
 }

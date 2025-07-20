@@ -84,13 +84,13 @@ class Nip05Screen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
 
-                  // Private toggle
+                  // NIP-05 toggle
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     child: Row(
                       children: [
                         Icon(
-                          Icons.lock_outline,
+                          Icons.verified_outlined,
                           color: Theme.of(
                             context,
                           ).colorScheme.onSurface.withValues(alpha: 0.6),
@@ -101,23 +101,15 @@ class Nip05Screen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(AppLocalizations.of(context)!.private, style: TextStyle(fontSize: 14)),
-                              Text(
-                                AppLocalizations.of(context)!.hideFromPublicDirectory,
-                                style: TextStyle(
-                                  color: Theme.of(context).colorScheme.onSurface
-                                      .withValues(alpha: 0.6),
-                                  fontSize: 12,
-                                ),
-                              ),
+                              Text(AppLocalizations.of(context)!.useThisAddressAsMyNostrAddress, style: TextStyle(fontSize: 14)),
                             ],
                           ),
                         ),
                         Obx(
                           () => Switch(
-                            value: controller.isPrivate.value,
+                            value: controller.isNip05.value,
                             onChanged: (value) =>
-                                controller.isPrivate.value = value,
+                                controller.isNip05.value = value,
                           ),
                         ),
                       ],
@@ -146,10 +138,9 @@ class Nip05Screen extends StatelessWidget {
                                 ),
                               )
                             : Text(
-                                AppLocalizations.of(context)!.register,
+                                AppLocalizations.of(context)!.create,
                                 style: TextStyle(
                                   fontSize: 16,
-                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                       ),

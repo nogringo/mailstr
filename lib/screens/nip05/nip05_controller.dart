@@ -16,7 +16,7 @@ class Nip05Controller extends GetxController {
   final pubkeyController = TextEditingController();
   
   RxBool isLoading = false.obs;
-  RxBool isPrivate = false.obs;
+  RxBool isNip05 = false.obs;
 
   Ndk get ndk => Get.find<Ndk>();
 
@@ -75,13 +75,13 @@ class Nip05Controller extends GetxController {
 
     try {
       final response = await http.post(
-        Uri.parse(payWithCashuUrl.replaceAll('/payWithCashu', '/registerNip05')),
+        Uri.parse(addAddressUrl),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'name': name,
           'pubkey': hexPubkey,
           'domain': emailDomain,
-          'private': isPrivate.value,
+          'nip05': isNip05.value,
         }),
       );
 
@@ -125,8 +125,8 @@ class Nip05Controller extends GetxController {
       style: ToastificationStyle.fillColored,
       icon: Icon(Icons.check_circle),
       applyBlurEffect: true,
-      primaryColor: Colors.green,
-      backgroundColor: Colors.white,
+      primaryColor: Get.theme.colorScheme.primary,
+      backgroundColor: Get.theme.colorScheme.onPrimary,
       autoCloseDuration: Duration(seconds: 3),
       closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
     );
@@ -139,8 +139,8 @@ class Nip05Controller extends GetxController {
       style: ToastificationStyle.fillColored,
       icon: Icon(Icons.error),
       applyBlurEffect: true,
-      primaryColor: Colors.red,
-      backgroundColor: Colors.white,
+      primaryColor: Get.theme.colorScheme.error,
+      backgroundColor: Get.theme.colorScheme.onError,
       autoCloseDuration: Duration(seconds: 4),
       closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
     );

@@ -96,5 +96,15 @@
     "tapPlusToCreateAlias": "Appuyez sur + pour créer votre premier alias",
     "limitedView": "Vue limitée",
     "youCanOnlySeeDefaultAliases": "Vous ne pouvez voir que les alias par défaut. Pour voir tous vos alias, connectez-vous avec une capacité de signature.",
-    "tapToCopy": "Appuyez pour copier"
+    "tapToCopy": "Appuyez pour copier",
+    "useThisAddressAsMyNostrAddress": "Utiliser cette adresse comme mon adresse Nostr",
+    "unregisterAlias": "Désinscrire l'Alias",
+    "areYouSureUnregister": "Êtes-vous sûr de vouloir désinscrire",
+    "aliasUnregistered": "Alias désinscrit",
+    "failedToUnregisterAlias": "Échec de la désinscription de l'alias",
+    "unregister": "Désinscrire",
+    "inbox": "Boîte de réception",
+    "aliases": "Alias",
+    "nostrUser": "Utilisateur Nostr",
+    "welcomeToMyNostrProfile": "Bienvenue sur mon profil Nostr"
 }

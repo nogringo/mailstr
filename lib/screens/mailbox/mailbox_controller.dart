@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:ndk/ndk.dart';
 import 'package:ndk_ui/ndk_ui.dart';
 import 'package:nip19/nip19.dart';
@@ -32,7 +33,7 @@ class MailboxController extends GetxController {
       // If session was restored and user is logged in, start listening for messages and fetch aliases
       listenMessages();
       fetchAliases();
-      
+
       // Load user-specific theme colors
       await Get.find<ThemeController>().loadUserColors();
     }
@@ -86,9 +87,12 @@ class MailboxController extends GetxController {
 
   Future<void> fetchAliases() async {
     if (!ndk.accounts.isLoggedIn) return;
-    
+
     final pubkey = ndk.accounts.getPublicKey();
     if (pubkey == null) return;
+
+    // Clear existing aliases
+    aliases.clear();
 
     try {
       // Generate the 3 standard aliases
@@ -96,18 +100,89 @@ class MailboxController extends GetxController {
       final npubEmail = "$npub@$emailDomain";
       final pubkeyEmail = "$pubkey@$emailDomain";
       final compactEmail = "${hexToBase36(pubkey)}@$emailDomain";
-      
-      aliases.assignAll([
-        npubEmail,
-        pubkeyEmail,
-        compactEmail,
-      ]);
+
+      // Add standard aliases
+      aliases.addAll([npubEmail, pubkeyEmail, compactEmail]);
     } catch (e) {
       // Fallback to simple hex alias
-      aliases.assignAll(['${pubkey.substring(0, 8)}@$emailDomain']);
+      aliases.add('${pubkey.substring(0, 8)}@$emailDomain');
+    }
+
+    // Fetch registered addresses from server using signed Nostr event
+    try {
+      // Create a signed Nostr event for authentication
+      final signer = ndk.accounts.getLoggedAccount()?.signer;
+      if (signer == null) return;
+
+      final event = Nip01Event(
+        pubKey: pubkey,
+        kind: 1,
+        tags: [],
+        content: 'get-addresses',
+        createdAt: DateTime.now().millisecondsSinceEpoch ~/ 1000,
+      );
+      await signer.sign(event);
+
+      final response = await http.post(
+        Uri.parse(getAddressesByPubkeyUrl),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'event': event.toJson()}),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        if (data is List) {
+          for (final address in data) {
+            // The response is a list of address strings like "name@domain.com"
+            if (!aliases.contains(address)) {
+              aliases.add(address);
+            }
+          }
+        }
+      }
+    } catch (e) {
+      // Silently fail - we still have the standard aliases
     }
   }
 
+  Future<bool> unregisterNip05(String name) async {
+    if (!ndk.accounts.isLoggedIn) return false;
+
+    final pubkey = ndk.accounts.getPublicKey();
+    if (pubkey == null) return false;
+
+    try {
+      // Create a signed Nostr event for authentication
+      final signer = ndk.accounts.getLoggedAccount()?.signer;
+      if (signer == null) return false;
+
+      final fullAddress = '$name@$emailDomain';
+      final event = Nip01Event(
+        pubKey: pubkey,
+        kind: 1,
+        tags: [],
+        content: 'unregister:$fullAddress',
+        createdAt: DateTime.now().millisecondsSinceEpoch ~/ 1000,
+      );
+
+      await signer.sign(event);
+
+      final response = await http.post(
+        Uri.parse(removeAddressUrl),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'event': event.toJson()}),
+      );
+
+      if (response.statusCode == 200) {
+        // Remove from aliases list
+        aliases.remove(fullAddress);
+        return true;
+      }
+      return false;
+    } catch (e) {
+      return false;
+    }
+  }
 
   void cancelMessagesSubscription() {
     if (_messagesSubscription != null) {
