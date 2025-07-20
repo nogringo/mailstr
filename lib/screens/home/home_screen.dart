@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:mailstr/app_routes.dart';
 import 'package:mailstr/config.dart';
 import 'package:mailstr/controllers/auth_controller.dart';
-import 'package:mailstr/controllers/theme_controller.dart';
 import 'package:mailstr/l10n/app_localizations.dart';
 import 'package:mailstr/widgets/content_padding_view.dart';
 import 'package:mailstr/widgets/user_avatar.dart';
@@ -24,52 +23,57 @@ class HomeScreen extends StatelessWidget {
             title: Text(appTitle),
             titleSpacing: 8,
             actions: [
-              IconButton(
-                onPressed: () async {
-                  final Uri url = Uri.parse(
-                    'https://njump.me/npub1kg4sdvz3l4fr99n2jdz2vdxe2mpacva87hkdetv76ywacsfq5leqquw5te',
-                  );
-                  if (await canLaunchUrl(url)) {
-                    await launchUrl(url, mode: LaunchMode.externalApplication);
-                  }
-                },
-                icon: SvgPicture.asset(
-                  'assets/nostr_icon.svg',
-                  width: 24,
-                  height: 24,
-                  colorFilter: ColorFilter.mode(
-                    Theme.of(context).colorScheme.onSurface,
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
+              // IconButton(
+              //   onPressed: () async {
+              //     final Uri url = Uri.parse(
+              //       'https://njump.me/npub1kg4sdvz3l4fr99n2jdz2vdxe2mpacva87hkdetv76ywacsfq5leqquw5te',
+              //     );
+              //     if (await canLaunchUrl(url)) {
+              //       await launchUrl(url, mode: LaunchMode.externalApplication);
+              //     }
+              //   },
+              //   icon: SvgPicture.asset(
+              //     'assets/nostr_icon.svg',
+              //     width: 24,
+              //     height: 24,
+              //     colorFilter: ColorFilter.mode(
+              //       Theme.of(context).colorScheme.onSurface,
+              //       BlendMode.srcIn,
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(width: 8),
+              // IconButton(
+              //   onPressed: () async {
+              //     final Uri url = Uri.parse('https://github.com/nogringo/mailstr');
+              //     if (await canLaunchUrl(url)) {
+              //       await launchUrl(url, mode: LaunchMode.externalApplication);
+              //     }
+              //   },
+              //   icon: SvgPicture.asset(
+              //     'assets/github_icon.svg',
+              //     width: 24,
+              //     height: 24,
+              //     colorFilter: ColorFilter.mode(
+              //       Theme.of(context).colorScheme.onSurface,
+              //       BlendMode.srcIn,
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(width: 8),
+              // GetBuilder<ThemeController>(
+              //   builder: (themeController) {
+              //     return IconButton(
+              //       onPressed: themeController.toggleTheme,
+              //       icon: Icon(themeController.themeIcon),
+              //       tooltip: 'Switch to ${themeController.themeModeString} theme',
+              //     );
+              //   },
+              // ),
               SizedBox(width: 8),
-              IconButton(
-                onPressed: () async {
-                  final Uri url = Uri.parse('https://github.com/nogringo/mailstr');
-                  if (await canLaunchUrl(url)) {
-                    await launchUrl(url, mode: LaunchMode.externalApplication);
-                  }
-                },
-                icon: SvgPicture.asset(
-                  'assets/github_icon.svg',
-                  width: 24,
-                  height: 24,
-                  colorFilter: ColorFilter.mode(
-                    Theme.of(context).colorScheme.onSurface,
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
-              SizedBox(width: 8),
-              GetBuilder<ThemeController>(
-                builder: (themeController) {
-                  return IconButton(
-                    onPressed: themeController.toggleTheme,
-                    icon: Icon(themeController.themeIcon),
-                    tooltip: 'Switch to ${themeController.themeModeString} theme',
-                  );
-                },
+              TextButton(
+                onPressed: () => Get.toNamed(AppRoutes.mailbox),
+                child: Text('Mailbox'),
               ),
               SizedBox(width: 8),
               Obx(() {
@@ -96,16 +100,11 @@ class HomeScreen extends StatelessWidget {
                   );
                 }
               }),
-              FilledButton(
-                onPressed: () => Get.toNamed(AppRoutes.mailbox),
-                child: Text('Mailbox'),
-              ),
-              SizedBox(width: 8),
-              OutlinedButton(
-                onPressed: () => Get.toNamed(AppRoutes.nip05),
-                child: Text('NIP-05'),
-              ),
-              SizedBox(width: 8),
+              // OutlinedButton(
+              //   onPressed: () => Get.toNamed(AppRoutes.nip05),
+              //   child: Text('NIP-05'),
+              // ),
+              // SizedBox(width: 8),
             ],
           ),
         ),

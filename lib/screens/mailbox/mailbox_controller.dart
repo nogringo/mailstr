@@ -6,6 +6,7 @@ import 'package:ndk_ui/ndk_ui.dart';
 import 'package:nip19/nip19.dart';
 import 'package:mailstr/config.dart';
 import 'package:mailstr/hex_to_base_36.dart';
+import 'package:mailstr/controllers/theme_controller.dart';
 
 class MailboxController extends GetxController {
   static MailboxController get to => Get.find();
@@ -31,6 +32,9 @@ class MailboxController extends GetxController {
       // If session was restored and user is logged in, start listening for messages and fetch aliases
       listenMessages();
       fetchAliases();
+      
+      // Load user-specific theme colors
+      await Get.find<ThemeController>().loadUserColors();
     }
   }
 

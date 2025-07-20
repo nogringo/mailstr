@@ -22,16 +22,16 @@ class Nip05Screen extends StatelessWidget {
             title: Text("Create your address"),
             titleSpacing: 8,
             actions: [
-              // User profile picture (always shown since this screen requires login)
-              Container(
-                margin: EdgeInsets.only(right: 8),
-                child: UserAvatar(radius: 16),
-              ),
               TextButton(
                 onPressed: () => Get.toNamed(AppRoutes.home),
                 child: Text('Home'),
               ),
               SizedBox(width: 8),
+              // User profile picture (always shown since this screen requires login)
+              Container(
+                margin: EdgeInsets.only(right: 8),
+                child: UserAvatar(radius: 16),
+              ),
             ],
           ),
         ),

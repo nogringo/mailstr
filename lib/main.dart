@@ -39,7 +39,7 @@ ThemeData _buildTheme(Brightness brightness, Color seedColor) {
 }
 
 void main() async {
-  await GetStorage.init();
+  await GetStorage.init(appTitle);
   
   Get.put(
     Ndk(

@@ -158,25 +158,28 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Flexible(
-                                    child: NName(
-                                      ndk: controller.ndk,
-                                      pubkey: controller.pubkey.value,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineMedium
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            color: Theme.of(
-                                              context,
-                                            ).colorScheme.primary,
-                                          ),
+                                  if (controller.ndk.accounts.getPublicKey() != null)
+                                    Flexible(
+                                      child: NName(
+                                        ndk: controller.ndk,
+                                        pubkey: controller.ndk.accounts.getPublicKey()!,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineMedium
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.primary,
+                                            ),
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  IconButton(
-                                    onPressed: () => controller.copyToClipboard(
-                                      controller.npub.value,
+                                  if (controller.ndk.accounts.getPublicKey() != null)
+                                    const SizedBox(width: 8),
+                                  if (controller.ndk.accounts.getPublicKey() != null)
+                                    IconButton(
+                                      onPressed: () => controller.copyToClipboard(
+                                        controller.npub.value,
                                       'Npub',
                                     ),
                                     icon: Icon(
@@ -213,14 +216,6 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                                 // Simple action buttons
                                 _buildSimpleActionButton(
                                   context,
-                                  'Manage NIP-05',
-                                  Icons.alternate_email,
-                                  () => Get.toNamed(AppRoutes.nip05),
-                                ),
-                                const SizedBox(height: 12),
-
-                                _buildSimpleActionButton(
-                                  context,
                                   'Go to Mailbox',
                                   Icons.email,
                                   () => Get.toNamed(AppRoutes.mailbox),
@@ -247,10 +242,13 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                               children: [
                                 Text(
                                   'Appearance',
-                                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).colorScheme.onSurface,
-                                  ),
+                                  style: Theme.of(context).textTheme.titleMedium
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onSurface,
+                                      ),
                                 ),
                                 const SizedBox(height: 16),
 
@@ -335,6 +333,9 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                     // Perform logout
                     await nLogout(Get.find<Ndk>());
 
+                    // Reset theme colors to default
+                    Get.find<ThemeController>().resetToDefaultColors();
+
                     // Update auth controller state
                     Get.find<AuthController>().updateAuthState();
 
@@ -399,11 +400,26 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
             const SizedBox(height: 8),
             Row(
               children: [
-                _buildThemeOption(context, ThemeMode.light, 'Light', Icons.light_mode),
+                _buildThemeOption(
+                  context,
+                  ThemeMode.light,
+                  'Light',
+                  Icons.light_mode,
+                ),
                 const SizedBox(width: 8),
-                _buildThemeOption(context, ThemeMode.dark, 'Dark', Icons.dark_mode),
+                _buildThemeOption(
+                  context,
+                  ThemeMode.dark,
+                  'Dark',
+                  Icons.dark_mode,
+                ),
                 const SizedBox(width: 8),
-                _buildThemeOption(context, ThemeMode.system, 'System', Icons.brightness_auto),
+                _buildThemeOption(
+                  context,
+                  ThemeMode.system,
+                  'System',
+                  Icons.brightness_auto,
+                ),
               ],
             ),
           ],
@@ -412,7 +428,12 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildThemeOption(BuildContext context, ThemeMode mode, String label, IconData icon) {
+  Widget _buildThemeOption(
+    BuildContext context,
+    ThemeMode mode,
+    String label,
+    IconData icon,
+  ) {
     final themeController = Get.find<ThemeController>();
     final isSelected = themeController.themeMode == mode;
 
@@ -423,14 +444,16 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
           decoration: BoxDecoration(
-            color: isSelected 
+            color: isSelected
                 ? Theme.of(context).colorScheme.primaryContainer
                 : Theme.of(context).colorScheme.surface,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: isSelected
                   ? Theme.of(context).colorScheme.primary
-                  : Theme.of(context).colorScheme.outline.withValues(alpha: 0.3),
+                  : Theme.of(
+                      context,
+                    ).colorScheme.outline.withValues(alpha: 0.3),
             ),
           ),
           child: Column(
@@ -440,7 +463,9 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                 size: 24,
                 color: isSelected
                     ? Theme.of(context).colorScheme.primary
-                    : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                    : Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
               const SizedBox(height: 4),
               Text(
@@ -449,7 +474,9 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                   color: isSelected
                       ? Theme.of(context).colorScheme.primary
-                      : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                      : Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
             ],
@@ -475,11 +502,26 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
             const SizedBox(height: 8),
             Row(
               children: [
-                _buildAccentOption(context, AccentColorType.defaultColor, 'Default', Icons.palette),
+                _buildAccentOption(
+                  context,
+                  AccentColorType.defaultColor,
+                  'Default',
+                  Icons.palette,
+                ),
                 const SizedBox(width: 8),
-                _buildAccentOption(context, AccentColorType.pictureColor, 'Picture', Icons.account_circle),
+                _buildAccentOption(
+                  context,
+                  AccentColorType.pictureColor,
+                  'Picture',
+                  Icons.account_circle,
+                ),
                 const SizedBox(width: 8),
-                _buildAccentOption(context, AccentColorType.bannerColor, 'Banner', Icons.image),
+                _buildAccentOption(
+                  context,
+                  AccentColorType.bannerColor,
+                  'Banner',
+                  Icons.image,
+                ),
               ],
             ),
           ],
@@ -488,7 +530,12 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildAccentOption(BuildContext context, AccentColorType type, String label, IconData icon) {
+  Widget _buildAccentOption(
+    BuildContext context,
+    AccentColorType type,
+    String label,
+    IconData icon,
+  ) {
     final themeController = Get.find<ThemeController>();
     final userController = Get.find<UserController>();
     final isSelected = themeController.accentColorType == type;
@@ -497,11 +544,14 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
       child: InkWell(
         onTap: () async {
           themeController.setAccentColorType(type);
-          
+
           // Extract color from appropriate image
-          if (type == AccentColorType.pictureColor && userController.pubkey.value.isNotEmpty) {
+          if (type == AccentColorType.pictureColor &&
+              userController.pubkey.value.isNotEmpty) {
             try {
-              final metadata = await userController.ndk.metadata.loadMetadata(userController.pubkey.value);
+              final metadata = await userController.ndk.metadata.loadMetadata(
+                userController.pubkey.value,
+              );
               if (metadata?.picture != null && metadata!.picture!.isNotEmpty) {
                 final imageProvider = NetworkImage(metadata.picture!);
                 await themeController.extractColorFromPicture(imageProvider);
@@ -509,9 +559,12 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
             } catch (e) {
               // Error loading picture metadata
             }
-          } else if (type == AccentColorType.bannerColor && userController.pubkey.value.isNotEmpty) {
+          } else if (type == AccentColorType.bannerColor &&
+              userController.pubkey.value.isNotEmpty) {
             try {
-              final metadata = await userController.ndk.metadata.loadMetadata(userController.pubkey.value);
+              final metadata = await userController.ndk.metadata.loadMetadata(
+                userController.pubkey.value,
+              );
               if (metadata?.banner != null && metadata!.banner!.isNotEmpty) {
                 final imageProvider = NetworkImage(metadata.banner!);
                 await themeController.extractColorFromBanner(imageProvider);
@@ -525,14 +578,16 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
           decoration: BoxDecoration(
-            color: isSelected 
+            color: isSelected
                 ? Theme.of(context).colorScheme.primaryContainer
                 : Theme.of(context).colorScheme.surface,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: isSelected
                   ? Theme.of(context).colorScheme.primary
-                  : Theme.of(context).colorScheme.outline.withValues(alpha: 0.3),
+                  : Theme.of(
+                      context,
+                    ).colorScheme.outline.withValues(alpha: 0.3),
             ),
           ),
           child: Column(
@@ -542,7 +597,9 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                 size: 24,
                 color: isSelected
                     ? Theme.of(context).colorScheme.primary
-                    : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                    : Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
               const SizedBox(height: 4),
               Text(
@@ -551,7 +608,9 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                   color: isSelected
                       ? Theme.of(context).colorScheme.primary
-                      : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                      : Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
             ],

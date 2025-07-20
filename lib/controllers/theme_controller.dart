@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mailstr/config.dart';
+import 'package:ndk/ndk.dart';
 
 enum AccentColorType { defaultColor, pictureColor, bannerColor }
 
@@ -9,13 +10,47 @@ class ThemeController extends GetxController {
   static ThemeController get to => Get.find();
 
   // GetStorage instance
-  final _storage = GetStorage();
+  final _storage = GetStorage(appTitle);
 
   // Storage keys
   static const String _themeModeKey = 'theme_mode';
   static const String _accentColorTypeKey = 'accent_color_type';
   static const String _pictureColorKey = 'picture_color';
   static const String _bannerColorKey = 'banner_color';
+
+  // Get user-specific storage key
+  String _getUserSpecificKey(String baseKey) {
+    final ndk = Get.find<Ndk>();
+    final pubkey = ndk.accounts.getPublicKey();
+    return pubkey != null ? '${baseKey}_$pubkey' : baseKey;
+  }
+
+  // Convert Color to hex string
+  String colorToHex(Color color) {
+    final r = (color.r * 255).round().toRadixString(16).padLeft(2, '0');
+    final g = (color.g * 255).round().toRadixString(16).padLeft(2, '0');
+    final b = (color.b * 255).round().toRadixString(16).padLeft(2, '0');
+    return '#$r$g$b';
+  }
+
+  // Convert hex string to Color
+  Color hexToColor(String hex) {
+    // Remove # prefix if present
+    final cleanHex = hex.startsWith('#') ? hex.substring(1) : hex;
+    
+    // Ensure we have at least 6 characters for RGB
+    if (cleanHex.length < 6) {
+      throw ArgumentError('Invalid hex color: $hex');
+    }
+    
+    // Parse RGB values (first 6 characters)
+    final r = int.parse(cleanHex.substring(0, 2), radix: 16);
+    final g = int.parse(cleanHex.substring(2, 4), radix: 16);
+    final b = int.parse(cleanHex.substring(4, 6), radix: 16);
+    
+    // Use full opacity (255) for alpha
+    return Color.fromARGB(255, r, g, b);
+  }
 
   // Observable theme mode
   final _themeMode = ThemeMode.system.obs;
@@ -144,6 +179,100 @@ class ThemeController extends GetxController {
     await extractColorFromImage(imageProvider, AccentColorType.bannerColor);
   }
 
+  // Reset colors to default (call on logout)
+  void resetToDefaultColors() {
+    _pictureColor = null;
+    _bannerColor = null;
+    _accentColorType.value = AccentColorType.defaultColor;
+    _customAccentColor.value = defaultThemeColor;
+    update();
+  }
+
+  // Handle account switching (call when switching accounts)
+  Future<void> switchAccount() async {
+    // Reset to default colors first
+    resetToDefaultColors();
+    
+    // Then load colors for the new account
+    await loadUserColors();
+  }
+
+  // Load user-specific colors (call after login)
+  Future<void> loadUserColors() async {
+    final ndk = Get.find<Ndk>();
+    final pubkey = ndk.accounts.getPublicKey();
+    
+    if (pubkey == null) return;
+
+    // Load extracted colors (user-specific)
+    final pictureKey = _getUserSpecificKey(_pictureColorKey);
+    final pictureColorValue = _storage.read(pictureKey);
+    
+    bool pictureColorLoaded = false;
+    if (pictureColorValue != null) {
+      try {
+        if (pictureColorValue is String) {
+          _pictureColor = hexToColor(pictureColorValue);
+          pictureColorLoaded = true;
+        } else if (pictureColorValue is int) {
+          // Legacy format - migrate to new format
+          _pictureColor = Color(pictureColorValue);
+          _savePictureColor(_pictureColor!);
+          pictureColorLoaded = true;
+        }
+      } catch (e) {
+        // Invalid color format, ignore
+      }
+    }
+
+    final bannerKey = _getUserSpecificKey(_bannerColorKey);
+    final bannerColorValue = _storage.read(bannerKey);
+    bool bannerColorLoaded = false;
+    if (bannerColorValue != null) {
+      try {
+        if (bannerColorValue is String) {
+          _bannerColor = hexToColor(bannerColorValue);
+          bannerColorLoaded = true;
+        } else if (bannerColorValue is int) {
+          // Legacy format - migrate to new format
+          _bannerColor = Color(bannerColorValue);
+          _saveBannerColor(_bannerColor!);
+          bannerColorLoaded = true;
+        }
+      } catch (e) {
+        // Invalid color format, ignore
+      }
+    }
+
+    // If no colors were loaded, this is a new user - extract colors from their metadata
+    if (!pictureColorLoaded || !bannerColorLoaded) {
+      try {
+        print('Loading metadata for new user: $pubkey');
+        final metadata = await ndk.metadata.loadMetadata(pubkey);
+        
+        // Extract picture color if not loaded and user has a picture
+        if (!pictureColorLoaded && metadata?.picture != null && metadata!.picture!.isNotEmpty) {
+          print('Extracting color from profile picture: ${metadata.picture}');
+          final imageProvider = NetworkImage(metadata.picture!);
+          await extractColorFromPicture(imageProvider);
+        }
+        
+        // Extract banner color if not loaded and user has a banner
+        if (!bannerColorLoaded && metadata?.banner != null && metadata!.banner!.isNotEmpty) {
+          print('Extracting color from banner: ${metadata.banner}');
+          final imageProvider = NetworkImage(metadata.banner!);
+          await extractColorFromBanner(imageProvider);
+        }
+      } catch (e) {
+        print('Error loading metadata or extracting colors: $e');
+        // Error loading metadata or extracting colors, ignore
+      }
+    }
+
+    // Update accent color based on loaded settings
+    _updateAccentColor();
+  }
+
   // Get current theme mode as string for display
   String get themeModeString {
     switch (_themeMode.value) {
@@ -206,15 +335,36 @@ class ThemeController extends GetxController {
       _accentColorType.value = AccentColorType.values[accentTypeIndex];
     }
 
-    // Load extracted colors
-    final pictureColorValue = _storage.read(_pictureColorKey);
+    // Load extracted colors (user-specific)
+    final pictureKey = _getUserSpecificKey(_pictureColorKey);
+    final pictureColorValue = _storage.read(pictureKey);
     if (pictureColorValue != null) {
-      _pictureColor = Color(pictureColorValue);
+      try {
+        if (pictureColorValue is String) {
+          _pictureColor = hexToColor(pictureColorValue);
+        } else if (pictureColorValue is int) {
+          // Legacy format - migrate to new format
+          _pictureColor = Color(pictureColorValue);
+          _savePictureColor(_pictureColor!);
+        }
+      } catch (e) {
+        // Invalid color format, ignore
+      }
     }
 
-    final bannerColorValue = _storage.read(_bannerColorKey);
+    final bannerColorValue = _storage.read(_getUserSpecificKey(_bannerColorKey));
     if (bannerColorValue != null) {
-      _bannerColor = Color(bannerColorValue);
+      try {
+        if (bannerColorValue is String) {
+          _bannerColor = hexToColor(bannerColorValue);
+        } else if (bannerColorValue is int) {
+          // Legacy format - migrate to new format
+          _bannerColor = Color(bannerColorValue);
+          _saveBannerColor(_bannerColor!);
+        }
+      } catch (e) {
+        // Invalid color format, ignore
+      }
     }
 
     // Update accent color based on loaded settings
@@ -230,10 +380,12 @@ class ThemeController extends GetxController {
   }
 
   void _savePictureColor(Color color) {
-    _storage.write(_pictureColorKey, color.value);
+    final key = _getUserSpecificKey(_pictureColorKey);
+    final hex = colorToHex(color);
+    _storage.write(key, hex);
   }
 
   void _saveBannerColor(Color color) {
-    _storage.write(_bannerColorKey, color.value);
+    _storage.write(_getUserSpecificKey(_bannerColorKey), colorToHex(color));
   }
 }
