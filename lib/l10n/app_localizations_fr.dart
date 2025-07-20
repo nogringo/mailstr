@@ -211,4 +211,139 @@ class AppLocalizationsFr extends AppLocalizations {
   String yesAddDomainToNpub(String domain) {
     return 'Oui, vous avez juste à ajouter @$domain à la fin de votre clé publique (Npub) et vous avez votre adresse email.';
   }
+
+  @override
+  String get loadingProfile => 'Chargement du profil...';
+
+  @override
+  String get goToMailbox => 'Aller à la boîte mail';
+
+  @override
+  String get appearance => 'Apparence';
+
+  @override
+  String get logout => 'Déconnexion';
+
+  @override
+  String get logoutConfirmation =>
+      'Êtes-vous sûr de vouloir vous déconnecter ?';
+
+  @override
+  String get cancel => 'Annuler';
+
+  @override
+  String get themeMode => 'Mode de thème';
+
+  @override
+  String get light => 'Clair';
+
+  @override
+  String get dark => 'Sombre';
+
+  @override
+  String get system => 'Système';
+
+  @override
+  String get accentColor => 'Couleur d\'accent';
+
+  @override
+  String get defaultColor => 'Par défaut';
+
+  @override
+  String get picture => 'Image';
+
+  @override
+  String get banner => 'Bannière';
+
+  @override
+  String get mailbox => 'Boîte mail';
+
+  @override
+  String get login => 'Connexion';
+
+  @override
+  String get createYourAddress => 'Créez votre adresse';
+
+  @override
+  String get username => 'nom d\'utilisateur';
+
+  @override
+  String get private => 'Privé';
+
+  @override
+  String get hideFromPublicDirectory => 'Masquer du répertoire public';
+
+  @override
+  String get mailstrLogin => 'Connexion à Mailstr';
+
+  @override
+  String get loginWithNostr => 'Se connecter avec Nostr';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get close => 'Fermer';
+
+  @override
+  String copiedToClipboard(String label) {
+    return '$label copié dans le presse-papiers';
+  }
+
+  @override
+  String get privateKeyWarning =>
+      'Votre clé privée (Nsec) est la clé pour lire vos emails, conservez la dans un endroit sécurisé comme votre gestionnaire de mot de passe.';
+
+  @override
+  String get noAccessWithoutNsec =>
+      'Sans votre Nsec vous n\'aurez pas accès à vos emails.';
+
+  @override
+  String get register => 'ENREGISTRER';
+
+  @override
+  String get connectWithNostr => 'Se connecter avec Nostr';
+
+  @override
+  String get secureDecentralizedAuth =>
+      'Authentification sécurisée et décentralisée';
+
+  @override
+  String get signingCapabilityRequired => 'Capacité de signature requise';
+
+  @override
+  String get nip05AndPubkeyReadOnly =>
+      'Les connexions NIP-05 et pubkey sont en lecture seule. Utilisez :';
+
+  @override
+  String get loginMethodsList =>
+      '• Extension de navigateur (Alby, nos2x, etc.)\n• Générer de nouvelles clés\n• Importer une clé privée';
+
+  @override
+  String get signInToAccessMailbox =>
+      'Connectez-vous pour accéder à la boîte mail';
+
+  @override
+  String get toReceiveAndSendMessages =>
+      'Pour recevoir et envoyer des messages chiffrés, vous devez vous connecter avec un compte Nostr qui peut signer des messages.';
+
+  @override
+  String get noMessagesYet => 'Pas encore de messages';
+
+  @override
+  String get noAliasesYet => 'Pas encore d\'alias';
+
+  @override
+  String get tapPlusToCreateAlias =>
+      'Appuyez sur + pour créer votre premier alias';
+
+  @override
+  String get limitedView => 'Vue limitée';
+
+  @override
+  String get youCanOnlySeeDefaultAliases =>
+      'Vous ne pouvez voir que les alias par défaut. Pour voir tous vos alias, connectez-vous avec une capacité de signature.';
+
+  @override
+  String get tapToCopy => 'Appuyez pour copier';
 }

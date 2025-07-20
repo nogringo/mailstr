@@ -40,11 +40,11 @@ class CreateScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    "Votre clé privée (Nsec) est la clé pour lire vos emails, conservez la dans un endroit sécurisé comme votre gestionnaire de mot de passe.",
+                    AppLocalizations.of(context)!.privateKeyWarning,
                   ),
                   SizedBox(height: 8),
                   Text(
-                    "Sans votre Nsec vous n'aurez pas accès à vos emails.",
+                    AppLocalizations.of(context)!.noAccessWithoutNsec,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 16),

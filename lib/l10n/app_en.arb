@@ -313,5 +313,175 @@
         "example": "uid.ovh"
       }
     }
+  },
+  "loadingProfile": "Loading profile...",
+  "@loadingProfile": {
+    "description": "Loading message when fetching user profile"
+  },
+  "goToMailbox": "Go to Mailbox",
+  "@goToMailbox": {
+    "description": "Button to navigate to mailbox"
+  },
+  "appearance": "Appearance",
+  "@appearance": {
+    "description": "Settings section for appearance options"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout button text"
+  },
+  "logoutConfirmation": "Are you sure you want to logout?",
+  "@logoutConfirmation": {
+    "description": "Confirmation message for logout dialog"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  "themeMode": "Theme Mode",
+  "@themeMode": {
+    "description": "Settings label for theme mode selection"
+  },
+  "light": "Light",
+  "@light": {
+    "description": "Light theme option"
+  },
+  "dark": "Dark",
+  "@dark": {
+    "description": "Dark theme option"
+  },
+  "system": "System",
+  "@system": {
+    "description": "System theme option"
+  },
+  "accentColor": "Accent Color",
+  "@accentColor": {
+    "description": "Settings label for accent color selection"
+  },
+  "defaultColor": "Default",
+  "@defaultColor": {
+    "description": "Default color option"
+  },
+  "picture": "Picture",
+  "@picture": {
+    "description": "Picture-based color option"
+  },
+  "banner": "Banner",
+  "@banner": {
+    "description": "Banner-based color option"
+  },
+  "mailbox": "Mailbox",
+  "@mailbox": {
+    "description": "Mailbox navigation button"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login button text"
+  },
+  "createYourAddress": "Create your address",
+  "@createYourAddress": {
+    "description": "Title for create address screen"
+  },
+  "username": "username",
+  "@username": {
+    "description": "Username text field hint"
+  },
+  "private": "Private",
+  "@private": {
+    "description": "Private toggle label"
+  },
+  "hideFromPublicDirectory": "Hide from public directory",
+  "@hideFromPublicDirectory": {
+    "description": "Description for private toggle"
+  },
+  "mailstrLogin": "Mailstr Login",
+  "@mailstrLogin": {
+    "description": "Login screen title"
+  },
+  "loginWithNostr": "Login with Nostr",
+  "@loginWithNostr": {
+    "description": "Button to login with Nostr"
+  },
+  "message": "Message",
+  "@message": {
+    "description": "Dialog title for messages"
+  },
+  "close": "Close",
+  "@close": {
+    "description": "Close button text"
+  },
+  "copiedToClipboard": "{label} copied to clipboard",
+  "@copiedToClipboard": {
+    "description": "Toast message when something is copied",
+    "placeholders": {
+      "label": {
+        "type": "String",
+        "example": "Email address"
+      }
+    }
+  },
+  "privateKeyWarning": "Your private key (Nsec) is the key to read your emails, keep it in a secure place like your password manager.",
+  "@privateKeyWarning": {
+    "description": "Warning about private key security"
+  },
+  "noAccessWithoutNsec": "Without your Nsec you will not have access to your emails.",
+  "@noAccessWithoutNsec": {
+    "description": "Warning about losing access without Nsec"
+  },
+  "register": "REGISTER",
+  "@register": {
+    "description": "Register button text"
+  },
+  "connectWithNostr": "Connect with Nostr",
+  "@connectWithNostr": {
+    "description": "Login screen title"
+  },
+  "secureDecentralizedAuth": "Secure, decentralized authentication",
+  "@secureDecentralizedAuth": {
+    "description": "Login screen subtitle"
+  },
+  "signingCapabilityRequired": "Signing capability required",
+  "@signingCapabilityRequired": {
+    "description": "Warning title for read-only login methods"
+  },
+  "nip05AndPubkeyReadOnly": "NIP-05 and pubkey login are read-only. Use:",
+  "@nip05AndPubkeyReadOnly": {
+    "description": "Warning message about read-only login methods"
+  },
+  "loginMethodsList": "• Browser extension (Alby, nos2x, etc.)\n• Generate new keys\n• Import private key",
+  "@loginMethodsList": {
+    "description": "List of login methods that support signing"
+  },
+  "signInToAccessMailbox": "Sign in to Access Mailbox",
+  "@signInToAccessMailbox": {
+    "description": "Title prompting user to sign in to access mailbox"
+  },
+  "toReceiveAndSendMessages": "To receive and send encrypted messages, you need to log in with a Nostr account that can sign messages.",
+  "@toReceiveAndSendMessages": {
+    "description": "Description explaining why signing capability is needed"
+  },
+  "noMessagesYet": "No messages yet",
+  "@noMessagesYet": {
+    "description": "Empty state message for inbox"
+  },
+  "noAliasesYet": "No aliases yet",
+  "@noAliasesYet": {
+    "description": "Empty state message for aliases"
+  },
+  "tapPlusToCreateAlias": "Tap + to create your first alias",
+  "@tapPlusToCreateAlias": {
+    "description": "Hint text to create first alias"
+  },
+  "limitedView": "Limited View",
+  "@limitedView": {
+    "description": "Title for limited view warning"
+  },
+  "youCanOnlySeeDefaultAliases": "You can only see defaults aliases. To view all your aliases, log in with signing capability.",
+  "@youCanOnlySeeDefaultAliases": {
+    "description": "Warning message about limited alias view"
+  },
+  "tapToCopy": "Tap to copy",
+  "@tapToCopy": {
+    "description": "Hint text for copying aliases"
   }
 }

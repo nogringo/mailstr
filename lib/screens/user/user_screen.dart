@@ -10,6 +10,7 @@ import 'package:ndk_ui/functions/n_logout.dart';
 import 'package:mailstr/controllers/auth_controller.dart';
 import 'package:mailstr/controllers/theme_controller.dart';
 import 'package:ndk/ndk.dart';
+import 'package:mailstr/l10n/app_localizations.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({super.key});
@@ -56,7 +57,7 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
             actions: [
               TextButton(
                 onPressed: () => Get.toNamed(AppRoutes.home),
-                child: Text('Home'),
+                child: Text(AppLocalizations.of(context)!.home),
               ),
             ],
           ),
@@ -71,7 +72,7 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                 CircularProgressIndicator(),
                 const SizedBox(height: 16),
                 Text(
-                  'Loading profile...',
+                  AppLocalizations.of(context)!.loadingProfile,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Theme.of(
                       context,
@@ -216,7 +217,7 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                                 // Simple action buttons
                                 _buildSimpleActionButton(
                                   context,
-                                  'Go to Mailbox',
+                                  AppLocalizations.of(context)!.goToMailbox,
                                   Icons.email,
                                   () => Get.toNamed(AppRoutes.mailbox),
                                 ),
@@ -241,7 +242,7 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Appearance',
+                                  AppLocalizations.of(context)!.appearance,
                                   style: Theme.of(context).textTheme.titleMedium
                                       ?.copyWith(
                                         fontWeight: FontWeight.bold,
@@ -320,12 +321,12 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Logout'),
-              content: Text('Are you sure you want to logout?'),
+              title: Text(AppLocalizations.of(context)!.logout),
+              content: Text(AppLocalizations.of(context)!.logoutConfirmation),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: Text('Cancel'),
+                  child: Text(AppLocalizations.of(context)!.cancel),
                 ),
                 TextButton(
                   onPressed: () async {
@@ -342,7 +343,7 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                     Get.offAllNamed(AppRoutes.home);
                   },
                   child: Text(
-                    'Logout',
+                    AppLocalizations.of(context)!.logout,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.error,
                     ),
@@ -366,7 +367,7 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                'Logout',
+                AppLocalizations.of(context)!.logout,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
                   color: Theme.of(context).colorScheme.error,
@@ -391,7 +392,7 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Theme Mode',
+              AppLocalizations.of(context)!.themeMode,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w500,
                 color: Theme.of(context).colorScheme.onSurface,
@@ -403,21 +404,21 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                 _buildThemeOption(
                   context,
                   ThemeMode.light,
-                  'Light',
+                  AppLocalizations.of(context)!.light,
                   Icons.light_mode,
                 ),
                 const SizedBox(width: 8),
                 _buildThemeOption(
                   context,
                   ThemeMode.dark,
-                  'Dark',
+                  AppLocalizations.of(context)!.dark,
                   Icons.dark_mode,
                 ),
                 const SizedBox(width: 8),
                 _buildThemeOption(
                   context,
                   ThemeMode.system,
-                  'System',
+                  AppLocalizations.of(context)!.system,
                   Icons.brightness_auto,
                 ),
               ],
@@ -493,7 +494,7 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Accent Color',
+              AppLocalizations.of(context)!.accentColor,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w500,
                 color: Theme.of(context).colorScheme.onSurface,
@@ -505,21 +506,21 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                 _buildAccentOption(
                   context,
                   AccentColorType.defaultColor,
-                  'Default',
+                  AppLocalizations.of(context)!.defaultColor,
                   Icons.palette,
                 ),
                 const SizedBox(width: 8),
                 _buildAccentOption(
                   context,
                   AccentColorType.pictureColor,
-                  'Picture',
+                  AppLocalizations.of(context)!.picture,
                   Icons.account_circle,
                 ),
                 const SizedBox(width: 8),
                 _buildAccentOption(
                   context,
                   AccentColorType.bannerColor,
-                  'Banner',
+                  AppLocalizations.of(context)!.banner,
                   Icons.image,
                 ),
               ],

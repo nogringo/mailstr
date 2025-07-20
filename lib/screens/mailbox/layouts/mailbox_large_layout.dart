@@ -4,6 +4,7 @@ import 'package:mailstr/app_routes.dart';
 import 'package:mailstr/screens/mailbox/mailbox_controller.dart';
 import 'package:mailstr/screens/mailbox/mailbox_tabs.dart';
 import 'package:mailstr/widgets/user_avatar.dart';
+import 'package:mailstr/l10n/app_localizations.dart';
 
 class MailboxLargeLayout extends StatelessWidget {
   const MailboxLargeLayout({super.key});
@@ -13,7 +14,7 @@ class MailboxLargeLayout extends StatelessWidget {
     return Obx(() {
       return Scaffold(
         appBar: AppBar(
-          title: Text("Mailbox"),
+          title: Text(AppLocalizations.of(context)!.mailbox),
           actions: [
             // User profile picture
             Container(

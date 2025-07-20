@@ -211,4 +211,137 @@ class AppLocalizationsEs extends AppLocalizations {
   String yesAddDomainToNpub(String domain) {
     return 'Sí, solo tienes que agregar @$domain al final de tu clave pública (Npub) y tienes tu dirección de email.';
   }
+
+  @override
+  String get loadingProfile => 'Cargando perfil...';
+
+  @override
+  String get goToMailbox => 'Ir al buzón';
+
+  @override
+  String get appearance => 'Apariencia';
+
+  @override
+  String get logout => 'Cerrar sesión';
+
+  @override
+  String get logoutConfirmation =>
+      '¿Estás seguro de que quieres cerrar sesión?';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get themeMode => 'Modo de tema';
+
+  @override
+  String get light => 'Claro';
+
+  @override
+  String get dark => 'Oscuro';
+
+  @override
+  String get system => 'Sistema';
+
+  @override
+  String get accentColor => 'Color de acento';
+
+  @override
+  String get defaultColor => 'Predeterminado';
+
+  @override
+  String get picture => 'Imagen';
+
+  @override
+  String get banner => 'Banner';
+
+  @override
+  String get mailbox => 'Buzón';
+
+  @override
+  String get login => 'Iniciar sesión';
+
+  @override
+  String get createYourAddress => 'Crea tu dirección';
+
+  @override
+  String get username => 'nombre de usuario';
+
+  @override
+  String get private => 'Privado';
+
+  @override
+  String get hideFromPublicDirectory => 'Ocultar del directorio público';
+
+  @override
+  String get mailstrLogin => 'Iniciar sesión en Mailstr';
+
+  @override
+  String get loginWithNostr => 'Iniciar sesión con Nostr';
+
+  @override
+  String get message => 'Mensaje';
+
+  @override
+  String get close => 'Cerrar';
+
+  @override
+  String copiedToClipboard(String label) {
+    return '$label copiado al portapapeles';
+  }
+
+  @override
+  String get privateKeyWarning =>
+      'Tu clave privada (Nsec) es la clave para leer tus emails, guárdala en un lugar seguro como tu gestor de contraseñas.';
+
+  @override
+  String get noAccessWithoutNsec =>
+      'Sin tu Nsec no tendrás acceso a tus emails.';
+
+  @override
+  String get register => 'REGISTRAR';
+
+  @override
+  String get connectWithNostr => 'Conectar con Nostr';
+
+  @override
+  String get secureDecentralizedAuth =>
+      'Autenticación segura y descentralizada';
+
+  @override
+  String get signingCapabilityRequired => 'Capacidad de firma requerida';
+
+  @override
+  String get nip05AndPubkeyReadOnly =>
+      'Los inicios de sesión NIP-05 y pubkey son solo lectura. Use:';
+
+  @override
+  String get loginMethodsList =>
+      '• Extensión del navegador (Alby, nos2x, etc.)\n• Generar nuevas claves\n• Importar clave privada';
+
+  @override
+  String get signInToAccessMailbox => 'Inicia sesión para acceder al buzón';
+
+  @override
+  String get toReceiveAndSendMessages =>
+      'Para recibir y enviar mensajes encriptados, necesitas iniciar sesión con una cuenta Nostr que pueda firmar mensajes.';
+
+  @override
+  String get noMessagesYet => 'No hay mensajes aún';
+
+  @override
+  String get noAliasesYet => 'No hay alias aún';
+
+  @override
+  String get tapPlusToCreateAlias => 'Toca + para crear tu primer alias';
+
+  @override
+  String get limitedView => 'Vista limitada';
+
+  @override
+  String get youCanOnlySeeDefaultAliases =>
+      'Solo puedes ver los alias predeterminados. Para ver todos tus alias, inicia sesión con capacidad de firma.';
+
+  @override
+  String get tapToCopy => 'Toca para copiar';
 }

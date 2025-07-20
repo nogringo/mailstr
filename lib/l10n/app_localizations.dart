@@ -435,6 +435,252 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Yes, you just have to add @{domain} at the end of your public key (Npub) and you have your email address.'**
   String yesAddDomainToNpub(String domain);
+
+  /// Loading message when fetching user profile
+  ///
+  /// In en, this message translates to:
+  /// **'Loading profile...'**
+  String get loadingProfile;
+
+  /// Button to navigate to mailbox
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Mailbox'**
+  String get goToMailbox;
+
+  /// Settings section for appearance options
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get appearance;
+
+  /// Logout button text
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// Confirmation message for logout dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get logoutConfirmation;
+
+  /// Cancel button text
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// Settings label for theme mode selection
+  ///
+  /// In en, this message translates to:
+  /// **'Theme Mode'**
+  String get themeMode;
+
+  /// Light theme option
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get light;
+
+  /// Dark theme option
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get dark;
+
+  /// System theme option
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get system;
+
+  /// Settings label for accent color selection
+  ///
+  /// In en, this message translates to:
+  /// **'Accent Color'**
+  String get accentColor;
+
+  /// Default color option
+  ///
+  /// In en, this message translates to:
+  /// **'Default'**
+  String get defaultColor;
+
+  /// Picture-based color option
+  ///
+  /// In en, this message translates to:
+  /// **'Picture'**
+  String get picture;
+
+  /// Banner-based color option
+  ///
+  /// In en, this message translates to:
+  /// **'Banner'**
+  String get banner;
+
+  /// Mailbox navigation button
+  ///
+  /// In en, this message translates to:
+  /// **'Mailbox'**
+  String get mailbox;
+
+  /// Login button text
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// Title for create address screen
+  ///
+  /// In en, this message translates to:
+  /// **'Create your address'**
+  String get createYourAddress;
+
+  /// Username text field hint
+  ///
+  /// In en, this message translates to:
+  /// **'username'**
+  String get username;
+
+  /// Private toggle label
+  ///
+  /// In en, this message translates to:
+  /// **'Private'**
+  String get private;
+
+  /// Description for private toggle
+  ///
+  /// In en, this message translates to:
+  /// **'Hide from public directory'**
+  String get hideFromPublicDirectory;
+
+  /// Login screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Mailstr Login'**
+  String get mailstrLogin;
+
+  /// Button to login with Nostr
+  ///
+  /// In en, this message translates to:
+  /// **'Login with Nostr'**
+  String get loginWithNostr;
+
+  /// Dialog title for messages
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get message;
+
+  /// Close button text
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// Toast message when something is copied
+  ///
+  /// In en, this message translates to:
+  /// **'{label} copied to clipboard'**
+  String copiedToClipboard(String label);
+
+  /// Warning about private key security
+  ///
+  /// In en, this message translates to:
+  /// **'Your private key (Nsec) is the key to read your emails, keep it in a secure place like your password manager.'**
+  String get privateKeyWarning;
+
+  /// Warning about losing access without Nsec
+  ///
+  /// In en, this message translates to:
+  /// **'Without your Nsec you will not have access to your emails.'**
+  String get noAccessWithoutNsec;
+
+  /// Register button text
+  ///
+  /// In en, this message translates to:
+  /// **'REGISTER'**
+  String get register;
+
+  /// Login screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Connect with Nostr'**
+  String get connectWithNostr;
+
+  /// Login screen subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Secure, decentralized authentication'**
+  String get secureDecentralizedAuth;
+
+  /// Warning title for read-only login methods
+  ///
+  /// In en, this message translates to:
+  /// **'Signing capability required'**
+  String get signingCapabilityRequired;
+
+  /// Warning message about read-only login methods
+  ///
+  /// In en, this message translates to:
+  /// **'NIP-05 and pubkey login are read-only. Use:'**
+  String get nip05AndPubkeyReadOnly;
+
+  /// List of login methods that support signing
+  ///
+  /// In en, this message translates to:
+  /// **'• Browser extension (Alby, nos2x, etc.)\n• Generate new keys\n• Import private key'**
+  String get loginMethodsList;
+
+  /// Title prompting user to sign in to access mailbox
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to Access Mailbox'**
+  String get signInToAccessMailbox;
+
+  /// Description explaining why signing capability is needed
+  ///
+  /// In en, this message translates to:
+  /// **'To receive and send encrypted messages, you need to log in with a Nostr account that can sign messages.'**
+  String get toReceiveAndSendMessages;
+
+  /// Empty state message for inbox
+  ///
+  /// In en, this message translates to:
+  /// **'No messages yet'**
+  String get noMessagesYet;
+
+  /// Empty state message for aliases
+  ///
+  /// In en, this message translates to:
+  /// **'No aliases yet'**
+  String get noAliasesYet;
+
+  /// Hint text to create first alias
+  ///
+  /// In en, this message translates to:
+  /// **'Tap + to create your first alias'**
+  String get tapPlusToCreateAlias;
+
+  /// Title for limited view warning
+  ///
+  /// In en, this message translates to:
+  /// **'Limited View'**
+  String get limitedView;
+
+  /// Warning message about limited alias view
+  ///
+  /// In en, this message translates to:
+  /// **'You can only see defaults aliases. To view all your aliases, log in with signing capability.'**
+  String get youCanOnlySeeDefaultAliases;
+
+  /// Hint text for copying aliases
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to copy'**
+  String get tapToCopy;
 }
 
 class _AppLocalizationsDelegate

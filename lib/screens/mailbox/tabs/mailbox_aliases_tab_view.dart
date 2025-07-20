@@ -31,14 +31,14 @@ class MailboxAliasesTabView extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'No aliases yet',
+                AppLocalizations.of(context)!.noAliasesYet,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
               ),
               const SizedBox(height: 16),
               Text(
-                'Tap + to create your first alias',
+                AppLocalizations.of(context)!.tapPlusToCreateAlias,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.4),
                   fontSize: 12,
@@ -76,7 +76,7 @@ class MailboxAliasesTabView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Limited View',
+                          AppLocalizations.of(context)!.limitedView,
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ class MailboxAliasesTabView extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'You can only see defaults aliases. To view all your aliases, log in with signing capability.',
+                          AppLocalizations.of(context)!.youCanOnlySeeDefaultAliases,
                           style: TextStyle(
                             fontSize: 13,
                             color: Theme.of(context).colorScheme.primary,
@@ -99,7 +99,7 @@ class MailboxAliasesTabView extends StatelessWidget {
                   FilledButton.icon(
                     onPressed: () => Get.toNamed(AppRoutes.login, arguments: {'returnRoute': AppRoutes.mailbox}),
                     icon: Icon(Icons.login, size: 16),
-                    label: Text('Login'),
+                    label: Text(AppLocalizations.of(context)!.login),
                     style: FilledButton.styleFrom(
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                       textStyle: TextStyle(fontSize: 12),
@@ -152,7 +152,7 @@ class MailboxAliasesTabView extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  'Tap to copy',
+                                  AppLocalizations.of(context)!.tapToCopy,
                                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                     color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                                   ),

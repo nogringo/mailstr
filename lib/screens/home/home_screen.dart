@@ -5,9 +5,11 @@ import 'package:get/get.dart';
 import 'package:mailstr/app_routes.dart';
 import 'package:mailstr/config.dart';
 import 'package:mailstr/controllers/auth_controller.dart';
+import 'package:mailstr/controllers/theme_controller.dart';
 import 'package:mailstr/l10n/app_localizations.dart';
 import 'package:mailstr/widgets/content_padding_view.dart';
 import 'package:mailstr/widgets/user_avatar.dart';
+import 'package:nip19/nip19.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,95 +20,88 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, kToolbarHeight),
-        child: ContentPaddingView(
-          child: AppBar(
-            title: Text(appTitle),
-            titleSpacing: 8,
-            actions: [
-              // IconButton(
-              //   onPressed: () async {
-              //     final Uri url = Uri.parse(
-              //       'https://njump.me/npub1kg4sdvz3l4fr99n2jdz2vdxe2mpacva87hkdetv76ywacsfq5leqquw5te',
-              //     );
-              //     if (await canLaunchUrl(url)) {
-              //       await launchUrl(url, mode: LaunchMode.externalApplication);
-              //     }
-              //   },
-              //   icon: SvgPicture.asset(
-              //     'assets/nostr_icon.svg',
-              //     width: 24,
-              //     height: 24,
-              //     colorFilter: ColorFilter.mode(
-              //       Theme.of(context).colorScheme.onSurface,
-              //       BlendMode.srcIn,
-              //     ),
-              //   ),
-              // ),
-              // SizedBox(width: 8),
-              // IconButton(
-              //   onPressed: () async {
-              //     final Uri url = Uri.parse('https://github.com/nogringo/mailstr');
-              //     if (await canLaunchUrl(url)) {
-              //       await launchUrl(url, mode: LaunchMode.externalApplication);
-              //     }
-              //   },
-              //   icon: SvgPicture.asset(
-              //     'assets/github_icon.svg',
-              //     width: 24,
-              //     height: 24,
-              //     colorFilter: ColorFilter.mode(
-              //       Theme.of(context).colorScheme.onSurface,
-              //       BlendMode.srcIn,
-              //     ),
-              //   ),
-              // ),
-              // SizedBox(width: 8),
-              // GetBuilder<ThemeController>(
-              //   builder: (themeController) {
-              //     return IconButton(
-              //       onPressed: themeController.toggleTheme,
-              //       icon: Icon(themeController.themeIcon),
-              //       tooltip: 'Switch to ${themeController.themeModeString} theme',
-              //     );
-              //   },
-              // ),
-              SizedBox(width: 8),
-              TextButton(
-                onPressed: () => Get.toNamed(AppRoutes.mailbox),
-                child: Text('Mailbox'),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return ContentPaddingView(
+              child: AppBar(
+                title: Text(appTitle),
+                titleSpacing: 8,
+                actions: [
+                  if (constraints.maxWidth > 600) ...[
+                    IconButton(
+                      onPressed: () async {
+                        final Uri url = Uri.parse(
+                          'https://njump.me/${Nip19.npubFromHex(serverPubkey)}',
+                        );
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url, mode: LaunchMode.externalApplication);
+                        }
+                      },
+                      icon: SvgPicture.asset(
+                        'assets/nostr_icon.svg',
+                        width: 24,
+                        height: 24,
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.onSurface,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    IconButton(
+                      onPressed: () async {
+                        final Uri url = Uri.parse('https://github.com/nogringo/mailstr');
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url, mode: LaunchMode.externalApplication);
+                        }
+                      },
+                      icon: SvgPicture.asset(
+                        'assets/github_icon.svg',
+                        width: 24,
+                        height: 24,
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.onSurface,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    GetBuilder<ThemeController>(
+                      builder: (themeController) {
+                        return IconButton(
+                          onPressed: themeController.toggleTheme,
+                          icon: Icon(themeController.themeIcon),
+                          tooltip: 'Switch to ${themeController.themeModeString} theme',
+                        );
+                      },
+                    ),
+                    SizedBox(width: 8),
+                  ],
+                  FilledButton(
+                    onPressed: () => Get.toNamed(AppRoutes.mailbox),
+                    child: Text(AppLocalizations.of(context)!.mailbox),
+                  ),
+                  SizedBox(width: 8),
+                  Obx(() {
+                    final authController = Get.find<AuthController>();
+                    if (!authController.isLoggedIn) {
+                      return Container();
+                    } else {
+                      // Show user profile picture when logged in
+                      return Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 8),
+                            child: UserAvatar(radius: 16),
+                          ),
+                        ],
+                      );
+                    }
+                  }),
+                ],
               ),
-              SizedBox(width: 8),
-              Obx(() {
-                final authController = Get.find<AuthController>();
-                if (!authController.isLoggedIn) {
-                  return Row(
-                    children: [
-                      OutlinedButton(
-                        onPressed: () => Get.toNamed(AppRoutes.login),
-                        child: Text('Login'),
-                      ),
-                      SizedBox(width: 8),
-                    ],
-                  );
-                } else {
-                  // Show user profile picture when logged in
-                  return Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(right: 8),
-                        child: UserAvatar(radius: 16),
-                      ),
-                    ],
-                  );
-                }
-              }),
-              // OutlinedButton(
-              //   onPressed: () => Get.toNamed(AppRoutes.nip05),
-              //   child: Text('NIP-05'),
-              // ),
-              // SizedBox(width: 8),
-            ],
-          ),
+            );
+          },
         ),
       ),
       body: SingleChildScrollView(
@@ -213,68 +208,68 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 48),
-              Container(
-                padding: EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surface,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.outline.withValues(alpha: 0.3),
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.whereToReadEmails,
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 16),
-                    RichText(
-                      text: TextSpan(
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyMedium?.copyWith(height: 1.6),
-                        children: _buildTextWithNostrLink(
-                          context,
-                          AppLocalizations.of(context)!.whereToReadEmailsDescription,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: [
-                        OutlinedButton.icon(
-                          onPressed: () async {
-                            final Uri url = Uri.parse('https://yakihonne.com');
-                            if (await canLaunchUrl(url)) {
-                              await launchUrl(url, mode: LaunchMode.externalApplication);
-                            }
-                          },
-                          label: Text('Yakihonne'),
-                          icon: Icon(Icons.language),
-                        ),
-                        OutlinedButton.icon(
-                          onPressed: () async {
-                            final Uri url = Uri.parse('https://0xchat.com');
-                            if (await canLaunchUrl(url)) {
-                              await launchUrl(url, mode: LaunchMode.externalApplication);
-                            }
-                          },
-                          label: Text('0xchat'),
-                          icon: Icon(Icons.phone_android_outlined),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              // SizedBox(height: 48),
+              // Container(
+              //   padding: EdgeInsets.all(24),
+              //   decoration: BoxDecoration(
+              //     color: Theme.of(context).colorScheme.surface,
+              //     borderRadius: BorderRadius.circular(12),
+              //     border: Border.all(
+              //       color: Theme.of(
+              //         context,
+              //       ).colorScheme.outline.withValues(alpha: 0.3),
+              //     ),
+              //   ),
+              //   child: Column(
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       Text(
+              //         AppLocalizations.of(context)!.whereToReadEmails,
+              //         style: Theme.of(context).textTheme.headlineSmall
+              //             ?.copyWith(fontWeight: FontWeight.bold),
+              //       ),
+              //       SizedBox(height: 16),
+              //       RichText(
+              //         text: TextSpan(
+              //           style: Theme.of(
+              //             context,
+              //           ).textTheme.bodyMedium?.copyWith(height: 1.6),
+              //           children: _buildTextWithNostrLink(
+              //             context,
+              //             AppLocalizations.of(context)!.whereToReadEmailsDescription,
+              //           ),
+              //         ),
+              //       ),
+              //       SizedBox(height: 16),
+              //       Wrap(
+              //         spacing: 8,
+              //         runSpacing: 8,
+              //         children: [
+              //           OutlinedButton.icon(
+              //             onPressed: () async {
+              //               final Uri url = Uri.parse('https://yakihonne.com');
+              //               if (await canLaunchUrl(url)) {
+              //                 await launchUrl(url, mode: LaunchMode.externalApplication);
+              //               }
+              //             },
+              //             label: Text('Yakihonne'),  // This is a proper name, no translation needed
+              //             icon: Icon(Icons.language),
+              //           ),
+              //           OutlinedButton.icon(
+              //             onPressed: () async {
+              //               final Uri url = Uri.parse('https://0xchat.com');
+              //               if (await canLaunchUrl(url)) {
+              //                 await launchUrl(url, mode: LaunchMode.externalApplication);
+              //               }
+              //             },
+              //             label: Text('0xchat'),  // This is a proper name, no translation needed
+              //             icon: Icon(Icons.phone_android_outlined),
+              //           ),
+              //         ],
+              //       ),
+              //     ],
+              //   ),
+              // ),
               SizedBox(height: 48),
               Container(
                 padding: EdgeInsets.all(24),
@@ -384,7 +379,7 @@ class HomeScreen extends StatelessWidget {
                   IconButton(
                     onPressed: () async {
                       final Uri url = Uri.parse(
-                        'https://njump.me/npub1kg4sdvz3l4fr99n2jdz2vdxe2mpacva87hkdetv76ywacsfq5leqquw5te',
+                        'https://njump.me/${Nip19.npubFromHex(serverPubkey)}',
                       );
                       if (await canLaunchUrl(url)) {
                         await launchUrl(

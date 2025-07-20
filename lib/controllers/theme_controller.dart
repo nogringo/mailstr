@@ -247,24 +247,20 @@ class ThemeController extends GetxController {
     // If no colors were loaded, this is a new user - extract colors from their metadata
     if (!pictureColorLoaded || !bannerColorLoaded) {
       try {
-        print('Loading metadata for new user: $pubkey');
         final metadata = await ndk.metadata.loadMetadata(pubkey);
         
         // Extract picture color if not loaded and user has a picture
         if (!pictureColorLoaded && metadata?.picture != null && metadata!.picture!.isNotEmpty) {
-          print('Extracting color from profile picture: ${metadata.picture}');
           final imageProvider = NetworkImage(metadata.picture!);
           await extractColorFromPicture(imageProvider);
         }
         
         // Extract banner color if not loaded and user has a banner
         if (!bannerColorLoaded && metadata?.banner != null && metadata!.banner!.isNotEmpty) {
-          print('Extracting color from banner: ${metadata.banner}');
           final imageProvider = NetworkImage(metadata.banner!);
           await extractColorFromBanner(imageProvider);
         }
       } catch (e) {
-        print('Error loading metadata or extracting colors: $e');
         // Error loading metadata or extracting colors, ignore
       }
     }

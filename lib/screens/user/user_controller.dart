@@ -4,6 +4,7 @@ import 'package:nip19/nip19.dart';
 import 'package:flutter/services.dart';
 import 'package:toastification/toastification.dart';
 import 'package:flutter/material.dart';
+import 'package:mailstr/l10n/app_localizations.dart';
 
 class UserController extends GetxController {
   static UserController get to => Get.find();
@@ -61,7 +62,7 @@ class UserController extends GetxController {
   void copyToClipboard(String text, String label) {
     Clipboard.setData(ClipboardData(text: text));
     toastification.show(
-      title: Text('$label copied to clipboard'),
+      title: Text(AppLocalizations.of(Get.context!)!.copiedToClipboard(label)),
       alignment: Alignment.bottomRight,
       style: ToastificationStyle.fillColored,
       icon: Icon(Icons.copy),

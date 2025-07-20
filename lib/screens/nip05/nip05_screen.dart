@@ -5,6 +5,7 @@ import 'package:mailstr/widgets/content_padding_view.dart';
 import 'package:mailstr/widgets/user_avatar.dart';
 import 'package:mailstr/config.dart';
 import 'package:mailstr/screens/nip05/nip05_controller.dart';
+import 'package:mailstr/l10n/app_localizations.dart';
 
 class Nip05Screen extends StatelessWidget {
   const Nip05Screen({super.key});
@@ -19,12 +20,12 @@ class Nip05Screen extends StatelessWidget {
         child: ContentPaddingView(
           maxWidth: 400,
           child: AppBar(
-            title: Text("Create your address"),
+            title: Text(AppLocalizations.of(context)!.createYourAddress),
             titleSpacing: 8,
             actions: [
               TextButton(
                 onPressed: () => Get.toNamed(AppRoutes.home),
-                child: Text('Home'),
+                child: Text(AppLocalizations.of(context)!.home),
               ),
               SizedBox(width: 8),
               // User profile picture (always shown since this screen requires login)
@@ -59,7 +60,7 @@ class Nip05Screen extends StatelessWidget {
                           child: TextField(
                             controller: controller.nameController,
                             decoration: InputDecoration(
-                              hintText: 'username',
+                              hintText: AppLocalizations.of(context)!.username,
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.all(16),
                             ),
@@ -100,9 +101,9 @@ class Nip05Screen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Private', style: TextStyle(fontSize: 14)),
+                              Text(AppLocalizations.of(context)!.private, style: TextStyle(fontSize: 14)),
                               Text(
-                                'Hide from public directory',
+                                AppLocalizations.of(context)!.hideFromPublicDirectory,
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.onSurface
                                       .withValues(alpha: 0.6),
@@ -145,7 +146,7 @@ class Nip05Screen extends StatelessWidget {
                                 ),
                               )
                             : Text(
-                                'REGISTER',
+                                AppLocalizations.of(context)!.register,
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,

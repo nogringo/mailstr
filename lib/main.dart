@@ -40,7 +40,7 @@ ThemeData _buildTheme(Brightness brightness, Color seedColor) {
 
 void main() async {
   await GetStorage.init(appTitle);
-  
+
   Get.put(
     Ndk(
       NdkConfig(
@@ -77,28 +77,34 @@ class MainApp extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             locale: kDebugMode ? Locale('en') : null,
             theme: _buildTheme(Brightness.light, themeController.accentColor),
-            darkTheme: _buildTheme(Brightness.dark, themeController.accentColor),
+            darkTheme: _buildTheme(
+              Brightness.dark,
+              themeController.accentColor,
+            ),
             themeMode: themeController.themeMode,
             getPages: [
               GetPage(name: AppRoutes.home, page: () => HomeScreen()),
               GetPage(name: AppRoutes.create, page: () => CreateScreen()),
               GetPage(name: AppRoutes.login, page: () => LoginScreen()),
               GetPage(
-                name: AppRoutes.mailbox, 
+                name: AppRoutes.mailbox,
                 page: () => MailboxScreen(),
                 middlewares: [AuthMiddleware()],
               ),
               GetPage(
-                name: AppRoutes.nip05, 
+                name: AppRoutes.nip05,
                 page: () => Nip05Screen(),
                 middlewares: [AuthMiddleware()],
               ),
               GetPage(
-                name: AppRoutes.user, 
+                name: AppRoutes.user,
                 page: () => UserScreen(),
                 middlewares: [AuthMiddleware()],
               ),
-              GetPage(name: AppRoutes.unlockEmail, page: () => PayScreen()),
+              GetPage(
+                name: "${AppRoutes.unlockEmail}/:email",
+                page: () => PayScreen(),
+              ),
             ],
           ),
         );

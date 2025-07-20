@@ -5,6 +5,7 @@ import 'package:mailstr/screens/mailbox/mailbox_controller.dart';
 import 'package:mailstr/app_routes.dart';
 import 'package:ndk/ndk.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:mailstr/l10n/app_localizations.dart';
 
 class MailboxInboxTabView extends StatelessWidget {
   const MailboxInboxTabView({super.key});
@@ -107,7 +108,7 @@ class MailboxInboxTabView extends StatelessWidget {
                 ),
                 const SizedBox(height: 32),
                 Text(
-                  'Sign in to Access Mailbox',
+                  AppLocalizations.of(context)!.signInToAccessMailbox,
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: Theme.of(context).colorScheme.onSurface,
@@ -116,7 +117,7 @@ class MailboxInboxTabView extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  'To receive and send encrypted messages, you need to log in with a Nostr account that can sign messages.',
+                  AppLocalizations.of(context)!.toReceiveAndSendMessages,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                     height: 1.6,
@@ -127,7 +128,7 @@ class MailboxInboxTabView extends StatelessWidget {
                 FilledButton.icon(
                   onPressed: () => Get.toNamed(AppRoutes.login, arguments: {'returnRoute': AppRoutes.mailbox}),
                   icon: Icon(Icons.login),
-                  label: Text('Login with Nostr'),
+                  label: Text(AppLocalizations.of(context)!.loginWithNostr),
                   style: FilledButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                     elevation: 2,
@@ -154,7 +155,7 @@ class MailboxInboxTabView extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'No messages yet',
+                AppLocalizations.of(context)!.noMessagesYet,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
@@ -176,14 +177,14 @@ class MailboxInboxTabView extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: const Text('Message'),
+                    title: Text(AppLocalizations.of(context)!.message),
                     content: SingleChildScrollView(
                       child: _buildClickableText(message.content, context),
                     ),
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(),
-                        child: const Text('Close'),
+                        child: Text(AppLocalizations.of(context)!.close),
                       ),
                     ],
                   ),

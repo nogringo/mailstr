@@ -6,6 +6,7 @@ import 'package:ndk_ui/widgets/n_login.dart';
 import 'package:mailstr/screens/login/login_controller.dart';
 import 'package:mailstr/widgets/content_padding_view.dart';
 import 'package:mailstr/controllers/auth_controller.dart';
+import 'package:mailstr/l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -52,12 +53,12 @@ class _LoginScreenState extends State<LoginScreen>
         child: ContentPaddingView(
           maxWidth: 400,
           child: AppBar(
-            title: Text("Mailstr Login"),
+            title: Text(AppLocalizations.of(context)!.mailstrLogin),
             titleSpacing: 8,
             actions: [
               TextButton(
                 onPressed: () => Get.toNamed(AppRoutes.home),
-                child: Text('Home'),
+                child: Text(AppLocalizations.of(context)!.home),
               ),
               SizedBox(width: 8),
             ],
@@ -96,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen>
               ),
               const SizedBox(height: 24),
               Text(
-                'Connect with Nostr',
+                AppLocalizations.of(context)!.connectWithNostr,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -104,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen>
               ),
               const SizedBox(height: 8),
               Text(
-                'Secure, decentralized authentication',
+                AppLocalizations.of(context)!.secureDecentralizedAuth,
                 style: TextStyle(
                   fontSize: 15,
                   color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
@@ -150,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Signing capability required',
+                                    AppLocalizations.of(context)!.signingCapabilityRequired,
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -159,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   ),
                                   SizedBox(height: 4),
                                   Text(
-                                    'NIP-05 and pubkey login are read-only. Use:',
+                                    AppLocalizations.of(context)!.nip05AndPubkeyReadOnly,
                                     style: TextStyle(
                                       fontSize: 13,
                                       color: Theme.of(context).colorScheme.primary,
@@ -168,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   ),
                                   SizedBox(height: 8),
                                   Text(
-                                    '• Browser extension (Alby, nos2x, etc.)\n• Generate new keys\n• Import private key',
+                                    AppLocalizations.of(context)!.loginMethodsList,
                                     style: TextStyle(
                                       fontSize: 13,
                                       color: Theme.of(context).colorScheme.primary,
