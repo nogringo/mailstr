@@ -15,7 +15,7 @@ class PayScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String email = Get.parameters['email'] ?? '';
+    final String npub = Get.parameters['npub'] ?? '';
     final controller = Get.put(PayController());
 
     return Obx(
@@ -53,7 +53,7 @@ class PayScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  email,
+                  npub,
                   style: GoogleFonts.robotoMono(
                     color: Theme.of(
                       context,

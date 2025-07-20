@@ -1,9 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mailstr/config.dart';
+import 'package:mailstr/constant.dart';
 import 'package:mailstr/controllers/auth_controller.dart';
 import 'package:mailstr/controllers/theme_controller.dart';
 import 'package:mailstr/get_database.dart';
@@ -75,7 +75,7 @@ class MainApp extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
             ],
             supportedLocales: AppLocalizations.supportedLocales,
-            locale: kDebugMode ? Locale('en') : null,
+            locale: debugMode ? Locale('en') : null,
             theme: _buildTheme(Brightness.light, themeController.accentColor),
             darkTheme: _buildTheme(
               Brightness.dark,
@@ -102,7 +102,7 @@ class MainApp extends StatelessWidget {
                 middlewares: [AuthMiddleware()],
               ),
               GetPage(
-                name: "${AppRoutes.unlockEmail}/:email",
+                name: "${AppRoutes.unlockEmail}/:npub",
                 page: () => PayScreen(),
               ),
             ],

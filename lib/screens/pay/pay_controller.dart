@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 import 'package:nip19/nip19.dart';
 import 'package:toastification/toastification.dart';
 import 'package:mailstr/config.dart';
-import 'package:mailstr/hex_to_base_36.dart';
 import 'package:mailstr/l10n/app_localizations.dart';
 
 class PayController extends GetxController {
@@ -60,47 +59,34 @@ class PayController extends GetxController {
       miningDuration.value = '$minutes:$seconds';
     });
     
-    // Get email parameter to use as challenge
-    final String email = Get.parameters['email'] ?? '';
+    // Get npub parameter to use as challenge
+    final String npub = Get.parameters['npub'] ?? '';
     
-    // Convert email to pubkey@domain format for POW challenge
-    final emailParts = email.split('@');
-    if (emailParts.length == 2) {
-      final npubOrPubkey = emailParts[0];
-      final domain = emailParts[1];
-      
-      String pubkey;
-      if (npubOrPubkey.startsWith('npub')) {
-        // Decode npub to get pubkey
-        try {
-          pubkey = Nip19.npubToHex(npubOrPubkey);
-        } catch (e) {
-          powStatus.value = AppLocalizations.of(Get.context!)!.errorDecodingNpub(e.toString());
-          searchingCode.value = false;
-          return;
-        }
-      } else if (npubOrPubkey.length == 64) {
-        // Already a pubkey
-        pubkey = npubOrPubkey;
-      } else {
-        // Convert from base36 to hex
-        pubkey = base36ToHex(npubOrPubkey);
-      }
-      
-      
-      // Validate pubkey format and length
-      if (pubkey.length != 64 || !RegExp(r'^[0-9a-fA-F]+$').hasMatch(pubkey)) {
-        powStatus.value = AppLocalizations.of(Get.context!)!.invalidPubkeyFormat(pubkey.length, RegExp(r'^[0-9a-fA-F]+$').hasMatch(pubkey).toString());
-        searchingCode.value = false;
-        return;
-      }
-      
-      final pubkeyEmail = '$pubkey@$domain';
-      _performProofOfWork(pubkeyEmail, difficulty);
-    } else {
+    if (npub.isEmpty) {
       powStatus.value = AppLocalizations.of(Get.context!)!.invalidEmailFormat;
       searchingCode.value = false;
+      return;
     }
+    
+    // Decode npub to get pubkey
+    String pubkey;
+    try {
+      pubkey = Nip19.npubToHex(npub);
+    } catch (e) {
+      powStatus.value = AppLocalizations.of(Get.context!)!.errorDecodingNpub(e.toString());
+      searchingCode.value = false;
+      return;
+    }
+    
+    // Validate pubkey format and length
+    if (pubkey.length != 64 || !RegExp(r'^[0-9a-fA-F]+$').hasMatch(pubkey)) {
+      powStatus.value = AppLocalizations.of(Get.context!)!.invalidPubkeyFormat(pubkey.length, RegExp(r'^[0-9a-fA-F]+$').hasMatch(pubkey).toString());
+      searchingCode.value = false;
+      return;
+    }
+    
+    // Use pubkey directly as challenge
+    _performProofOfWork(pubkey, difficulty);
   }
 
   void stopProofOfWork() {
@@ -185,34 +171,8 @@ class PayController extends GetxController {
 
   Future<void> payWithCashu(String token) async {
     try {
-      final email = Get.parameters['email'] ?? '';
-      
-      // Extract pubkey from email
-      final emailParts = email.split('@');
-      String pubkey = '';
-      
-      if (emailParts.length == 2) {
-        final npubOrPubkey = emailParts[0];
-        
-        if (npubOrPubkey.startsWith('npub')) {
-          try {
-            pubkey = Nip19.npubToHex(npubOrPubkey);
-          } catch (e) {
-            // Error decoding npub
-            return;
-          }
-        } else if (npubOrPubkey.length == 64) {
-          // Already a pubkey
-          pubkey = npubOrPubkey;
-        } else {
-          // Convert from base36 to hex
-          pubkey = base36ToHex(npubOrPubkey);
-        }
-      }
-      
-      if (pubkey.isEmpty) {
-        return; // Invalid email format
-      }
+      final npub = Get.parameters['npub'] ?? '';
+      final pubkey = Nip19.npubToHex(npub);
       
       Get.dialog(
         Center(
@@ -290,35 +250,9 @@ class PayController extends GetxController {
 
   Future<void> payWithProofOfWork(Map<String, dynamic> proof) async {
     try {
-      final email = Get.parameters['email'] ?? '';
-      
-      // Extract pubkey from email
-      final emailParts = email.split('@');
-      String pubkey = '';
-      
-      if (emailParts.length == 2) {
-        final npubOrPubkey = emailParts[0];
-        
-        if (npubOrPubkey.startsWith('npub')) {
-          try {
-            pubkey = Nip19.npubToHex(npubOrPubkey);
-          } catch (e) {
-            // Error decoding npub
-            return;
-          }
-        } else if (npubOrPubkey.length == 64) {
-          // Already a pubkey
-          pubkey = npubOrPubkey;
-        } else {
-          // Convert from base36 to hex
-          pubkey = base36ToHex(npubOrPubkey);
-        }
-      }
-      
-      if (pubkey.isEmpty) {
-        return; // Invalid email format
-      }
-      
+      final npub = Get.parameters['npub'] ?? '';
+      final pubkey = Nip19.npubToHex(npub);
+
       final response = await http.post(
         Uri.parse(unlockWithProofOfWorkUrl),
         headers: {'Content-Type': 'application/json'},

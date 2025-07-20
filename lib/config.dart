@@ -1,13 +1,13 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:mailstr/constant.dart';
 
 const appTitle = "Mailstr";
 
 Color defaultThemeColor = Colors.orangeAccent;
 
-const difficulty = kDebugMode ? 1 : 7;
+const difficulty = debugMode ? 1 : 7;
 
-const unlockPrice = kDebugMode ? 1 : 100;
+const unlockPrice = debugMode ? 1 : 100;
 
 const emailDomain = "uid.ovh";
 
@@ -33,7 +33,7 @@ const relays = [
 ];
 
 // API endpoints - based on Firebase hosting configuration
-const baseUrl = kDebugMode ? "http://localhost:5000" : "https://uid.ovh";
+const baseUrl = debugMode ? "http://localhost:5000" : "https://uid.ovh";
 const unlockWithCashuUrl = "$baseUrl/api/unlock/cashu";
 const unlockWithProofOfWorkUrl = "$baseUrl/api/unlock/proof-of-work";
 const addAddressUrl = "$baseUrl/api/addresses/add";
