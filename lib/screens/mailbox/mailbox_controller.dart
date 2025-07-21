@@ -41,6 +41,11 @@ class MailboxController extends GetxController {
 
   void listenMessages() {
     if (!ndk.accounts.isLoggedIn) return;
+    
+    // Check if subscription already exists to prevent multiple subscriptions
+    if (_messagesSubscription != null) {
+      return;
+    }
 
     // Calculate timestamp for 7 days ago
     final sevenDaysAgo = DateTime.now().subtract(Duration(days: 7));
@@ -58,6 +63,7 @@ class MailboxController extends GetxController {
       cacheRead: true,
       cacheWrite: true,
     );
+    print("req");
 
     _messagesSubscription!.stream.listen((giftWrap) async {
       late Nip01Event unwrapped;
@@ -86,10 +92,11 @@ class MailboxController extends GetxController {
         createdAt: messageEventJson["created_at"],
       );
 
-      messages.addIf(
-        messages.where((e) => e.id == messageEvent.id).isEmpty,
-        messageEvent,
-      );
+      if (messages.where((e) => e.id == messageEvent.id).isEmpty) {
+        messages.add(messageEvent);
+        // Sort messages by createdAt in descending order (newest first)
+        messages.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+      }
     });
   }
 
