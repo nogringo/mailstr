@@ -42,9 +42,17 @@ class MailboxController extends GetxController {
   void listenMessages() {
     if (!ndk.accounts.isLoggedIn) return;
 
+    // Calculate timestamp for 7 days ago
+    final sevenDaysAgo = DateTime.now().subtract(Duration(days: 7));
+    final sinceTimestamp = sevenDaysAgo.millisecondsSinceEpoch ~/ 1000;
+
     _messagesSubscription = ndk.requests.subscription(
       filters: [
-        Filter(kinds: [1059], pTags: [ndk.accounts.getPublicKey()!]),
+        Filter(
+          kinds: [1059], 
+          pTags: [ndk.accounts.getPublicKey()!],
+          since: sinceTimestamp,
+        ),
       ],
       explicitRelays: relays,
       cacheRead: true,
