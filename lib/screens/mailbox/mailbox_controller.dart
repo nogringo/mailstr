@@ -59,7 +59,7 @@ class MailboxController extends GetxController {
     }
 
     // Calculate timestamp for 7 days ago
-    final sevenDaysAgo = DateTime.now().subtract(Duration(minutes: 30));
+    final sevenDaysAgo = DateTime.now().subtract(Duration(days: 3));
     final sinceTimestamp = sevenDaysAgo.millisecondsSinceEpoch ~/ 1000;
 
     _messagesSubscription = ndk.requests.subscription(
