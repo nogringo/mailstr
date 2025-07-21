@@ -4,7 +4,6 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:nip19/nip19.dart';
 import 'package:toastification/toastification.dart';
 import 'package:mailstr/config.dart';
 import 'package:mailstr/l10n/app_localizations.dart';
@@ -59,34 +58,17 @@ class PayController extends GetxController {
       miningDuration.value = '$minutes:$seconds';
     });
     
-    // Get npub parameter to use as challenge
-    final String npub = Get.parameters['npub'] ?? '';
+    // Get email parameter
+    final String email = Get.parameters['email'] ?? '';
     
-    if (npub.isEmpty) {
+    if (email.isEmpty) {
       powStatus.value = AppLocalizations.of(Get.context!)!.invalidEmailFormat;
       searchingCode.value = false;
       return;
     }
     
-    // Decode npub to get pubkey
-    String pubkey;
-    try {
-      pubkey = Nip19.npubToHex(npub);
-    } catch (e) {
-      powStatus.value = AppLocalizations.of(Get.context!)!.errorDecodingNpub(e.toString());
-      searchingCode.value = false;
-      return;
-    }
-    
-    // Validate pubkey format and length
-    if (pubkey.length != 64 || !RegExp(r'^[0-9a-fA-F]+$').hasMatch(pubkey)) {
-      powStatus.value = AppLocalizations.of(Get.context!)!.invalidPubkeyFormat(pubkey.length, RegExp(r'^[0-9a-fA-F]+$').hasMatch(pubkey).toString());
-      searchingCode.value = false;
-      return;
-    }
-    
-    // Use pubkey directly as challenge
-    _performProofOfWork(pubkey, difficulty);
+    // Use email directly as challenge
+    _performProofOfWork(email, difficulty);
   }
 
   void stopProofOfWork() {
@@ -110,7 +92,7 @@ class PayController extends GetxController {
     hashRate.value = 0.0;
   }
   
-  Future<void> _performProofOfWork(String challenge, int difficulty) async {
+  Future<void> _performProofOfWork(String email, int difficulty) async {
     final startTime = DateTime.now();
     int attemptCount = 0;
     
@@ -130,8 +112,8 @@ class PayController extends GetxController {
         nonce.value++;
         attemptCount++;
         
-        // Create hash of challenge + nonce
-        final input = '$challenge:${nonce.value}';
+        // Create hash of email + nonce
+        final input = '$email:${nonce.value}';
         final bytes = utf8.encode(input);
         final hash = sha256.convert(bytes);
         final hashHex = hash.toString();
@@ -144,17 +126,8 @@ class PayController extends GetxController {
           powCompleted.value = true;
           powStatus.value = AppLocalizations.of(Get.context!)!.proofOfWorkCompletedWithNonce(nonce.value);
           
-          // Create proof object
-          final proof = {
-            'challenge': challenge,
-            'nonce': nonce.value,
-            'hash': hashHex,
-            'difficulty': difficulty,
-            'duration': miningDuration.value,
-          };
-          
           // Call success handler with proof
-          await payWithProofOfWork(proof);
+          await payWithProofOfWork(email, nonce.value);
           return;
         }
       }
@@ -171,8 +144,7 @@ class PayController extends GetxController {
 
   Future<void> payWithCashu(String token) async {
     try {
-      final npub = Get.parameters['npub'] ?? '';
-      final pubkey = Nip19.npubToHex(npub);
+      final email = Get.parameters['email'] ?? '';
       
       Get.dialog(
         Center(
@@ -185,7 +157,7 @@ class PayController extends GetxController {
         Uri.parse(unlockWithCashuUrl),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
-          'pubkey': pubkey,
+          'email': email,
           'cashuToken': token,
         }),
       );
@@ -248,17 +220,14 @@ class PayController extends GetxController {
     }
   }
 
-  Future<void> payWithProofOfWork(Map<String, dynamic> proof) async {
+  Future<void> payWithProofOfWork(String email, int nonce) async {
     try {
-      final npub = Get.parameters['npub'] ?? '';
-      final pubkey = Nip19.npubToHex(npub);
-
       final response = await http.post(
         Uri.parse(unlockWithProofOfWorkUrl),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
-          'pubkey': pubkey,
-          'nonce': proof['nonce'].toString(),
+          'email': email,
+          'nonce': nonce.toString(),
         }),
       );
 

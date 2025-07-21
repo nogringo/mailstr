@@ -102,7 +102,7 @@ class MainApp extends StatelessWidget {
                 middlewares: [AuthMiddleware()],
               ),
               GetPage(
-                name: "${AppRoutes.unlockEmail}/:npub",
+                name: "${AppRoutes.unlockEmail}/:email",
                 page: () => PayScreen(),
               ),
             ],
