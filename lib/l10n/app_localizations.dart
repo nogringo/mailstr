@@ -741,6 +741,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Welcome to my Nostr profile'**
   String get welcomeToMyNostrProfile;
+
+  /// Text for NIP-05 claim banner
+  ///
+  /// In en, this message translates to:
+  /// **'Claim your NIP-05 Nostr address now and use it as your email.'**
+  String get claimYourNip05;
+
+  /// Claim button text
+  ///
+  /// In en, this message translates to:
+  /// **'Claim'**
+  String get claim;
+
+  /// Prefix for theme switch tooltip
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to'**
+  String get switchTo;
+
+  /// Suffix for theme switch tooltip
+  ///
+  /// In en, this message translates to:
+  /// **'theme'**
+  String get theme;
+
+  /// Feature title for free service
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get free;
+
+  /// Feature description for free service
+  ///
+  /// In en, this message translates to:
+  /// **'No charges, no hidden fees'**
+  String get freeDescription;
+
+  /// Feature title for no subscription
+  ///
+  /// In en, this message translates to:
+  /// **'No subscription'**
+  String get noSubscription;
+
+  /// Feature description for no subscription
+  ///
+  /// In en, this message translates to:
+  /// **'Use without monthly payments'**
+  String get noSubscriptionDescription;
+
+  /// Feature title for no logs
+  ///
+  /// In en, this message translates to:
+  /// **'No logs'**
+  String get noLogsFeature;
+
+  /// Feature description for no logs
+  ///
+  /// In en, this message translates to:
+  /// **'Your privacy is protected'**
+  String get noLogsDescription;
+
+  /// Feature title for unlimited accounts
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited accounts'**
+  String get unlimitedAccounts;
+
+  /// Feature description for unlimited accounts
+  ///
+  /// In en, this message translates to:
+  /// **'Create as many as you need'**
+  String get unlimitedAccountsDescription;
+
+  /// Feature title for Nostr based
+  ///
+  /// In en, this message translates to:
+  /// **'Nostr based'**
+  String get nostrBased;
+
+  /// Feature description for Nostr based
+  ///
+  /// In en, this message translates to:
+  /// **'Built on decentralized protocol'**
+  String get nostrBasedDescription;
+
+  /// Feature title for anonymous
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous'**
+  String get anonymous;
+
+  /// Feature description for anonymous
+  ///
+  /// In en, this message translates to:
+  /// **'No personal info required'**
+  String get anonymousDescription;
+
+  /// Feature title for open source
+  ///
+  /// In en, this message translates to:
+  /// **'Open source client'**
+  String get openSourceClient;
+
+  /// Feature description for open source
+  ///
+  /// In en, this message translates to:
+  /// **'Transparent and auditable'**
+  String get openSourceClientDescription;
 }
 
 class _AppLocalizationsDelegate

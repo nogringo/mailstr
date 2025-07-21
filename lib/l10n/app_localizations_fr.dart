@@ -378,4 +378,60 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get welcomeToMyNostrProfile => 'Bienvenue sur mon profil Nostr';
+
+  @override
+  String get claimYourNip05 =>
+      'Réclamez votre adresse Nostr NIP-05 maintenant et utilisez-la comme votre email.';
+
+  @override
+  String get claim => 'Réclamer';
+
+  @override
+  String get switchTo => 'Basculer vers';
+
+  @override
+  String get theme => 'thème';
+
+  @override
+  String get free => 'Gratuit';
+
+  @override
+  String get freeDescription => 'Aucun frais, aucun coût caché';
+
+  @override
+  String get noSubscription => 'Pas d\'abonnement';
+
+  @override
+  String get noSubscriptionDescription => 'Utilisez sans paiements mensuels';
+
+  @override
+  String get noLogsFeature => 'Pas de journaux';
+
+  @override
+  String get noLogsDescription => 'Votre vie privée est protégée';
+
+  @override
+  String get unlimitedAccounts => 'Comptes illimités';
+
+  @override
+  String get unlimitedAccountsDescription =>
+      'Créez autant que vous en avez besoin';
+
+  @override
+  String get nostrBased => 'Basé sur Nostr';
+
+  @override
+  String get nostrBasedDescription => 'Construit sur un protocole décentralisé';
+
+  @override
+  String get anonymous => 'Anonyme';
+
+  @override
+  String get anonymousDescription => 'Aucune information personnelle requise';
+
+  @override
+  String get openSourceClient => 'Client open source';
+
+  @override
+  String get openSourceClientDescription => 'Transparent et vérifiable';
 }

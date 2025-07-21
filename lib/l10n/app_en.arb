@@ -523,5 +523,77 @@
   "welcomeToMyNostrProfile": "Welcome to my Nostr profile",
   "@welcomeToMyNostrProfile": {
     "description": "Default about text for Nostr user profile"
+  },
+  "claimYourNip05": "Claim your NIP-05 Nostr address now and use it as your email.",
+  "@claimYourNip05": {
+    "description": "Text for NIP-05 claim banner"
+  },
+  "claim": "Claim",
+  "@claim": {
+    "description": "Claim button text"
+  },
+  "switchTo": "Switch to",
+  "@switchTo": {
+    "description": "Prefix for theme switch tooltip"
+  },
+  "theme": "theme",
+  "@theme": {
+    "description": "Suffix for theme switch tooltip"
+  },
+  "free": "Free",
+  "@free": {
+    "description": "Feature title for free service"
+  },
+  "freeDescription": "No charges, no hidden fees",
+  "@freeDescription": {
+    "description": "Feature description for free service"
+  },
+  "noSubscription": "No subscription",
+  "@noSubscription": {
+    "description": "Feature title for no subscription"
+  },
+  "noSubscriptionDescription": "Use without monthly payments",
+  "@noSubscriptionDescription": {
+    "description": "Feature description for no subscription"
+  },
+  "noLogsFeature": "No logs",
+  "@noLogsFeature": {
+    "description": "Feature title for no logs"
+  },
+  "noLogsDescription": "Your privacy is protected",
+  "@noLogsDescription": {
+    "description": "Feature description for no logs"
+  },
+  "unlimitedAccounts": "Unlimited accounts",
+  "@unlimitedAccounts": {
+    "description": "Feature title for unlimited accounts"
+  },
+  "unlimitedAccountsDescription": "Create as many as you need",
+  "@unlimitedAccountsDescription": {
+    "description": "Feature description for unlimited accounts"
+  },
+  "nostrBased": "Nostr based",
+  "@nostrBased": {
+    "description": "Feature title for Nostr based"
+  },
+  "nostrBasedDescription": "Built on decentralized protocol",
+  "@nostrBasedDescription": {
+    "description": "Feature description for Nostr based"
+  },
+  "anonymous": "Anonymous",
+  "@anonymous": {
+    "description": "Feature title for anonymous"
+  },
+  "anonymousDescription": "No personal info required",
+  "@anonymousDescription": {
+    "description": "Feature description for anonymous"
+  },
+  "openSourceClient": "Open source client",
+  "@openSourceClient": {
+    "description": "Feature title for open source"
+  },
+  "openSourceClientDescription": "Transparent and auditable",
+  "@openSourceClientDescription": {
+    "description": "Feature description for open source"
   }
 }
