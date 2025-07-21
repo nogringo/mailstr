@@ -56,6 +56,13 @@ class Nip05Screen extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
+                        SizedBox(width: 8),
+                        IconButton(
+                          onPressed: controller.generateRandomUsername,
+                          icon: Icon(Icons.casino),
+                          tooltip: 'Generate random username',
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                         Expanded(
                           child: TextField(
                             controller: controller.nameController,
@@ -101,7 +108,12 @@ class Nip05Screen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(AppLocalizations.of(context)!.useThisAddressAsMyNostrAddress, style: TextStyle(fontSize: 14)),
+                              Text(
+                                AppLocalizations.of(
+                                  context,
+                                )!.useThisAddressAsMyNostrAddress,
+                                style: TextStyle(fontSize: 14),
+                              ),
                             ],
                           ),
                         ),
@@ -139,9 +151,7 @@ class Nip05Screen extends StatelessWidget {
                               )
                             : Text(
                                 AppLocalizations.of(context)!.create,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                ),
+                                style: TextStyle(fontSize: 16),
                               ),
                       ),
                     ),

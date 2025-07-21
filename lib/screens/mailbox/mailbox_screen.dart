@@ -17,10 +17,6 @@ class _MailboxScreenState extends State<MailboxScreen> {
   @override
   void initState() {
     super.initState();
-    // Start listening for messages if already logged in
-    if (Get.find<AuthController>().isLoggedIn) {
-      MailboxController.to.listenMessages();
-    }
   }
 
   @override
@@ -34,10 +30,6 @@ class _MailboxScreenState extends State<MailboxScreen> {
     return GetBuilder<AuthController>(
       builder: (authController) {
         if (authController.isLoggedIn) {
-          // Start listening when user logs in and fetch aliases
-          MailboxController.to.listenMessages();
-          MailboxController.to.fetchAliases();
-          
           return LayoutBuilder(
             builder: (context, constraints) {
               if (constraints.maxWidth > 600) {

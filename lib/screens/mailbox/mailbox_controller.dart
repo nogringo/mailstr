@@ -3,11 +3,10 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:ndk/ndk.dart';
-import 'package:ndk_ui/ndk_ui.dart';
 import 'package:nip19/nip19.dart';
 import 'package:mailstr/config.dart';
 import 'package:mailstr/hex_to_base_36.dart';
-import 'package:mailstr/controllers/theme_controller.dart';
+import 'package:mailstr/controllers/auth_controller.dart';
 
 class MailboxController extends GetxController {
   static MailboxController get to => Get.find();
@@ -22,21 +21,33 @@ class MailboxController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _restoreSessionAndListen();
+    _initializeIfLoggedIn();
+    _listenToAuthChanges();
   }
 
-  Future<void> _restoreSessionAndListen() async {
-    // Try to restore last session
-    final wasRestored = await nRestoreLastSession(ndk);
-
-    if (wasRestored && ndk.accounts.isLoggedIn) {
-      // If session was restored and user is logged in, start listening for messages and fetch aliases
+  void _initializeIfLoggedIn() {
+    // Initialize mailbox if user is already logged in
+    if (ndk.accounts.isLoggedIn) {
       listenMessages();
       fetchAliases();
-
-      // Load user-specific theme colors
-      await Get.find<ThemeController>().loadUserColors();
     }
+  }
+
+  void _listenToAuthChanges() {
+    // Listen to auth state changes and initialize/cleanup accordingly
+    final authController = Get.find<AuthController>();
+    ever(authController.isLoggedInRx, (bool isLoggedIn) {
+      if (isLoggedIn) {
+        // User logged in - start listening for messages and fetch aliases
+        listenMessages();
+        fetchAliases();
+      } else {
+        // User logged out - cleanup subscriptions
+        cancelMessagesSubscription();
+        messages.clear();
+        aliases.clear();
+      }
+    });
   }
 
   void listenMessages() {

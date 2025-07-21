@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,6 +36,39 @@ class Nip05Controller extends GetxController {
     nameController.dispose();
     pubkeyController.dispose();
     super.onClose();
+  }
+
+  void generateRandomUsername() {
+    // Lists of words for generating random usernames
+    final adjectives = [
+      'happy', 'sunny', 'swift', 'bright', 'cool', 'smart', 'lucky',
+      'cosmic', 'cyber', 'digital', 'electric', 'neon', 'pixel', 'quantum',
+      'stellar', 'turbo', 'ultra', 'vivid', 'wild', 'zen', 'alpha',
+      'beta', 'gamma', 'delta', 'echo', 'nova', 'omega', 'sigma',
+      'crypto', 'lightning', 'thunder', 'storm', 'flame', 'frost',
+      'shadow', 'mystic', 'ninja', 'samurai', 'phoenix', 'dragon'
+    ];
+    
+    final nouns = [
+      'fox', 'wolf', 'bear', 'eagle', 'hawk', 'lion', 'tiger',
+      'rider', 'walker', 'runner', 'hunter', 'seeker', 'finder',
+      'coder', 'hacker', 'builder', 'maker', 'creator', 'artist',
+      'wizard', 'sage', 'knight', 'warrior', 'champion', 'hero',
+      'star', 'moon', 'sun', 'comet', 'meteor', 'galaxy',
+      'wave', 'tide', 'storm', 'bolt', 'spark', 'flash'
+    ];
+    
+    // Generate random indices using proper random
+    final random = Random();
+    final adjIndex = random.nextInt(adjectives.length);
+    final nounIndex = random.nextInt(nouns.length);
+    final number = random.nextInt(1000);
+    
+    // Create username
+    final username = '${adjectives[adjIndex]}${nouns[nounIndex]}$number';
+    
+    // Set the username in the text field
+    nameController.text = username;
   }
 
   Future<void> registerNip05() async {
