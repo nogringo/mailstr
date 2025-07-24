@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:ndk/ndk.dart';
-import 'package:ndk_ui/ndk_ui.dart';
 import 'package:mailstr/controllers/theme_controller.dart';
 
 class AuthController extends GetxController {
@@ -29,8 +28,8 @@ class AuthController extends GetxController {
     // Initialize with current state
     _updateAuthState();
     
-    // Restore session and initialize user data
-    _restoreSessionAndInitialize();
+    // Initialize user data if already logged in
+    _initializeUserData();
     
     // Listen to NDK auth changes
     ever(_isLoggedIn, (bool loggedIn) {
@@ -48,11 +47,9 @@ class AuthController extends GetxController {
     });
   }
 
-  Future<void> _restoreSessionAndInitialize() async {
-    // Try to restore last session
-    final wasRestored = await nRestoreLastSession(ndk);
-
-    if (wasRestored && ndk.accounts.isLoggedIn) {
+  Future<void> _initializeUserData() async {
+    // If already logged in (from session restored in main), initialize user data
+    if (ndk.accounts.isLoggedIn) {
       // Update auth state
       _updateAuthState();
 

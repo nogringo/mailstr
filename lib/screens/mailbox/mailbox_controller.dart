@@ -74,7 +74,6 @@ class MailboxController extends GetxController {
       cacheRead: true,
       cacheWrite: true,
     );
-    print("req");
 
     _messagesSubscription!.stream.listen((giftWrap) async {
       late Nip01Event unwrapped;
