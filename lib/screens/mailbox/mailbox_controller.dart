@@ -119,19 +119,19 @@ class MailboxController extends GetxController {
     // Clear existing aliases
     aliases.clear();
 
-    try {
-      // Generate the 3 standard aliases
-      final npub = Nip19.npubFromHex(pubkey);
-      final npubEmail = "$npub@$emailDomain";
-      final pubkeyEmail = "$pubkey@$emailDomain";
-      final compactEmail = "${hexToBase36(pubkey)}@$emailDomain";
+    // try {
+    //   // Generate the 3 standard aliases
+    //   final npub = Nip19.npubFromHex(pubkey);
+    //   final npubEmail = "$npub@$emailDomain";
+    //   final pubkeyEmail = "$pubkey@$emailDomain";
+    //   final compactEmail = "${hexToBase36(pubkey)}@$emailDomain";
 
-      // Add standard aliases
-      aliases.addAll([npubEmail, pubkeyEmail, compactEmail]);
-    } catch (e) {
-      // Fallback to simple hex alias
-      aliases.add('${pubkey.substring(0, 8)}@$emailDomain');
-    }
+    //   // Add standard aliases
+    //   aliases.addAll([npubEmail, pubkeyEmail, compactEmail]);
+    // } catch (e) {
+    //   // Fallback to simple hex alias
+    //   aliases.add('${pubkey.substring(0, 8)}@$emailDomain');
+    // }
 
     // Fetch registered addresses from server using signed Nostr event
     try {
