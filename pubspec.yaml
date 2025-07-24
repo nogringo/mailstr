@@ -19,7 +19,8 @@ dependencies:
   intl: any
   ndk: ^0.4.1
   ndk_ui:
-    git: https://github.com/nogringo/ndk-ui
+    # git: https://github.com/nogringo/ndk-ui
+    path: ../ndk_ui
   nip01: ^0.3.0+1
   nip19: ^0.2.0
   toastification: ^3.0.3

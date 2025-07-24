@@ -39,4 +39,3 @@ const unlockWithProofOfWorkUrl = "$baseUrl/api/unlock/proof-of-work";
 const addAddressUrl = "$baseUrl/api/addresses/add";
 const removeAddressUrl = "$baseUrl/api/addresses/remove";
 const getAddressesByPubkeyUrl = "$baseUrl/api/addresses/get-by-pubkey";
-const wellKnownNostrUrl = "$baseUrl/.well-known/nostr.json";

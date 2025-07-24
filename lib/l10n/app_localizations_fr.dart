@@ -381,7 +381,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get claimYourNip05 =>
-      'Obtenez votre adresse Nostr NIP-05 maintenant et utilisez-la comme votre email.';
+      'Obtenez votre adresse Nostr NIP-05 dès maintenant et utilisez-la comme une adresse email.';
 
   @override
   String get claim => 'Obtenir';
@@ -402,7 +402,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get noSubscription => 'Pas d\'abonnement';
 
   @override
-  String get noSubscriptionDescription => 'Utilisez sans paiements mensuels';
+  String get noSubscriptionDescription => 'Utilisez sans paiement mensuel';
 
   @override
   String get noLogsFeature => 'Pas de journaux';
@@ -437,12 +437,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String whyChooseMailstr(String appTitle) {
-    return 'Pourquoi choisir $appTitle ?';
+    return 'Oubliez les adresses emails jetables !';
   }
 
   @override
   String get whyChooseMailstrDescription =>
-      'Mailstr est différent des autres services d\'email. Nous connaissons l\'importance de vos emails. C\'est pourquoi nous proposons un service unique au bénéfice de l\'utilisateur et non pas pour la surveillance ou la collecte de données.\n\nNous ne vous demanderons donc jamais vos informations personnelles et vous pourrez toujours créer et recevoir des emails 100% anonymes.\n\nVos adresses emails vous appartiennent et resteront actives sans aucun abonnement.\n\nNotre engagement, à nous, est de ne jamais les supprimer.';
+      'Mailstr est différent des autres services d\'email. Nous connaissons l\'importance de vos emails.\nC\'est pourquoi nous vous proposons un service unique au bénéfice de l\'utilisateur et non pas pour la surveillance ou la collecte de données.\n\nNous ne vous demanderons donc jamais vos informations personnelles et vous pourrez toujours créer et recevoir des emails 100% anonymes.\n\nVos adresses emails vous appartiennent et resteront actives sans aucun abonnement.\n\nNotre engagement, à nous, est de ne jamais les supprimer.';
 
   @override
   String get paymentFailed => 'Le paiement a échoué';

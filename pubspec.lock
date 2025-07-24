@@ -400,11 +400,9 @@ packages:
   ndk_ui:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "75f359f4653c28640999cca9e40e03de29fc158e"
-      url: "https://github.com/nogringo/ndk-ui"
-    source: git
+      path: "../ndk_ui"
+      relative: true
+    source: path
     version: "0.0.3"
   nip01:
     dependency: "direct main"
