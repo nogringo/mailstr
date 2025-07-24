@@ -427,4 +427,48 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get openSourceClientDescription => 'Transparent and auditable';
+
+  @override
+  String whyChooseMailstr(String appTitle) {
+    return 'Why choose $appTitle?';
+  }
+
+  @override
+  String get whyChooseMailstrDescription =>
+      'Mailstr is different from other email services. We understand the importance of your emails. That\'s why we offer a unique service that benefits the user and not surveillance or data collection.\n\nWe will never ask for your personal information and you can always create and receive 100% anonymous emails.\n\nYour email addresses belong to you and will remain active without any subscription.\n\nOur commitment is to never delete them.';
+
+  @override
+  String get paymentFailed => 'Payment failed';
+
+  @override
+  String get trustedMints => '\n\nTrusted mints:\n';
+
+  @override
+  String get pleaseEnterAName => 'Please enter a name';
+
+  @override
+  String get pleaseEnterAPublicKey => 'Please enter a public key';
+
+  @override
+  String get nameCanOnlyContain =>
+      'Name can only contain letters, numbers, hyphens and underscores';
+
+  @override
+  String get invalidNpubFormat => 'Invalid npub format';
+
+  @override
+  String get invalidPublicKeyFormat =>
+      'Invalid public key format (use hex or npub)';
+
+  @override
+  String get nip05RegisteredSuccessfully => 'NIP-05 registered successfully!';
+
+  @override
+  String get registrationFailed => 'Registration failed';
+
+  @override
+  String get nameAlreadyTaken => 'Name already taken for this domain';
+
+  @override
+  String get networkError => 'Network error: Please check your connection';
 }

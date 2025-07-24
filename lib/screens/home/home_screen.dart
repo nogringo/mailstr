@@ -168,9 +168,7 @@ class HomeScreen extends StatelessWidget {
                     Icons.verified,
                     color: Theme.of(context).colorScheme.primary,
                   ),
-                  title: Text(
-                    AppLocalizations.of(context)!.claimYourNip05,
-                  ),
+                  title: Text(AppLocalizations.of(context)!.claimYourNip05),
                   trailing: TextButton(
                     onPressed: () {
                       Get.toNamed(AppRoutes.nip05);
@@ -179,45 +177,45 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 48),
+              // SizedBox(height: 48),
 
-              // Why It's Better Section
-              Container(
-                padding: EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surface,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.outline.withValues(alpha: 0.3),
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.whyAppTitle(appTitle),
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 16),
-                    RichText(
-                      text: TextSpan(
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyMedium?.copyWith(height: 1.6),
-                        children: _buildTextWithNostrLink(
-                          context,
-                          AppLocalizations.of(
-                            context,
-                          )!.whyAppTitleDescription(appTitle),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // // Why It's Better Section
+              // Container(
+              //   padding: EdgeInsets.all(24),
+              //   decoration: BoxDecoration(
+              //     color: Theme.of(context).colorScheme.surface,
+              //     borderRadius: BorderRadius.circular(12),
+              //     border: Border.all(
+              //       color: Theme.of(
+              //         context,
+              //       ).colorScheme.outline.withValues(alpha: 0.3),
+              //     ),
+              //   ),
+              //   child: Column(
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       Text(
+              //         AppLocalizations.of(context)!.whyAppTitle(appTitle),
+              //         style: Theme.of(context).textTheme.headlineSmall
+              //             ?.copyWith(fontWeight: FontWeight.bold),
+              //       ),
+              //       SizedBox(height: 16),
+              //       RichText(
+              //         text: TextSpan(
+              //           style: Theme.of(
+              //             context,
+              //           ).textTheme.bodyMedium?.copyWith(height: 1.6),
+              //           children: _buildTextWithNostrLink(
+              //             context,
+              //             AppLocalizations.of(
+              //               context,
+              //             )!.whyAppTitleDescription(appTitle),
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               SizedBox(height: 48),
               Container(
                 padding: EdgeInsets.all(24),
@@ -234,13 +232,13 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.howCanITrustYou,
+                      AppLocalizations.of(context)!.whyChooseMailstr(appTitle),
                       style: Theme.of(context).textTheme.headlineSmall
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 16),
                     Text(
-                      AppLocalizations.of(context)!.trustDescription(appTitle),
+                      AppLocalizations.of(context)!.whyChooseMailstrDescription,
                       style: Theme.of(
                         context,
                       ).textTheme.bodyMedium?.copyWith(height: 1.6),
@@ -436,7 +434,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-
   List<TextSpan> _buildTextWithNostrLink(BuildContext context, String text) {
     final spans = <TextSpan>[];
     final nostrRegExp = RegExp(r'Nostr', caseSensitive: false);
@@ -480,7 +477,7 @@ class _FeaturesCarousel extends StatefulWidget {
 class _FeaturesCarouselState extends State<_FeaturesCarousel> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  
+
   List<_Feature> _getFeatures(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return [
@@ -580,16 +577,17 @@ class _FeaturesCarouselState extends State<_FeaturesCarousel> {
                     SizedBox(height: 16),
                     Text(
                       feature.title,
-                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 8),
                     Text(
                       feature.description,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withValues(alpha: 0.7),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -601,34 +599,34 @@ class _FeaturesCarouselState extends State<_FeaturesCarousel> {
         ),
         SizedBox(height: 16),
         // Page indicators
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: features.asMap().entries.map((entry) {
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  _currentPage = entry.key;
-                });
-                _pageController.animateToPage(
-                  entry.key,
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              },
-              child: Container(
-                width: 8,
-                height: 8,
-                margin: EdgeInsets.symmetric(horizontal: 4),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: _currentPage == entry.key
-                      ? Theme.of(context).colorScheme.primary
-                      : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.3),
-                ),
-              ),
-            );
-          }).toList(),
-        ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: features.asMap().entries.map((entry) {
+        //     return GestureDetector(
+        //       onTap: () {
+        //         setState(() {
+        //           _currentPage = entry.key;
+        //         });
+        //         _pageController.animateToPage(
+        //           entry.key,
+        //           duration: Duration(milliseconds: 300),
+        //           curve: Curves.easeInOut,
+        //         );
+        //       },
+        //       child: Container(
+        //         width: 8,
+        //         height: 8,
+        //         margin: EdgeInsets.symmetric(horizontal: 4),
+        //         decoration: BoxDecoration(
+        //           shape: BoxShape.circle,
+        //           color: _currentPage == entry.key
+        //               ? Theme.of(context).colorScheme.primary
+        //               : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.3),
+        //         ),
+        //       ),
+        //     );
+        //   }).toList(),
+        // ),
       ],
     );
   }

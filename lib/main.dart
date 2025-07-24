@@ -9,6 +9,7 @@ import 'package:mailstr/controllers/theme_controller.dart';
 import 'package:mailstr/get_database.dart';
 import 'package:mailstr/l10n/app_localizations.dart';
 import 'package:ndk/ndk.dart';
+import 'package:ndk_ui/functions/n_restore_last_session.dart';
 import 'package:ndk_ui/l10n/app_localizations.dart' as ndk_ui;
 import 'package:sembast_cache_manager/sembast_cache_manager.dart';
 import 'package:toastification/toastification.dart';
@@ -39,17 +40,18 @@ ThemeData _buildTheme(Brightness brightness, Color seedColor) {
 }
 
 void main() async {
-  await GetStorage.init(appTitle);
-
-  Get.put(
-    Ndk(
-      NdkConfig(
-        cache: SembastCacheManager(await getDatabase()),
-        eventVerifier: Bip340EventVerifier(),
-      ),
+  final ndk = Ndk(
+    NdkConfig(
+      cache: SembastCacheManager(await getDatabase()),
+      eventVerifier: Bip340EventVerifier(),
     ),
   );
 
+  await nRestoreLastSession(ndk);
+
+  await GetStorage.init(appTitle);
+
+  Get.put(ndk);
   Get.put(AuthController());
   Get.put(ThemeController());
   Get.put(MailboxController());
@@ -75,7 +77,7 @@ class MainApp extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
             ],
             supportedLocales: AppLocalizations.supportedLocales,
-            locale: debugMode ? Locale('en') : null,
+            locale: debugMode ? Locale('fr') : null,
             theme: _buildTheme(Brightness.light, themeController.accentColor),
             darkTheme: _buildTheme(
               Brightness.dark,

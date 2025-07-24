@@ -124,5 +124,18 @@
     "anonymous": "Anónimo",
     "anonymousDescription": "No se requiere información personal",
     "openSourceClient": "Cliente de código abierto",
-    "openSourceClientDescription": "Transparente y auditable"
+    "openSourceClientDescription": "Transparente y auditable",
+    "whyChooseMailstr": "¿Por qué elegir {appTitle}?",
+    "whyChooseMailstrDescription": "Mailstr es diferente de otros servicios de correo electrónico. Entendemos la importancia de tus correos. Por eso ofrecemos un servicio único que beneficia al usuario y no a la vigilancia o recolección de datos.\n\nNunca te pediremos tu información personal y siempre podrás crear y recibir correos 100% anónimos.\n\nTus direcciones de correo te pertenecen y permanecerán activas sin ninguna suscripción.\n\nNuestro compromiso es nunca eliminarlas.",
+    "paymentFailed": "El pago falló",
+    "trustedMints": "\n\nMints de confianza:\n",
+    "pleaseEnterAName": "Por favor ingresa un nombre",
+    "pleaseEnterAPublicKey": "Por favor ingresa una clave pública",
+    "nameCanOnlyContain": "El nombre solo puede contener letras, números, guiones y guiones bajos",
+    "invalidNpubFormat": "Formato npub inválido",
+    "invalidPublicKeyFormat": "Formato de clave pública inválido (usa hex o npub)",
+    "nip05RegisteredSuccessfully": "¡NIP-05 registrado exitosamente!",
+    "registrationFailed": "Registro fallido",
+    "nameAlreadyTaken": "Nombre ya tomado para este dominio",
+    "networkError": "Error de red: Por favor verifica tu conexión"
 }

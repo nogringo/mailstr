@@ -849,6 +849,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Transparent and auditable'**
   String get openSourceClientDescription;
+
+  /// Section title for why choose Mailstr
+  ///
+  /// In en, this message translates to:
+  /// **'Why choose {appTitle}?'**
+  String whyChooseMailstr(String appTitle);
+
+  /// Long description about why Mailstr is different
+  ///
+  /// In en, this message translates to:
+  /// **'Mailstr is different from other email services. We understand the importance of your emails. That\'s why we offer a unique service that benefits the user and not surveillance or data collection.\n\nWe will never ask for your personal information and you can always create and receive 100% anonymous emails.\n\nYour email addresses belong to you and will remain active without any subscription.\n\nOur commitment is to never delete them.'**
+  String get whyChooseMailstrDescription;
+
+  /// Error message when payment fails
+  ///
+  /// In en, this message translates to:
+  /// **'Payment failed'**
+  String get paymentFailed;
+
+  /// Header for list of trusted mints
+  ///
+  /// In en, this message translates to:
+  /// **'\n\nTrusted mints:\n'**
+  String get trustedMints;
+
+  /// Validation error for empty name field
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a name'**
+  String get pleaseEnterAName;
+
+  /// Validation error for empty public key field
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a public key'**
+  String get pleaseEnterAPublicKey;
+
+  /// Validation error for invalid name format
+  ///
+  /// In en, this message translates to:
+  /// **'Name can only contain letters, numbers, hyphens and underscores'**
+  String get nameCanOnlyContain;
+
+  /// Error when npub format is invalid
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid npub format'**
+  String get invalidNpubFormat;
+
+  /// Error for invalid public key format
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid public key format (use hex or npub)'**
+  String get invalidPublicKeyFormat;
+
+  /// Success message when NIP-05 is registered
+  ///
+  /// In en, this message translates to:
+  /// **'NIP-05 registered successfully!'**
+  String get nip05RegisteredSuccessfully;
+
+  /// Generic registration failure message
+  ///
+  /// In en, this message translates to:
+  /// **'Registration failed'**
+  String get registrationFailed;
+
+  /// Error when name is already taken
+  ///
+  /// In en, this message translates to:
+  /// **'Name already taken for this domain'**
+  String get nameAlreadyTaken;
+
+  /// Error message for network issues
+  ///
+  /// In en, this message translates to:
+  /// **'Network error: Please check your connection'**
+  String get networkError;
 }
 
 class _AppLocalizationsDelegate

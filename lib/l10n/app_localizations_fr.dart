@@ -381,10 +381,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get claimYourNip05 =>
-      'Réclamez votre adresse Nostr NIP-05 maintenant et utilisez-la comme votre email.';
+      'Obtenez votre adresse Nostr NIP-05 maintenant et utilisez-la comme votre email.';
 
   @override
-  String get claim => 'Réclamer';
+  String get claim => 'Obtenir';
 
   @override
   String get switchTo => 'Basculer vers';
@@ -434,4 +434,49 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get openSourceClientDescription => 'Transparent et vérifiable';
+
+  @override
+  String whyChooseMailstr(String appTitle) {
+    return 'Pourquoi choisir $appTitle ?';
+  }
+
+  @override
+  String get whyChooseMailstrDescription =>
+      'Mailstr est différent des autres services d\'email. Nous connaissons l\'importance de vos emails. C\'est pourquoi nous proposons un service unique au bénéfice de l\'utilisateur et non pas pour la surveillance ou la collecte de données.\n\nNous ne vous demanderons donc jamais vos informations personnelles et vous pourrez toujours créer et recevoir des emails 100% anonymes.\n\nVos adresses emails vous appartiennent et resteront actives sans aucun abonnement.\n\nNotre engagement, à nous, est de ne jamais les supprimer.';
+
+  @override
+  String get paymentFailed => 'Le paiement a échoué';
+
+  @override
+  String get trustedMints => '\n\nMints de confiance :\n';
+
+  @override
+  String get pleaseEnterAName => 'Veuillez entrer un nom';
+
+  @override
+  String get pleaseEnterAPublicKey => 'Veuillez entrer une clé publique';
+
+  @override
+  String get nameCanOnlyContain =>
+      'Le nom ne peut contenir que des lettres, chiffres, tirets et underscores';
+
+  @override
+  String get invalidNpubFormat => 'Format npub invalide';
+
+  @override
+  String get invalidPublicKeyFormat =>
+      'Format de clé publique invalide (utilisez hex ou npub)';
+
+  @override
+  String get nip05RegisteredSuccessfully => 'NIP-05 enregistré avec succès !';
+
+  @override
+  String get registrationFailed => 'Échec de l\'enregistrement';
+
+  @override
+  String get nameAlreadyTaken => 'Nom déjà pris pour ce domaine';
+
+  @override
+  String get networkError =>
+      'Erreur réseau : Veuillez vérifier votre connexion';
 }

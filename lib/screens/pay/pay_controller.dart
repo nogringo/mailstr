@@ -183,11 +183,11 @@ class PayController extends GetxController {
         );
       } else {
         final error = jsonDecode(response.body);
-        String errorMessage = error['error'] ?? 'Payment failed';
+        String errorMessage = error['error'] ?? AppLocalizations.of(Get.context!)!.paymentFailed;
         
         // Show trusted mints if that's the error
         if (error['trustedMints'] != null) {
-          errorMessage += '\n\nTrusted mints:\n${(error['trustedMints'] as List).join('\n')}';
+          errorMessage += '${AppLocalizations.of(Get.context!)!.trustedMints}${(error['trustedMints'] as List).join('\n')}';
         }
         
         toastification.show(

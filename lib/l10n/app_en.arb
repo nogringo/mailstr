@@ -595,5 +595,63 @@
   "openSourceClientDescription": "Transparent and auditable",
   "@openSourceClientDescription": {
     "description": "Feature description for open source"
+  },
+  "whyChooseMailstr": "Why choose {appTitle}?",
+  "@whyChooseMailstr": {
+    "description": "Section title for why choose Mailstr",
+    "placeholders": {
+      "appTitle": {
+        "type": "String",
+        "example": "Mailstr"
+      }
+    }
+  },
+  "whyChooseMailstrDescription": "Mailstr is different from other email services. We understand the importance of your emails. That's why we offer a unique service that benefits the user and not surveillance or data collection.\n\nWe will never ask for your personal information and you can always create and receive 100% anonymous emails.\n\nYour email addresses belong to you and will remain active without any subscription.\n\nOur commitment is to never delete them.",
+  "@whyChooseMailstrDescription": {
+    "description": "Long description about why Mailstr is different"
+  },
+  "paymentFailed": "Payment failed",
+  "@paymentFailed": {
+    "description": "Error message when payment fails"
+  },
+  "trustedMints": "\n\nTrusted mints:\n",
+  "@trustedMints": {
+    "description": "Header for list of trusted mints"
+  },
+  "pleaseEnterAName": "Please enter a name",
+  "@pleaseEnterAName": {
+    "description": "Validation error for empty name field"
+  },
+  "pleaseEnterAPublicKey": "Please enter a public key",
+  "@pleaseEnterAPublicKey": {
+    "description": "Validation error for empty public key field"
+  },
+  "nameCanOnlyContain": "Name can only contain letters, numbers, hyphens and underscores",
+  "@nameCanOnlyContain": {
+    "description": "Validation error for invalid name format"
+  },
+  "invalidNpubFormat": "Invalid npub format",
+  "@invalidNpubFormat": {
+    "description": "Error when npub format is invalid"
+  },
+  "invalidPublicKeyFormat": "Invalid public key format (use hex or npub)",
+  "@invalidPublicKeyFormat": {
+    "description": "Error for invalid public key format"
+  },
+  "nip05RegisteredSuccessfully": "NIP-05 registered successfully!",
+  "@nip05RegisteredSuccessfully": {
+    "description": "Success message when NIP-05 is registered"
+  },
+  "registrationFailed": "Registration failed",
+  "@registrationFailed": {
+    "description": "Generic registration failure message"
+  },
+  "nameAlreadyTaken": "Name already taken for this domain",
+  "@nameAlreadyTaken": {
+    "description": "Error when name is already taken"
+  },
+  "networkError": "Network error: Please check your connection",
+  "@networkError": {
+    "description": "Error message for network issues"
   }
 }

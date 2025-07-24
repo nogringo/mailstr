@@ -8,6 +8,7 @@ import 'package:ndk/ndk.dart';
 import 'package:nip19/nip19.dart';
 import 'package:toastification/toastification.dart';
 import 'package:mailstr/config.dart';
+import 'package:mailstr/l10n/app_localizations.dart';
 import 'package:mailstr/screens/mailbox/mailbox_controller.dart';
 
 class Nip05Controller extends GetxController {
@@ -76,18 +77,18 @@ class Nip05Controller extends GetxController {
     final pubkey = pubkeyController.text.trim();
     
     if (name.isEmpty) {
-      _showErrorToast('Please enter a name');
+      _showErrorToast(AppLocalizations.of(Get.context!)!.pleaseEnterAName);
       return;
     }
 
     if (pubkey.isEmpty) {
-      _showErrorToast('Please enter a public key');
+      _showErrorToast(AppLocalizations.of(Get.context!)!.pleaseEnterAPublicKey);
       return;
     }
 
     // Validate name format
     if (!RegExp(r'^[a-zA-Z0-9_-]+$').hasMatch(name)) {
-      _showErrorToast('Name can only contain letters, numbers, hyphens and underscores');
+      _showErrorToast(AppLocalizations.of(Get.context!)!.nameCanOnlyContain);
       return;
     }
 
@@ -97,11 +98,11 @@ class Nip05Controller extends GetxController {
       try {
         hexPubkey = Nip19.npubToHex(pubkey);
       } catch (e) {
-        _showErrorToast('Invalid npub format');
+        _showErrorToast(AppLocalizations.of(Get.context!)!.invalidNpubFormat);
         return;
       }
     } else if (!RegExp(r'^[0-9a-fA-F]{64}$').hasMatch(pubkey)) {
-      _showErrorToast('Invalid public key format (use hex or npub)');
+      _showErrorToast(AppLocalizations.of(Get.context!)!.invalidPublicKeyFormat);
       return;
     }
 
@@ -122,7 +123,7 @@ class Nip05Controller extends GetxController {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         if (data['success'] == true) {
-          _showSuccessToast('NIP-05 registered successfully!');
+          _showSuccessToast(AppLocalizations.of(Get.context!)!.nip05RegisteredSuccessfully);
           
           // Add the new alias to the mailbox controller
           try {
@@ -137,16 +138,16 @@ class Nip05Controller extends GetxController {
           
           Get.back();
         } else {
-          _showErrorToast(data['error'] ?? 'Registration failed');
+          _showErrorToast(data['error'] ?? AppLocalizations.of(Get.context!)!.registrationFailed);
         }
       } else if (response.statusCode == 409) {
-        _showErrorToast('Name already taken for this domain');
+        _showErrorToast(AppLocalizations.of(Get.context!)!.nameAlreadyTaken);
       } else {
         final errorData = jsonDecode(response.body);
-        _showErrorToast(errorData['error'] ?? 'Registration failed');
+        _showErrorToast(errorData['error'] ?? AppLocalizations.of(Get.context!)!.registrationFailed);
       }
     } catch (e) {
-      _showErrorToast('Network error: Please check your connection');
+      _showErrorToast(AppLocalizations.of(Get.context!)!.networkError);
     } finally {
       isLoading.value = false;
     }

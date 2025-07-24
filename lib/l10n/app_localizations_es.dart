@@ -432,4 +432,48 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get openSourceClientDescription => 'Transparente y auditable';
+
+  @override
+  String whyChooseMailstr(String appTitle) {
+    return '¿Por qué elegir $appTitle?';
+  }
+
+  @override
+  String get whyChooseMailstrDescription =>
+      'Mailstr es diferente de otros servicios de correo electrónico. Entendemos la importancia de tus correos. Por eso ofrecemos un servicio único que beneficia al usuario y no a la vigilancia o recolección de datos.\n\nNunca te pediremos tu información personal y siempre podrás crear y recibir correos 100% anónimos.\n\nTus direcciones de correo te pertenecen y permanecerán activas sin ninguna suscripción.\n\nNuestro compromiso es nunca eliminarlas.';
+
+  @override
+  String get paymentFailed => 'El pago falló';
+
+  @override
+  String get trustedMints => '\n\nMints de confianza:\n';
+
+  @override
+  String get pleaseEnterAName => 'Por favor ingresa un nombre';
+
+  @override
+  String get pleaseEnterAPublicKey => 'Por favor ingresa una clave pública';
+
+  @override
+  String get nameCanOnlyContain =>
+      'El nombre solo puede contener letras, números, guiones y guiones bajos';
+
+  @override
+  String get invalidNpubFormat => 'Formato npub inválido';
+
+  @override
+  String get invalidPublicKeyFormat =>
+      'Formato de clave pública inválido (usa hex o npub)';
+
+  @override
+  String get nip05RegisteredSuccessfully => '¡NIP-05 registrado exitosamente!';
+
+  @override
+  String get registrationFailed => 'Registro fallido';
+
+  @override
+  String get nameAlreadyTaken => 'Nombre ya tomado para este dominio';
+
+  @override
+  String get networkError => 'Error de red: Por favor verifica tu conexión';
 }
