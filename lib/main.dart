@@ -22,6 +22,7 @@ import 'package:mailstr/screens/nip05/nip05_screen.dart';
 import 'package:mailstr/screens/pay/pay_screen.dart';
 import 'package:mailstr/screens/user/user_screen.dart';
 import 'package:mailstr/middleware/auth_middleware.dart';
+import 'package:mailstr/middleware/guest_middleware.dart';
 
 import 'screens/mailbox/mailbox_controller.dart';
 
@@ -40,6 +41,8 @@ ThemeData _buildTheme(Brightness brightness, Color seedColor) {
 }
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
   final ndk = Ndk(
     NdkConfig(
       cache: SembastCacheManager(await getDatabase()),
@@ -87,7 +90,11 @@ class MainApp extends StatelessWidget {
             getPages: [
               GetPage(name: AppRoutes.home, page: () => HomeScreen()),
               GetPage(name: AppRoutes.create, page: () => CreateScreen()),
-              GetPage(name: AppRoutes.login, page: () => LoginScreen()),
+              GetPage(
+                name: AppRoutes.login,
+                page: () => LoginScreen(),
+                middlewares: [GuestMiddleware()],
+              ),
               GetPage(
                 name: AppRoutes.mailbox,
                 page: () => MailboxScreen(),
