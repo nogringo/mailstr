@@ -3,9 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:ndk/ndk.dart';
-import 'package:nip19/nip19.dart';
 import 'package:mailstr/config.dart';
-import 'package:mailstr/hex_to_base_36.dart';
 import 'package:mailstr/controllers/auth_controller.dart';
 
 class MailboxController extends GetxController {
