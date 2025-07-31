@@ -62,13 +62,17 @@ class UserController extends GetxController {
   void copyToClipboard(String text, String label) {
     Clipboard.setData(ClipboardData(text: text));
     toastification.show(
-      title: Text(AppLocalizations.of(Get.context!)!.copiedToClipboard(label)),
+      title: Text(
+        AppLocalizations.of(Get.context!)!.copiedToClipboard(label),
+        style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+      ),
       alignment: Alignment.bottomRight,
       style: ToastificationStyle.fillColored,
-      icon: Icon(Icons.copy),
+      icon: Icon(Icons.copy, color: Get.theme.colorScheme.onPrimaryContainer),
       applyBlurEffect: true,
       primaryColor: Get.theme.colorScheme.primary,
-      backgroundColor: Get.theme.colorScheme.onPrimary,
+      backgroundColor: Get.theme.colorScheme.primaryContainer,
+      foregroundColor: Get.theme.colorScheme.onPrimaryContainer,
       autoCloseDuration: Duration(seconds: 2),
       closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
     );

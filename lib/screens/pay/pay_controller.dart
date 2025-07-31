@@ -201,15 +201,22 @@ class PayController extends GetxController {
         emailUnlocked.value = true;
         
         toastification.show(
-          title: Text(AppLocalizations.of(Get.context!)!.success),
-          description: Text(data['message'] ?? AppLocalizations.of(Get.context!)!.paymentAcceptedEmailUnlocked),
+          title: Text(
+            AppLocalizations.of(Get.context!)!.success,
+            style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+          ),
+          description: Text(
+            data['message'] ?? AppLocalizations.of(Get.context!)!.paymentAcceptedEmailUnlocked,
+            style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+          ),
           type: ToastificationType.success,
           style: ToastificationStyle.fillColored,
           alignment: Alignment.bottomRight,
           autoCloseDuration: Duration(seconds: 5),
           applyBlurEffect: true,
           primaryColor: Get.theme.colorScheme.primary,
-          backgroundColor: Get.theme.colorScheme.onPrimary,
+          backgroundColor: Get.theme.colorScheme.primaryContainer,
+          foregroundColor: Get.theme.colorScheme.onPrimaryContainer,
           closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
         );
       } else {
@@ -222,30 +229,44 @@ class PayController extends GetxController {
         }
         
         toastification.show(
-          title: Text(AppLocalizations.of(Get.context!)!.error),
-          description: Text(errorMessage),
+          title: Text(
+            AppLocalizations.of(Get.context!)!.error,
+            style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+          ),
+          description: Text(
+            errorMessage,
+            style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+          ),
           type: ToastificationType.error,
           style: ToastificationStyle.fillColored,
           alignment: Alignment.bottomRight,
           autoCloseDuration: Duration(seconds: 8),
           applyBlurEffect: true,
           primaryColor: Get.theme.colorScheme.error,
-          backgroundColor: Get.theme.colorScheme.onError,
+          backgroundColor: Get.theme.colorScheme.primaryContainer,
+          foregroundColor: Get.theme.colorScheme.onPrimaryContainer,
           closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
         );
       }
     } catch (e) {
       Get.back(); // Close loading dialog if still open
       toastification.show(
-        title: Text(AppLocalizations.of(Get.context!)!.error),
-        description: Text(AppLocalizations.of(Get.context!)!.failedToConnectToServer),
+        title: Text(
+          AppLocalizations.of(Get.context!)!.error,
+          style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+        ),
+        description: Text(
+          AppLocalizations.of(Get.context!)!.failedToConnectToServer,
+          style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+        ),
         type: ToastificationType.error,
         style: ToastificationStyle.fillColored,
         alignment: Alignment.bottomRight,
         autoCloseDuration: Duration(seconds: 5),
         applyBlurEffect: true,
         primaryColor: Get.theme.colorScheme.error,
-        backgroundColor: Get.theme.colorScheme.onError,
+        backgroundColor: Get.theme.colorScheme.primaryContainer,
+        foregroundColor: Get.theme.colorScheme.onPrimaryContainer,
         closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
       );
     }
@@ -268,43 +289,64 @@ class PayController extends GetxController {
         emailUnlocked.value = true;
         
         toastification.show(
-          title: Text(AppLocalizations.of(Get.context!)!.success),
-          description: Text(data['message'] ?? AppLocalizations.of(Get.context!)!.emailUnlockedWithProofOfWork),
+          title: Text(
+            AppLocalizations.of(Get.context!)!.success,
+            style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+          ),
+          description: Text(
+            data['message'] ?? AppLocalizations.of(Get.context!)!.emailUnlockedWithProofOfWork,
+            style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+          ),
           type: ToastificationType.success,
           style: ToastificationStyle.fillColored,
           alignment: Alignment.bottomRight,
           autoCloseDuration: Duration(seconds: 5),
           applyBlurEffect: true,
           primaryColor: Get.theme.colorScheme.primary,
-          backgroundColor: Get.theme.colorScheme.onPrimary,
+          backgroundColor: Get.theme.colorScheme.primaryContainer,
+          foregroundColor: Get.theme.colorScheme.onPrimaryContainer,
           closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
         );
       } else {
         final error = jsonDecode(response.body);
         toastification.show(
-          title: Text(AppLocalizations.of(Get.context!)!.error),
-          description: Text(error['error'] ?? AppLocalizations.of(Get.context!)!.failedToVerifyProofOfWork),
+          title: Text(
+            AppLocalizations.of(Get.context!)!.error,
+            style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+          ),
+          description: Text(
+            error['error'] ?? AppLocalizations.of(Get.context!)!.failedToVerifyProofOfWork,
+            style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+          ),
           type: ToastificationType.error,
           style: ToastificationStyle.fillColored,
           alignment: Alignment.bottomRight,
           autoCloseDuration: Duration(seconds: 5),
           applyBlurEffect: true,
           primaryColor: Get.theme.colorScheme.error,
-          backgroundColor: Get.theme.colorScheme.onError,
+          backgroundColor: Get.theme.colorScheme.primaryContainer,
+          foregroundColor: Get.theme.colorScheme.onPrimaryContainer,
           closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
         );
       }
     } catch (e) {
       toastification.show(
-        title: Text(AppLocalizations.of(Get.context!)!.error),
-        description: Text(AppLocalizations.of(Get.context!)!.failedToConnectToServer),
+        title: Text(
+          AppLocalizations.of(Get.context!)!.error,
+          style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+        ),
+        description: Text(
+          AppLocalizations.of(Get.context!)!.failedToConnectToServer,
+          style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+        ),
         type: ToastificationType.error,
         style: ToastificationStyle.fillColored,
         alignment: Alignment.bottomRight,
         autoCloseDuration: Duration(seconds: 5),
         applyBlurEffect: true,
         primaryColor: Get.theme.colorScheme.error,
-        backgroundColor: Get.theme.colorScheme.onError,
+        backgroundColor: Get.theme.colorScheme.primaryContainer,
+        foregroundColor: Get.theme.colorScheme.onPrimaryContainer,
         closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
       );
     }

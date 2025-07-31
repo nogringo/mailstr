@@ -26,13 +26,17 @@ class CreateController extends GetxController {
   void copy(String text) {
     Clipboard.setData(ClipboardData(text: text));
     toastification.show(
-      title: Text(AppLocalizations.of(Get.context!)!.copied),
+      title: Text(
+        AppLocalizations.of(Get.context!)!.copied,
+        style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+      ),
       alignment: Alignment.bottomRight,
       style: ToastificationStyle.fillColored,
-      icon: Icon(Icons.copy),
+      icon: Icon(Icons.copy, color: Get.theme.colorScheme.onPrimaryContainer),
       applyBlurEffect: true,
       primaryColor: Get.theme.colorScheme.primaryContainer,
-      backgroundColor: Get.theme.colorScheme.onPrimaryContainer,
+      backgroundColor: Get.theme.colorScheme.primaryContainer,
+      foregroundColor: Get.theme.colorScheme.onPrimaryContainer,
       autoCloseDuration: Duration(seconds: 3),
       closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
     );

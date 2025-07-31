@@ -131,13 +131,17 @@ class MailboxAliasesTabView extends StatelessWidget {
                     onTap: () {
                       Clipboard.setData(ClipboardData(text: alias));
                       toastification.show(
-                        title: Text(AppLocalizations.of(Get.context!)!.copied),
+                        title: Text(
+                          AppLocalizations.of(Get.context!)!.copied,
+                          style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+                        ),
                         alignment: Alignment.bottomRight,
                         style: ToastificationStyle.fillColored,
-                        icon: Icon(Icons.copy),
+                        icon: Icon(Icons.copy, color: Get.theme.colorScheme.onPrimaryContainer),
                         applyBlurEffect: true,
                         primaryColor: Get.theme.colorScheme.primaryContainer,
-                        backgroundColor: Get.theme.colorScheme.onPrimaryContainer,
+                        backgroundColor: Get.theme.colorScheme.primaryContainer,
+                        foregroundColor: Get.theme.colorScheme.onPrimaryContainer,
                         autoCloseDuration: Duration(seconds: 3),
                         closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
                       );
@@ -262,26 +266,37 @@ class MailboxAliasesTabView extends StatelessWidget {
               
               if (success) {
                 toastification.show(
-                  title: Text(AppLocalizations.of(Get.context!)!.aliasUnregistered),
+                  title: Text(
+                    AppLocalizations.of(Get.context!)!.aliasUnregistered,
+                    style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+                  ),
                   alignment: Alignment.bottomRight,
                   style: ToastificationStyle.fillColored,
-                  icon: Icon(Icons.check_circle),
+                  icon: Icon(Icons.check_circle, color: Get.theme.colorScheme.onPrimaryContainer),
                   applyBlurEffect: true,
                   primaryColor: Get.theme.colorScheme.primary,
-                  backgroundColor: Get.theme.colorScheme.onPrimary,
+                  backgroundColor: Get.theme.colorScheme.primaryContainer,
+                  foregroundColor: Get.theme.colorScheme.onPrimaryContainer,
                   autoCloseDuration: Duration(seconds: 3),
                   closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
                 );
               } else {
                 toastification.show(
-                  title: Text(AppLocalizations.of(Get.context!)!.error),
-                  description: Text(AppLocalizations.of(Get.context!)!.failedToUnregisterAlias),
+                  title: Text(
+                    AppLocalizations.of(Get.context!)!.error,
+                    style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+                  ),
+                  description: Text(
+                    AppLocalizations.of(Get.context!)!.failedToUnregisterAlias,
+                    style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+                  ),
                   alignment: Alignment.bottomRight,
                   style: ToastificationStyle.fillColored,
-                  icon: Icon(Icons.error),
+                  icon: Icon(Icons.error, color: Get.theme.colorScheme.onPrimaryContainer),
                   applyBlurEffect: true,
                   primaryColor: Get.theme.colorScheme.error,
-                  backgroundColor: Get.theme.colorScheme.onError,
+                  backgroundColor: Get.theme.colorScheme.primaryContainer,
+                  foregroundColor: Get.theme.colorScheme.onPrimaryContainer,
                   autoCloseDuration: Duration(seconds: 4),
                   closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
                 );
