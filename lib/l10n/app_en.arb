@@ -54,7 +54,7 @@
   "@proofOfWorkCompleted": {
     "description": "Message when proof of work is completed"
   },
-  "unlockWithCashu": "Unlock with Cashu",
+  "unlockWithCashu": "Pay with Cashu",
   "@unlockWithCashu": {
     "description": "Header for Cashu unlock option"
   },

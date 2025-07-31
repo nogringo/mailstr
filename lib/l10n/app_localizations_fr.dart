@@ -48,7 +48,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get proofOfWorkCompleted => 'Preuve de Travail terminée';
 
   @override
-  String get unlockWithCashu => 'Débloquer avec Cashu';
+  String get unlockWithCashu => 'Payer avec Cashu';
 
   @override
   String get cashuDescription =>

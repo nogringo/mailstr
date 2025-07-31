@@ -175,7 +175,7 @@ abstract class AppLocalizations {
   /// Header for Cashu unlock option
   ///
   /// In en, this message translates to:
-  /// **'Unlock with Cashu'**
+  /// **'Pay with Cashu'**
   String get unlockWithCashu;
 
   /// Description of Cashu payment method
