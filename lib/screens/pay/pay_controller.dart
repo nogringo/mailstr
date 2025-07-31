@@ -16,6 +16,8 @@ class PayController extends GetxController {
   final RxInt nonce = 0.obs;
   final RxDouble hashRate = 0.0.obs;
   final RxString miningDuration = '00:00'.obs;
+  final RxString estimatedTimeRemaining = '--:--'.obs;
+  final RxDouble powProgress = 0.0.obs;
   final RxBool powCompleted = false.obs;
   final RxBool emailUnlocked = false.obs;
   
@@ -77,7 +79,8 @@ class PayController extends GetxController {
     powTimer?.cancel();
     durationTimer?.cancel();
     powStatus.value = AppLocalizations.of(Get.context!)!.proofOfWorkPaused(nonce.value);
-    // Keep the current nonce and duration values
+    estimatedTimeRemaining.value = '--:--';
+    // Keep the current nonce, duration and progress values
   }
   
   void resetProofOfWork() {
@@ -87,6 +90,8 @@ class PayController extends GetxController {
     durationTimer?.cancel();
     nonce.value = 0;
     miningDuration.value = '00:00';
+    estimatedTimeRemaining.value = '--:--';
+    powProgress.value = 0.0;
     pausedDuration = Duration.zero;
     powStatus.value = AppLocalizations.of(Get.context!)!.proofOfWorkReset;
     hashRate.value = 0.0;
@@ -101,6 +106,34 @@ class PayController extends GetxController {
       final elapsed = DateTime.now().difference(startTime).inSeconds;
       if (elapsed > 0) {
         hashRate.value = attemptCount / elapsed;
+        
+        // Calculate estimated time remaining and progress
+        if (hashRate.value > 0) {
+          // Expected number of attempts for the given difficulty (2^(4*difficulty) on average)
+          final expectedAttempts = 1 << (4 * difficulty);
+          final remainingAttempts = expectedAttempts - nonce.value;
+          
+          // Calculate progress (0.0 to 1.0)
+          powProgress.value = nonce.value / expectedAttempts;
+          
+          if (remainingAttempts > 0) {
+            final estimatedSecondsRemaining = remainingAttempts / hashRate.value;
+            
+            if (estimatedSecondsRemaining < 3600) {
+              // Less than an hour, show MM:SS
+              final minutes = (estimatedSecondsRemaining / 60).floor();
+              final seconds = (estimatedSecondsRemaining % 60).floor();
+              estimatedTimeRemaining.value = '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+            } else {
+              // More than an hour, show HH:MM
+              final hours = (estimatedSecondsRemaining / 3600).floor();
+              final minutes = ((estimatedSecondsRemaining % 3600) / 60).floor();
+              estimatedTimeRemaining.value = '${hours}h ${minutes.toString().padLeft(2, '0')}m';
+            }
+          } else {
+            estimatedTimeRemaining.value = '00:00';
+          }
+        }
       }
     });
     
@@ -132,10 +165,8 @@ class PayController extends GetxController {
         }
       }
       
-      // Update status every 10 batches to reduce UI updates
-      if (nonce.value % 10000 == 0) {
-        powStatus.value = AppLocalizations.of(Get.context!)!.searchingWithHashRate(nonce.value, hashRate.value.toStringAsFixed(2));
-      }
+      // Update status to show we're still searching
+      powStatus.value = AppLocalizations.of(Get.context!)!.searchingForCode;
       
       // Allow UI to update with minimal delay
       await Future.delayed(Duration(milliseconds: 1));

@@ -406,6 +406,12 @@ abstract class AppLocalizations {
   /// **'Duration: {duration}'**
   String duration(String duration);
 
+  /// Estimated time remaining label
+  ///
+  /// In en, this message translates to:
+  /// **'Est. time: {time}'**
+  String estimatedTime(String time);
+
   /// Home button text
   ///
   /// In en, this message translates to:

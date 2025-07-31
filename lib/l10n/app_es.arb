@@ -51,6 +51,7 @@
     "failedToVerifyProofOfWork": "Error al verificar prueba de trabajo",
     "failedToConnectToServer": "Error al conectar con el servidor",
     "duration": "Duración: {duration}",
+    "estimatedTime": "Tiempo est.: {time}",
     "home": "Inicio",
     "whereToReadEmails": "¿Dónde leer mis emails?",
     "whereToReadEmailsDescription": "Tus emails te son enviados por mensaje privado en Nostr. Puedes leerlos en cualquier aplicación Nostr que soporte mensajes privados como:",

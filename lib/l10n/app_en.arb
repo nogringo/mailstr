@@ -288,6 +288,16 @@
       }
     }
   },
+  "estimatedTime": "Est. time: {time}",
+  "@estimatedTime": {
+    "description": "Estimated time remaining label",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "05:30"
+      }
+    }
+  },
   "home": "Home",
   "@home": {
     "description": "Home button text"

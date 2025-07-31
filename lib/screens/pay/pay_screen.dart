@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mailstr/app_routes.dart';
-import 'package:toastification/toastification.dart';
 import 'package:mailstr/config.dart';
 import 'package:mailstr/l10n/app_localizations.dart';
 import 'package:mailstr/screens/pay/pay_controller.dart';
@@ -163,7 +162,7 @@ class PayWithProofOfWorkView extends StatelessWidget {
               if (controller.searchingCode.value ||
                   controller.powCompleted.value) ...[
                 SizedBox(height: 8),
-                if (controller.searchingCode.value) LinearProgressIndicator(),
+                if (controller.searchingCode.value) LinearProgressIndicator(value: controller.powProgress.value),
                 if (controller.searchingCode.value) SizedBox(height: 8),
                 Row(
                   children: [
@@ -173,13 +172,15 @@ class PayWithProofOfWorkView extends StatelessWidget {
                         style: GoogleFonts.robotoMono(fontSize: 12),
                       ),
                     ),
-                    Text(
-                      AppLocalizations.of(context)!.duration(controller.miningDuration.value),
-                      style: GoogleFonts.robotoMono(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
+                    if (controller.estimatedTimeRemaining.value != '--:--')
+                      Text(
+                        AppLocalizations.of(context)!.estimatedTime(controller.estimatedTimeRemaining.value),
+                        style: GoogleFonts.robotoMono(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ],
@@ -271,32 +272,22 @@ class _PayWithCashuViewState extends State<PayWithCashuView> {
           ),
         ),
         SizedBox(height: 8),
-        Row(
-          children: [
-            FilledButton(
-              onPressed: () {
-                if (tokenController.text.isNotEmpty) {
-                  controller.payWithCashu(tokenController.text);
-                } else {
-                  toastification.show(
-                    title: Text(AppLocalizations.of(context)!.error),
-                    description: Text(AppLocalizations.of(context)!.pleasePasteCashuToken),
-                    type: ToastificationType.error,
-                    style: ToastificationStyle.fillColored,
-                    alignment: Alignment.bottomRight,
-                    autoCloseDuration: Duration(seconds: 3),
-                    applyBlurEffect: true,
-                    primaryColor: Get.theme.colorScheme.error,
-                    backgroundColor: Get.theme.colorScheme.onError,
-                    closeButton: ToastCloseButton(
-                      showType: CloseButtonShowType.none,
-                    ),
-                  );
-                }
-              },
-              child: Text(AppLocalizations.of(context)!.submitPayment),
-            ),
-          ],
+        ValueListenableBuilder<TextEditingValue>(
+          valueListenable: tokenController,
+          builder: (context, value, child) {
+            return Row(
+              children: [
+                FilledButton(
+                  onPressed: value.text.isEmpty
+                      ? null
+                      : () {
+                          controller.payWithCashu(tokenController.text);
+                        },
+                  child: Text(AppLocalizations.of(context)!.submitPayment),
+                ),
+              ],
+            );
+          },
         ),
       ],
     );

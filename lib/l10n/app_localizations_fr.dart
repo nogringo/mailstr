@@ -194,6 +194,11 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String estimatedTime(String time) {
+    return 'Temps est. : $time';
+  }
+
+  @override
   String get home => 'Accueil';
 
   @override
