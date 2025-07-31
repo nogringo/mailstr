@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ndk/ndk.dart';
-import 'package:ndk_ui/widgets/n_picture.dart';
 import 'package:mailstr/app_routes.dart';
+import 'package:nostr_widgets/nostr_widgets.dart';
 
 class UserAvatar extends StatelessWidget {
   final double radius;
@@ -30,7 +30,7 @@ class UserAvatar extends StatelessWidget {
       child: ClipOval(
         child: NPicture(
           ndk: ndk,
-          pubKey: userPubkey,
+          pubkey: userPubkey,
         ),
       ),
     );

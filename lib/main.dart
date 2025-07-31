@@ -9,8 +9,8 @@ import 'package:mailstr/controllers/theme_controller.dart';
 import 'package:mailstr/get_database.dart';
 import 'package:mailstr/l10n/app_localizations.dart';
 import 'package:ndk/ndk.dart';
-import 'package:ndk_ui/functions/n_restore_last_session.dart';
-import 'package:ndk_ui/l10n/app_localizations.dart' as ndk_ui;
+import 'package:nostr_widgets/l10n/app_localizations.dart' as nostr_widgets;
+import 'package:nostr_widgets/functions/functions.dart';
 import 'package:sembast_cache_manager/sembast_cache_manager.dart';
 import 'package:toastification/toastification.dart';
 import 'package:mailstr/app_routes.dart';
@@ -50,7 +50,7 @@ void main() async {
     ),
   );
 
-  await nRestoreLastSession(ndk);
+  await nRestoreAccounts(ndk);
 
   await GetStorage.init(appTitle);
 
@@ -74,7 +74,7 @@ class MainApp extends StatelessWidget {
             title: appTitle,
             localizationsDelegates: [
               AppLocalizations.delegate,
-              ndk_ui.AppLocalizations.delegate,
+              nostr_widgets.AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,

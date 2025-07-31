@@ -393,17 +393,10 @@ packages:
     dependency: "direct main"
     description:
       name: ndk
-      sha256: c084ec0d4f630a99b4a80fe092fb4f339db36c6f53c180431a57a69ea3b14188
+      sha256: "62f6dc5ffb5e4d9e4b18b707bfa9f5ab2d9ce7a2bc0ba1a0a2c2c8063432e90f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.1"
-  ndk_ui:
-    dependency: "direct main"
-    description:
-      path: "../ndk_ui"
-      relative: true
-    source: path
-    version: "0.0.3"
+    version: "0.5.0"
   nip01:
     dependency: "direct main"
     description:
@@ -416,10 +409,10 @@ packages:
     dependency: transitive
     description:
       name: nip07_event_signer
-      sha256: "4e466b52b87316a1ddd7acc90000445cd78d99f10d941b556ebde1e9d23d9a74"
+      sha256: f5b704fd6f047f28a398ff93cac3cfd4bf0833242f3ccd2b27583425139dd4cc
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   nip19:
     dependency: "direct main"
     description:
@@ -428,6 +421,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
+  nostr_widgets:
+    dependency: "direct main"
+    description:
+      name: nostr_widgets
+      sha256: "611b56200e3249e8ac766b22b2be36156d077903711e51ffd9ae07e575415778"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   path:
     dependency: "direct main"
     description:
@@ -560,10 +561,10 @@ packages:
     dependency: "direct main"
     description:
       name: sembast_cache_manager
-      sha256: "9c6da6175976d77317092a047eea8510cf89727d537c3a4f4747b2fe9d8f1975"
+      sha256: fffda256964267f5f185d41f840f014fa55c2db4272675f96af1f67435827273
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   sembast_web:
     dependency: "direct main"
     description:

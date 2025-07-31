@@ -4,13 +4,11 @@ import 'package:mailstr/app_routes.dart';
 import 'package:mailstr/widgets/content_padding_view.dart';
 import 'package:mailstr/widgets/user_avatar.dart';
 import 'package:mailstr/screens/user/user_controller.dart';
-import 'package:ndk_ui/widgets/n_banner.dart';
-import 'package:ndk_ui/widgets/n_name.dart';
-import 'package:ndk_ui/functions/n_logout.dart';
 import 'package:mailstr/controllers/auth_controller.dart';
 import 'package:mailstr/controllers/theme_controller.dart';
 import 'package:ndk/ndk.dart';
 import 'package:mailstr/l10n/app_localizations.dart';
+import 'package:nostr_widgets/nostr_widgets.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({super.key});
@@ -107,7 +105,7 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                               fit: BoxFit.cover,
                               child: NBanner(
                                 ndk: controller.ndk,
-                                pubKey: controller.pubkey.value,
+                                pubkey: controller.pubkey.value,
                               ),
                             ),
                           ),
@@ -332,7 +330,8 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                   onPressed: () async {
                     Navigator.of(context).pop();
                     // Perform logout
-                    await nLogout(Get.find<Ndk>());
+                    Get.find<Ndk>().accounts.logout();
+                    nSaveAccountsState(Get.find<Ndk>());
 
                     // Reset theme colors to default
                     Get.find<ThemeController>().resetToDefaultColors();

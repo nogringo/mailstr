@@ -17,20 +17,18 @@ dependencies:
   google_fonts: ^6.2.1
   http: ^1.4.0
   intl: any
-  ndk: ^0.4.1
-  ndk_ui:
-    # git: https://github.com/nogringo/ndk-ui
-    path: ../ndk_ui
+  ndk: ^0.5.0
   nip01: ^0.3.0+1
   nip19: ^0.2.0
   toastification: ^3.0.3
   url_launcher: ^6.3.2
-  sembast_cache_manager: ^1.0.1
+  sembast_cache_manager: ^1.0.2
   sembast_web: ^2.4.2
   path_provider: ^2.1.5
   path: ^1.9.1
   sembast: ^3.8.5+1
   get_storage: ^2.1.1
+  nostr_widgets: ^0.0.3
 
 dev_dependencies:
   flutter_test:

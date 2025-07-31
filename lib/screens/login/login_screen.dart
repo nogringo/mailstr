@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mailstr/app_routes.dart';
 import 'package:ndk/ndk.dart';
-import 'package:ndk_ui/widgets/n_login.dart';
 import 'package:mailstr/screens/login/login_controller.dart';
 import 'package:mailstr/widgets/content_padding_view.dart';
 import 'package:mailstr/controllers/auth_controller.dart';
 import 'package:mailstr/l10n/app_localizations.dart';
+import 'package:nostr_widgets/nostr_widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
