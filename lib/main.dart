@@ -8,6 +8,7 @@ import 'package:mailstr/controllers/auth_controller.dart';
 import 'package:mailstr/controllers/theme_controller.dart';
 import 'package:mailstr/get_database.dart';
 import 'package:mailstr/l10n/app_localizations.dart';
+import 'package:mailstr/nostr_utils/no_event_verifier.dart';
 import 'package:ndk/ndk.dart';
 import 'package:nostr_widgets/l10n/app_localizations.dart' as nostr_widgets;
 import 'package:nostr_widgets/functions/functions.dart';
@@ -46,7 +47,7 @@ void main() async {
   final ndk = Ndk(
     NdkConfig(
       cache: SembastCacheManager(await getDatabase()),
-      eventVerifier: Bip340EventVerifier(),
+      eventVerifier: NoEventVerifier(),
     ),
   );
 
