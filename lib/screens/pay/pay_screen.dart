@@ -144,57 +144,27 @@ class PayWithProofOfWorkView extends StatelessWidget {
           () => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (!controller.powCompleted.value) ...[
+              if (!controller.powCompleted.value &&
+                  !controller.searchingCode.value) ...[
                 Row(
                   children: [
-                    controller.searchingCode.value
-                        ? FilledButton(
-                            onPressed: controller.stopProofOfWork,
-                            child: Text(
-                              AppLocalizations.of(context)!.pauseProofOfWork,
-                            ),
-                          )
-                        : FilledButton(
-                            onPressed: controller.startProofOfWork,
-                            child: Text(
-                              controller.nonce.value > 0
-                                  ? AppLocalizations.of(
-                                      context,
-                                    )!.resumeProofOfWork
-                                  : AppLocalizations.of(
-                                      context,
-                                    )!.startProofOfWork,
-                            ),
-                          ),
+                    FilledButton(
+                      onPressed: controller.startProofOfWork,
+                      child: Text(
+                        AppLocalizations.of(context)!.startProofOfWork,
+                      ),
+                    ),
                   ],
                 ),
               ],
               if (controller.searchingCode.value ||
                   controller.powCompleted.value) ...[
                 SizedBox(height: 8),
-                if (controller.searchingCode.value)
-                  LinearProgressIndicator(value: controller.powProgress.value),
+                if (controller.searchingCode.value) LinearProgressIndicator(),
                 if (controller.searchingCode.value) SizedBox(height: 8),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        controller.powStatus.value,
-                        style: GoogleFonts.robotoMono(fontSize: 12),
-                      ),
-                    ),
-                    if (controller.estimatedTimeRemaining.value != '--:--')
-                      Text(
-                        AppLocalizations.of(context)!.estimatedTime(
-                          controller.estimatedTimeRemaining.value,
-                        ),
-                        style: GoogleFonts.robotoMono(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-                  ],
+                Text(
+                  controller.powStatus.value,
+                  style: GoogleFonts.robotoMono(fontSize: 12),
                 ),
               ],
             ],

@@ -385,10 +385,10 @@ packages:
     dependency: "direct main"
     description:
       name: ndk
-      sha256: a417482a369606326d695cf0f555aebc07fd07faf81b692f106b9780e3326441
+      sha256: "76c5fa46ff1acafe2717f4e733656e1f32c89bb0314dee9f313dad15a910487f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.0-dev.10"
+    version: "0.6.0-dev.12"
   ndk_amber:
     dependency: transitive
     description:

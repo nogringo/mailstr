@@ -3,11 +3,11 @@ import 'package:mailstr/constant.dart';
 
 const appTitle = "Mailstr";
 
-Color defaultThemeColor = Colors.orangeAccent;
+Color defaultThemeColor = Colors.teal;
 
-const difficulty = debugMode ? 1 : 7;
+const difficulty = debugMode ? 1 : 16;
 
-const unlockPrice = debugMode ? 1 : 100;
+const unlockPrice = debugMode ? 1 : 10;
 
 const emailDomain = "uid.ovh";
 
@@ -29,7 +29,9 @@ const relays = [
   "wss://relay.primal.net",
   "wss://relay.damus.io",
   "wss://nos.lol",
-  "wss://bwcervpt.mooo.com",
+  "wss://nostr-01.uid.ovh",
+  "wss://nostr-02.uid.ovh",
+  "wss://nostr-01.yakihonne.com",
 ];
 
 // API endpoints - based on Firebase hosting configuration
