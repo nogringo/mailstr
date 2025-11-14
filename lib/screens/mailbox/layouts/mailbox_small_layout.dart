@@ -14,7 +14,7 @@ class MailboxSmallLayout extends StatelessWidget {
     return Obx(() {
       return Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context)!.mailbox), 
+          title: Text(AppLocalizations.of(context)!.mailbox),
           actions: [
             // User profile picture
             Container(
@@ -23,11 +23,14 @@ class MailboxSmallLayout extends StatelessWidget {
             ),
           ],
         ),
-        body: getMailboxTabs(context)[MailboxController.to.selectedIndex.value].content,
+        body: getMailboxTabs(
+          context,
+        )[MailboxController.to.selectedIndex.value].content,
         bottomNavigationBar: NavigationBar(
           destinations: getMailboxTabs(context)
               .map(
-                (tab) => NavigationDestination(icon: tab.icon, label: tab.label),
+                (tab) =>
+                    NavigationDestination(icon: tab.icon, label: tab.label),
               )
               .toList(),
           selectedIndex: MailboxController.to.selectedIndex.value,

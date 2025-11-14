@@ -10,7 +10,7 @@ class AuthMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     final authController = Get.find<AuthController>();
-    
+
     // If user is not logged in, redirect to login with return route
     if (!authController.isLoggedIn) {
       return RouteSettings(
@@ -18,7 +18,7 @@ class AuthMiddleware extends GetMiddleware {
         arguments: {'returnRoute': route},
       );
     }
-    
+
     // User is logged in, allow access
     return null;
   }

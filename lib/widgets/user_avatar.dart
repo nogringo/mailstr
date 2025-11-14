@@ -28,10 +28,7 @@ class UserAvatar extends StatelessWidget {
     final avatar = CircleAvatar(
       radius: radius,
       child: ClipOval(
-        child: NPicture(
-          ndk: ndk,
-          pubkey: userPubkey,
-        ),
+        child: NPicture(ndk: ndk, pubkey: userPubkey),
       ),
     );
 

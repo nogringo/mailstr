@@ -157,11 +157,13 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  if (controller.ndk.accounts.getPublicKey() != null)
+                                  if (controller.ndk.accounts.getPublicKey() !=
+                                      null)
                                     Flexible(
                                       child: NName(
                                         ndk: controller.ndk,
-                                        pubkey: controller.ndk.accounts.getPublicKey()!,
+                                        pubkey: controller.ndk.accounts
+                                            .getPublicKey()!,
                                         style: Theme.of(context)
                                             .textTheme
                                             .headlineMedium
@@ -173,27 +175,30 @@ class _UserScreenState extends State<UserScreen> with TickerProviderStateMixin {
                                             ),
                                       ),
                                     ),
-                                  if (controller.ndk.accounts.getPublicKey() != null)
+                                  if (controller.ndk.accounts.getPublicKey() !=
+                                      null)
                                     const SizedBox(width: 8),
-                                  if (controller.ndk.accounts.getPublicKey() != null)
+                                  if (controller.ndk.accounts.getPublicKey() !=
+                                      null)
                                     IconButton(
-                                      onPressed: () => controller.copyToClipboard(
-                                        controller.npub.value,
-                                      'Npub',
+                                      onPressed: () =>
+                                          controller.copyToClipboard(
+                                            controller.npub.value,
+                                            'Npub',
+                                          ),
+                                      icon: Icon(
+                                        Icons.copy,
+                                        size: 20,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.primary,
+                                      ),
+                                      style: IconButton.styleFrom(
+                                        minimumSize: Size(32, 32),
+                                        tapTargetSize:
+                                            MaterialTapTargetSize.shrinkWrap,
+                                      ),
                                     ),
-                                    icon: Icon(
-                                      Icons.copy,
-                                      size: 20,
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.primary,
-                                    ),
-                                    style: IconButton.styleFrom(
-                                      minimumSize: Size(32, 32),
-                                      tapTargetSize:
-                                          MaterialTapTargetSize.shrinkWrap,
-                                    ),
-                                  ),
                                 ],
                               ),
                             ],

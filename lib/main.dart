@@ -43,7 +43,7 @@ ThemeData _buildTheme(Brightness brightness, Color seedColor) {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   final ndk = Ndk(
     NdkConfig(
       cache: SembastCacheManager(await getDatabase()),

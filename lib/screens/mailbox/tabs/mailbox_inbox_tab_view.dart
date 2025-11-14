@@ -30,45 +30,41 @@ class MailboxInboxTabView extends StatelessWidget {
       final matchEnd = match.end;
 
       if (matchStart > lastMatchEnd) {
-        spans.add(TextSpan(
-          text: text.substring(lastMatchEnd, matchStart),
-        ));
+        spans.add(TextSpan(text: text.substring(lastMatchEnd, matchStart)));
       }
 
-      spans.add(TextSpan(
-        text: url,
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.primary,
-          decoration: TextDecoration.underline,
+      spans.add(
+        TextSpan(
+          text: url,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.primary,
+            decoration: TextDecoration.underline,
+          ),
+          recognizer: TapGestureRecognizer()
+            ..onTap = () async {
+              final uri = Uri.parse(url);
+              if (await canLaunchUrl(uri)) {
+                await launchUrl(uri, mode: LaunchMode.externalApplication);
+              }
+            },
         ),
-        recognizer: TapGestureRecognizer()
-          ..onTap = () async {
-            final uri = Uri.parse(url);
-            if (await canLaunchUrl(uri)) {
-              await launchUrl(uri, mode: LaunchMode.externalApplication);
-            }
-          },
-      ));
+      );
 
       lastMatchEnd = matchEnd;
     }
 
     if (lastMatchEnd < text.length) {
-      spans.add(TextSpan(
-        text: text.substring(lastMatchEnd),
-      ));
+      spans.add(TextSpan(text: text.substring(lastMatchEnd)));
     }
 
-    return SelectableText.rich(
-      TextSpan(children: spans),
-    );
+    return SelectableText.rich(TextSpan(children: spans));
   }
 
   @override
   Widget build(BuildContext context) {
     final controller = MailboxController.to;
     final ndk = Get.find<Ndk>();
-    
+
     // Check if user can sign messages
     if (!ndk.accounts.canSign) {
       return Center(
@@ -79,15 +75,21 @@ class MailboxInboxTabView extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.1),
-                  Theme.of(context).colorScheme.secondaryContainer.withValues(alpha: 0.05),
+                  Theme.of(
+                    context,
+                  ).colorScheme.primaryContainer.withValues(alpha: 0.1),
+                  Theme.of(
+                    context,
+                  ).colorScheme.secondaryContainer.withValues(alpha: 0.05),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
               borderRadius: BorderRadius.circular(24),
               border: Border.all(
-                color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                color: Theme.of(
+                  context,
+                ).colorScheme.outline.withValues(alpha: 0.1),
               ),
             ),
             child: Column(
@@ -97,7 +99,9 @@ class MailboxInboxTabView extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.3),
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.primaryContainer.withValues(alpha: 0.3),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
@@ -119,20 +123,30 @@ class MailboxInboxTabView extends StatelessWidget {
                 Text(
                   AppLocalizations.of(context)!.toReceiveAndSendMessages,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.onSurface.withValues(alpha: 0.7),
                     height: 1.6,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 32),
                 FilledButton.icon(
-                  onPressed: () => Get.toNamed(AppRoutes.login, arguments: {'returnRoute': AppRoutes.mailbox}),
+                  onPressed: () => Get.toNamed(
+                    AppRoutes.login,
+                    arguments: {'returnRoute': AppRoutes.mailbox},
+                  ),
                   icon: Icon(Icons.login),
                   label: Text(AppLocalizations.of(context)!.loginWithNostr),
                   style: FilledButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 32,
+                      vertical: 16,
+                    ),
                     elevation: 2,
-                    shadowColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
+                    shadowColor: Theme.of(
+                      context,
+                    ).colorScheme.primary.withValues(alpha: 0.3),
                   ),
                 ),
               ],
@@ -141,7 +155,7 @@ class MailboxInboxTabView extends StatelessWidget {
         ),
       );
     }
-    
+
     return Obx(() {
       if (controller.messages.isEmpty) {
         return Center(
@@ -151,20 +165,24 @@ class MailboxInboxTabView extends StatelessWidget {
               Icon(
                 Icons.inbox,
                 size: 64,
-                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.3),
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.3),
               ),
               const SizedBox(height: 16),
               Text(
                 AppLocalizations.of(context)!.noMessagesYet,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
               ),
             ],
           ),
         );
       }
-      
+
       return ListView.builder(
         itemCount: controller.messages.length,
         itemBuilder: (context, index) {

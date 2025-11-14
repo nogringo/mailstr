@@ -80,7 +80,9 @@ class PayScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 12),
                                   Text(
-                                    AppLocalizations.of(context)!.emailSuccessfullyUnlocked,
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.emailSuccessfullyUnlocked,
                                     style: Theme.of(
                                       context,
                                     ).textTheme.headlineSmall,
@@ -88,7 +90,9 @@ class PayScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 8),
                                   Text(
-                                    AppLocalizations.of(context)!.youCanNowReceiveEmails,
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.youCanNowReceiveEmails,
                                     style: Theme.of(
                                       context,
                                     ).textTheme.bodyMedium,
@@ -146,14 +150,20 @@ class PayWithProofOfWorkView extends StatelessWidget {
                     controller.searchingCode.value
                         ? FilledButton(
                             onPressed: controller.stopProofOfWork,
-                            child: Text(AppLocalizations.of(context)!.pauseProofOfWork),
+                            child: Text(
+                              AppLocalizations.of(context)!.pauseProofOfWork,
+                            ),
                           )
                         : FilledButton(
                             onPressed: controller.startProofOfWork,
                             child: Text(
                               controller.nonce.value > 0
-                                  ? AppLocalizations.of(context)!.resumeProofOfWork
-                                  : AppLocalizations.of(context)!.startProofOfWork,
+                                  ? AppLocalizations.of(
+                                      context,
+                                    )!.resumeProofOfWork
+                                  : AppLocalizations.of(
+                                      context,
+                                    )!.startProofOfWork,
                             ),
                           ),
                   ],
@@ -162,7 +172,8 @@ class PayWithProofOfWorkView extends StatelessWidget {
               if (controller.searchingCode.value ||
                   controller.powCompleted.value) ...[
                 SizedBox(height: 8),
-                if (controller.searchingCode.value) LinearProgressIndicator(value: controller.powProgress.value),
+                if (controller.searchingCode.value)
+                  LinearProgressIndicator(value: controller.powProgress.value),
                 if (controller.searchingCode.value) SizedBox(height: 8),
                 Row(
                   children: [
@@ -174,7 +185,9 @@ class PayWithProofOfWorkView extends StatelessWidget {
                     ),
                     if (controller.estimatedTimeRemaining.value != '--:--')
                       Text(
-                        AppLocalizations.of(context)!.estimatedTime(controller.estimatedTimeRemaining.value),
+                        AppLocalizations.of(context)!.estimatedTime(
+                          controller.estimatedTimeRemaining.value,
+                        ),
                         style: GoogleFonts.robotoMono(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
@@ -251,7 +264,10 @@ class _PayWithCashuViewState extends State<PayWithCashuView> {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(8),
                   border: InputBorder.none,
-                  hintText: AppLocalizations.of(context)!.pasteCashuTokenHint(unlockPrice, unlockPrice == 1 ? '' : 's'),
+                  hintText: AppLocalizations.of(context)!.pasteCashuTokenHint(
+                    unlockPrice,
+                    unlockPrice == 1 ? '' : 's',
+                  ),
                 ),
                 maxLines: 10,
               ),

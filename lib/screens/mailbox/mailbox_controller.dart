@@ -50,7 +50,7 @@ class MailboxController extends GetxController {
 
   void listenMessages() {
     if (!ndk.accounts.isLoggedIn) return;
-    
+
     // Check if subscription already exists to prevent multiple subscriptions
     if (_messagesSubscription != null) {
       return;
@@ -63,7 +63,7 @@ class MailboxController extends GetxController {
     _messagesSubscription = ndk.requests.subscription(
       filters: [
         Filter(
-          kinds: [1059], 
+          kinds: [1059],
           pTags: [ndk.accounts.getPublicKey()!],
           since: sinceTimestamp,
         ),

@@ -4,15 +4,15 @@ import 'package:mailstr/controllers/theme_controller.dart';
 
 class AuthController extends GetxController {
   static AuthController get to => Get.find();
-  
+
   Ndk get ndk => Get.find<Ndk>();
-  
+
   // Make auth state reactive
   final RxBool _isLoggedIn = false.obs;
-  
+
   // Expose the reactive boolean for other controllers to listen to
   RxBool get isLoggedInRx => _isLoggedIn;
-  
+
   // Always get the real-time state from NDK
   bool get isLoggedIn {
     final currentState = ndk.accounts.isLoggedIn;
@@ -27,16 +27,16 @@ class AuthController extends GetxController {
     super.onInit();
     // Initialize with current state
     _updateAuthState();
-    
+
     // Initialize user data if already logged in
     _initializeUserData();
-    
+
     // Listen to NDK auth changes
     ever(_isLoggedIn, (bool loggedIn) {
       // This will trigger UI updates when auth state changes
       update(); // Also call update to ensure GetBuilder widgets update
     });
-    
+
     // Periodically check NDK state to catch any missed updates
     Stream.periodic(Duration(seconds: 1)).listen((_) {
       final currentState = ndk.accounts.isLoggedIn;

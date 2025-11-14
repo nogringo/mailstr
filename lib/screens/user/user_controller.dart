@@ -10,7 +10,7 @@ class UserController extends GetxController {
   static UserController get to => Get.find();
 
   Ndk get ndk => Get.find<Ndk>();
-  
+
   // User profile data
   RxString pubkey = ''.obs;
   RxString npub = ''.obs;
@@ -21,7 +21,7 @@ class UserController extends GetxController {
   RxString website = ''.obs;
   RxString nip05 = ''.obs;
   RxString lud16 = ''.obs;
-  
+
   // Loading state
   RxBool isLoading = true.obs;
 
@@ -33,21 +33,21 @@ class UserController extends GetxController {
 
   void loadUserProfile() {
     isLoading.value = true;
-    
+
     final userPubkey = ndk.accounts.getPublicKey();
     if (userPubkey != null) {
       pubkey.value = userPubkey;
-      
+
       try {
         npub.value = Nip19.npubFromHex(userPubkey);
       } catch (e) {
         npub.value = userPubkey;
       }
-      
+
       // Load user metadata from NDK
       _loadUserMetadata(userPubkey);
     }
-    
+
     isLoading.value = false;
   }
 

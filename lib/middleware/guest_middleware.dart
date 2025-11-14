@@ -10,14 +10,12 @@ class GuestMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     final authController = Get.find<AuthController>();
-    
+
     // If user is logged in, redirect to mailbox
     if (authController.isLoggedIn) {
-      return RouteSettings(
-        name: AppRoutes.mailbox,
-      );
+      return RouteSettings(name: AppRoutes.mailbox);
     }
-    
+
     // User is not logged in, allow access to guest pages
     return null;
   }

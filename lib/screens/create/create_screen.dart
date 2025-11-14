@@ -39,9 +39,7 @@ class CreateScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    AppLocalizations.of(context)!.privateKeyWarning,
-                  ),
+                  Text(AppLocalizations.of(context)!.privateKeyWarning),
                   SizedBox(height: 8),
                   Text(
                     AppLocalizations.of(context)!.noAccessWithoutNsec,

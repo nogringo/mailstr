@@ -42,15 +42,14 @@ class _MailboxScreenState extends State<MailboxScreen> {
 
         // If not logged in, redirect to login screen
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          Get.offNamed(AppRoutes.login, arguments: {'returnRoute': AppRoutes.mailbox});
+          Get.offNamed(
+            AppRoutes.login,
+            arguments: {'returnRoute': AppRoutes.mailbox},
+          );
         });
-        
+
         // Show loading while redirecting
-        return Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
+        return Scaffold(body: Center(child: CircularProgressIndicator()));
       },
     );
   }

@@ -37,17 +37,17 @@ class ThemeController extends GetxController {
   Color hexToColor(String hex) {
     // Remove # prefix if present
     final cleanHex = hex.startsWith('#') ? hex.substring(1) : hex;
-    
+
     // Ensure we have at least 6 characters for RGB
     if (cleanHex.length < 6) {
       throw ArgumentError('Invalid hex color: $hex');
     }
-    
+
     // Parse RGB values (first 6 characters)
     final r = int.parse(cleanHex.substring(0, 2), radix: 16);
     final g = int.parse(cleanHex.substring(2, 4), radix: 16);
     final b = int.parse(cleanHex.substring(4, 6), radix: 16);
-    
+
     // Use full opacity (255) for alpha
     return Color.fromARGB(255, r, g, b);
   }
@@ -59,11 +59,11 @@ class ThemeController extends GetxController {
   // Observable accent color
   final _accentColorType = AccentColorType.defaultColor.obs;
   final _customAccentColor = defaultThemeColor.obs;
-  
+
   // Store extracted colors for each type
   Color? _pictureColor;
   Color? _bannerColor;
-  
+
   AccentColorType get accentColorType => _accentColorType.value;
   Color get accentColor => _customAccentColor.value;
 
@@ -84,15 +84,15 @@ class ThemeController extends GetxController {
         break;
       case ThemeMode.system:
         // If system, switch to opposite of current brightness
-        final brightness = Get.context?.mounted == true 
+        final brightness = Get.context?.mounted == true
             ? MediaQuery.of(Get.context!).platformBrightness
             : Brightness.light;
-        _themeMode.value = brightness == Brightness.light 
-            ? ThemeMode.dark 
+        _themeMode.value = brightness == Brightness.light
+            ? ThemeMode.dark
             : ThemeMode.light;
         break;
     }
-    
+
     // Update the app theme
     Get.changeThemeMode(_themeMode.value);
     update(); // Force UI rebuild to update indicators
@@ -136,10 +136,15 @@ class ThemeController extends GetxController {
   }
 
   // Extract color from image provider
-  Future<void> extractColorFromImage(ImageProvider imageProvider, AccentColorType type) async {
+  Future<void> extractColorFromImage(
+    ImageProvider imageProvider,
+    AccentColorType type,
+  ) async {
     try {
-      final ColorScheme colorScheme = await ColorScheme.fromImageProvider(provider: imageProvider);
-      
+      final ColorScheme colorScheme = await ColorScheme.fromImageProvider(
+        provider: imageProvider,
+      );
+
       // Store the extracted color
       switch (type) {
         case AccentColorType.pictureColor:
@@ -154,7 +159,7 @@ class ThemeController extends GetxController {
           // No need to store for default
           break;
       }
-      
+
       // If this is the currently selected type, update the current color
       if (_accentColorType.value == type) {
         _customAccentColor.value = colorScheme.primary;
@@ -192,7 +197,7 @@ class ThemeController extends GetxController {
   Future<void> switchAccount() async {
     // Reset to default colors first
     resetToDefaultColors();
-    
+
     // Then load colors for the new account
     await loadUserColors();
   }
@@ -201,13 +206,13 @@ class ThemeController extends GetxController {
   Future<void> loadUserColors() async {
     final ndk = Get.find<Ndk>();
     final pubkey = ndk.accounts.getPublicKey();
-    
+
     if (pubkey == null) return;
 
     // Load extracted colors (user-specific)
     final pictureKey = _getUserSpecificKey(_pictureColorKey);
     final pictureColorValue = _storage.read(pictureKey);
-    
+
     bool pictureColorLoaded = false;
     if (pictureColorValue != null) {
       try {
@@ -248,15 +253,19 @@ class ThemeController extends GetxController {
     if (!pictureColorLoaded || !bannerColorLoaded) {
       try {
         final metadata = await ndk.metadata.loadMetadata(pubkey);
-        
+
         // Extract picture color if not loaded and user has a picture
-        if (!pictureColorLoaded && metadata?.picture != null && metadata!.picture!.isNotEmpty) {
+        if (!pictureColorLoaded &&
+            metadata?.picture != null &&
+            metadata!.picture!.isNotEmpty) {
           final imageProvider = NetworkImage(metadata.picture!);
           await extractColorFromPicture(imageProvider);
         }
-        
+
         // Extract banner color if not loaded and user has a banner
-        if (!bannerColorLoaded && metadata?.banner != null && metadata!.banner!.isNotEmpty) {
+        if (!bannerColorLoaded &&
+            metadata?.banner != null &&
+            metadata!.banner!.isNotEmpty) {
           final imageProvider = NetworkImage(metadata.banner!);
           await extractColorFromBanner(imageProvider);
         }
@@ -308,7 +317,7 @@ class ThemeController extends GetxController {
   // Check if current theme is dark
   bool get isDarkMode {
     if (_themeMode.value == ThemeMode.system) {
-      final brightness = Get.context?.mounted == true 
+      final brightness = Get.context?.mounted == true
           ? MediaQuery.of(Get.context!).platformBrightness
           : Brightness.light;
       return brightness == Brightness.dark;
@@ -348,7 +357,9 @@ class ThemeController extends GetxController {
       }
     }
 
-    final bannerColorValue = _storage.read(_getUserSpecificKey(_bannerColorKey));
+    final bannerColorValue = _storage.read(
+      _getUserSpecificKey(_bannerColorKey),
+    );
     if (bannerColorValue != null) {
       try {
         if (bannerColorValue is String) {

@@ -17,11 +17,10 @@ class MailboxAliasesTabView extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = MailboxController.to;
     final ndk = Get.find<Ndk>();
-    
-    
+
     return Obx(() {
       final canSign = ndk.accounts.canSign;
-      
+
       if (controller.aliases.isEmpty) {
         return Center(
           child: Column(
@@ -30,20 +29,26 @@ class MailboxAliasesTabView extends StatelessWidget {
               Icon(
                 Icons.alternate_email,
                 size: 64,
-                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.3),
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.3),
               ),
               const SizedBox(height: 16),
               Text(
                 AppLocalizations.of(context)!.noAliasesYet,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
               ),
               const SizedBox(height: 16),
               Text(
                 AppLocalizations.of(context)!.tapPlusToCreateAlias,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.4),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withValues(alpha: 0.4),
                   fontSize: 12,
                 ),
               ),
@@ -51,7 +56,7 @@ class MailboxAliasesTabView extends StatelessWidget {
           ),
         );
       }
-      
+
       return Column(
         children: [
           // Show warning when user can't sign
@@ -60,10 +65,14 @@ class MailboxAliasesTabView extends StatelessWidget {
               margin: const EdgeInsets.all(16),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.3),
+                color: Theme.of(
+                  context,
+                ).colorScheme.primaryContainer.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.primary.withValues(alpha: 0.3),
                 ),
               ),
               child: Row(
@@ -88,7 +97,9 @@ class MailboxAliasesTabView extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          AppLocalizations.of(context)!.youCanOnlySeeDefaultAliases,
+                          AppLocalizations.of(
+                            context,
+                          )!.youCanOnlySeeDefaultAliases,
                           style: TextStyle(
                             fontSize: 13,
                             color: Theme.of(context).colorScheme.primary,
@@ -100,11 +111,17 @@ class MailboxAliasesTabView extends StatelessWidget {
                   ),
                   const SizedBox(width: 12),
                   FilledButton.icon(
-                    onPressed: () => Get.toNamed(AppRoutes.login, arguments: {'returnRoute': AppRoutes.mailbox}),
+                    onPressed: () => Get.toNamed(
+                      AppRoutes.login,
+                      arguments: {'returnRoute': AppRoutes.mailbox},
+                    ),
                     icon: Icon(Icons.login, size: 16),
                     label: Text(AppLocalizations.of(context)!.login),
                     style: FilledButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
                       textStyle: TextStyle(fontSize: 12),
                     ),
                   ),
@@ -120,12 +137,15 @@ class MailboxAliasesTabView extends StatelessWidget {
                 final alias = controller.aliases[index];
                 final parts = alias.split('@');
                 final name = parts.isNotEmpty ? parts[0] : '';
-                
+
                 // Check if this is a standard alias (npub, hex pubkey, or base36)
                 final isStandardAlias = _isStandardAlias(alias);
-                
+
                 return Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(12),
                     onTap: () {
@@ -133,17 +153,25 @@ class MailboxAliasesTabView extends StatelessWidget {
                       toastification.show(
                         title: Text(
                           AppLocalizations.of(Get.context!)!.copied,
-                          style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+                          style: TextStyle(
+                            color: Get.theme.colorScheme.onPrimaryContainer,
+                          ),
                         ),
                         alignment: Alignment.bottomRight,
                         style: ToastificationStyle.fillColored,
-                        icon: Icon(Icons.copy, color: Get.theme.colorScheme.onPrimaryContainer),
+                        icon: Icon(
+                          Icons.copy,
+                          color: Get.theme.colorScheme.onPrimaryContainer,
+                        ),
                         applyBlurEffect: true,
                         primaryColor: Get.theme.colorScheme.primaryContainer,
                         backgroundColor: Get.theme.colorScheme.primaryContainer,
-                        foregroundColor: Get.theme.colorScheme.onPrimaryContainer,
+                        foregroundColor:
+                            Get.theme.colorScheme.onPrimaryContainer,
                         autoCloseDuration: Duration(seconds: 3),
-                        closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
+                        closeButton: ToastCloseButton(
+                          showType: CloseButtonShowType.none,
+                        ),
                       );
                     },
                     child: Padding(
@@ -161,14 +189,20 @@ class MailboxAliasesTabView extends StatelessWidget {
                               children: [
                                 Text(
                                   alias,
-                                  style: Theme.of(context).textTheme.titleMedium,
+                                  style: Theme.of(
+                                    context,
+                                  ).textTheme.titleMedium,
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
                                   AppLocalizations.of(context)!.tapToCopy,
-                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
-                                  ),
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSurface
+                                            .withValues(alpha: 0.6),
+                                      ),
                                 ),
                               ],
                             ),
@@ -178,9 +212,12 @@ class MailboxAliasesTabView extends StatelessWidget {
                               icon: Icon(
                                 Icons.delete_outline,
                                 size: 20,
-                                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onSurface.withValues(alpha: 0.6),
                               ),
-                              onPressed: () => _showUnregisterDialog(context, name),
+                              onPressed: () =>
+                                  _showUnregisterDialog(context, name),
                             ),
                           ] else ...[
                             Padding(
@@ -188,7 +225,9 @@ class MailboxAliasesTabView extends StatelessWidget {
                               child: Icon(
                                 Icons.copy,
                                 size: 20,
-                                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onSurface.withValues(alpha: 0.5),
                               ),
                             ),
                           ],
@@ -208,17 +247,17 @@ class MailboxAliasesTabView extends StatelessWidget {
   bool _isStandardAlias(String alias) {
     final ndk = Get.find<Ndk>();
     final pubkey = ndk.accounts.getPublicKey();
-    
+
     if (pubkey == null) return false;
-    
+
     try {
       final npub = Nip19.npubFromHex(pubkey);
       final base36 = hexToBase36(pubkey);
-      
+
       // Check if it's one of the standard aliases
       return alias.startsWith('$npub@') ||
-             alias.startsWith('$pubkey@') ||
-             alias.startsWith('$base36@');
+          alias.startsWith('$pubkey@') ||
+          alias.startsWith('$base36@');
     } catch (e) {
       return false;
     }
@@ -233,7 +272,9 @@ class MailboxAliasesTabView extends StatelessWidget {
           text: TextSpan(
             style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
             children: [
-              TextSpan(text: '${AppLocalizations.of(context)!.areYouSureUnregister} '),
+              TextSpan(
+                text: '${AppLocalizations.of(context)!.areYouSureUnregister} ',
+              ),
               TextSpan(
                 text: fullAddress,
                 style: TextStyle(
@@ -253,52 +294,68 @@ class MailboxAliasesTabView extends StatelessWidget {
           FilledButton(
             onPressed: () async {
               Get.back(); // Close dialog
-              
+
               // Show loading
               Get.dialog(
                 Center(child: CircularProgressIndicator()),
                 barrierDismissible: false,
               );
-              
+
               final success = await MailboxController.to.unregisterNip05(name);
-              
+
               Get.back(); // Close loading
-              
+
               if (success) {
                 toastification.show(
                   title: Text(
                     AppLocalizations.of(Get.context!)!.aliasUnregistered,
-                    style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+                    style: TextStyle(
+                      color: Get.theme.colorScheme.onPrimaryContainer,
+                    ),
                   ),
                   alignment: Alignment.bottomRight,
                   style: ToastificationStyle.fillColored,
-                  icon: Icon(Icons.check_circle, color: Get.theme.colorScheme.onPrimaryContainer),
+                  icon: Icon(
+                    Icons.check_circle,
+                    color: Get.theme.colorScheme.onPrimaryContainer,
+                  ),
                   applyBlurEffect: true,
                   primaryColor: Get.theme.colorScheme.primary,
                   backgroundColor: Get.theme.colorScheme.primaryContainer,
                   foregroundColor: Get.theme.colorScheme.onPrimaryContainer,
                   autoCloseDuration: Duration(seconds: 3),
-                  closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
+                  closeButton: ToastCloseButton(
+                    showType: CloseButtonShowType.none,
+                  ),
                 );
               } else {
                 toastification.show(
                   title: Text(
                     AppLocalizations.of(Get.context!)!.error,
-                    style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+                    style: TextStyle(
+                      color: Get.theme.colorScheme.onPrimaryContainer,
+                    ),
                   ),
                   description: Text(
                     AppLocalizations.of(Get.context!)!.failedToUnregisterAlias,
-                    style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
+                    style: TextStyle(
+                      color: Get.theme.colorScheme.onPrimaryContainer,
+                    ),
                   ),
                   alignment: Alignment.bottomRight,
                   style: ToastificationStyle.fillColored,
-                  icon: Icon(Icons.error, color: Get.theme.colorScheme.onPrimaryContainer),
+                  icon: Icon(
+                    Icons.error,
+                    color: Get.theme.colorScheme.onPrimaryContainer,
+                  ),
                   applyBlurEffect: true,
                   primaryColor: Get.theme.colorScheme.error,
                   backgroundColor: Get.theme.colorScheme.primaryContainer,
                   foregroundColor: Get.theme.colorScheme.onPrimaryContainer,
                   autoCloseDuration: Duration(seconds: 4),
-                  closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
+                  closeButton: ToastCloseButton(
+                    showType: CloseButtonShowType.none,
+                  ),
                 );
               }
             },

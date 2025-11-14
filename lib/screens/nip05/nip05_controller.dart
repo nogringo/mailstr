@@ -16,7 +16,7 @@ class Nip05Controller extends GetxController {
 
   final nameController = TextEditingController();
   final pubkeyController = TextEditingController();
-  
+
   RxBool isLoading = false.obs;
   RxBool isNip05 = false.obs;
 
@@ -42,32 +42,97 @@ class Nip05Controller extends GetxController {
   void generateRandomUsername() {
     // Lists of words for generating random usernames
     final adjectives = [
-      'happy', 'sunny', 'swift', 'bright', 'cool', 'smart', 'lucky',
-      'cosmic', 'cyber', 'digital', 'electric', 'neon', 'pixel', 'quantum',
-      'stellar', 'turbo', 'ultra', 'vivid', 'wild', 'zen', 'alpha',
-      'beta', 'gamma', 'delta', 'echo', 'nova', 'omega', 'sigma',
-      'crypto', 'lightning', 'thunder', 'storm', 'flame', 'frost',
-      'shadow', 'mystic', 'ninja', 'samurai', 'phoenix', 'dragon'
+      'happy',
+      'sunny',
+      'swift',
+      'bright',
+      'cool',
+      'smart',
+      'lucky',
+      'cosmic',
+      'cyber',
+      'digital',
+      'electric',
+      'neon',
+      'pixel',
+      'quantum',
+      'stellar',
+      'turbo',
+      'ultra',
+      'vivid',
+      'wild',
+      'zen',
+      'alpha',
+      'beta',
+      'gamma',
+      'delta',
+      'echo',
+      'nova',
+      'omega',
+      'sigma',
+      'crypto',
+      'lightning',
+      'thunder',
+      'storm',
+      'flame',
+      'frost',
+      'shadow',
+      'mystic',
+      'ninja',
+      'samurai',
+      'phoenix',
+      'dragon',
     ];
-    
+
     final nouns = [
-      'fox', 'wolf', 'bear', 'eagle', 'hawk', 'lion', 'tiger',
-      'rider', 'walker', 'runner', 'hunter', 'seeker', 'finder',
-      'coder', 'hacker', 'builder', 'maker', 'creator', 'artist',
-      'wizard', 'sage', 'knight', 'warrior', 'champion', 'hero',
-      'star', 'moon', 'sun', 'comet', 'meteor', 'galaxy',
-      'wave', 'tide', 'storm', 'bolt', 'spark', 'flash'
+      'fox',
+      'wolf',
+      'bear',
+      'eagle',
+      'hawk',
+      'lion',
+      'tiger',
+      'rider',
+      'walker',
+      'runner',
+      'hunter',
+      'seeker',
+      'finder',
+      'coder',
+      'hacker',
+      'builder',
+      'maker',
+      'creator',
+      'artist',
+      'wizard',
+      'sage',
+      'knight',
+      'warrior',
+      'champion',
+      'hero',
+      'star',
+      'moon',
+      'sun',
+      'comet',
+      'meteor',
+      'galaxy',
+      'wave',
+      'tide',
+      'storm',
+      'bolt',
+      'spark',
+      'flash',
     ];
-    
+
     // Generate random indices using proper random
     final random = Random();
     final adjIndex = random.nextInt(adjectives.length);
     final nounIndex = random.nextInt(nouns.length);
     final number = random.nextInt(1000);
-    
+
     // Create username
     final username = '${adjectives[adjIndex]}${nouns[nounIndex]}$number';
-    
+
     // Set the username in the text field
     nameController.text = username;
   }
@@ -75,7 +140,7 @@ class Nip05Controller extends GetxController {
   Future<void> registerNip05() async {
     final name = nameController.text.trim();
     final pubkey = pubkeyController.text.trim();
-    
+
     if (name.isEmpty) {
       _showErrorToast(AppLocalizations.of(Get.context!)!.pleaseEnterAName);
       return;
@@ -102,7 +167,9 @@ class Nip05Controller extends GetxController {
         return;
       }
     } else if (!RegExp(r'^[0-9a-fA-F]{64}$').hasMatch(pubkey)) {
-      _showErrorToast(AppLocalizations.of(Get.context!)!.invalidPublicKeyFormat);
+      _showErrorToast(
+        AppLocalizations.of(Get.context!)!.invalidPublicKeyFormat,
+      );
       return;
     }
 
@@ -123,8 +190,10 @@ class Nip05Controller extends GetxController {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         if (data['success'] == true) {
-          _showSuccessToast(AppLocalizations.of(Get.context!)!.nip05RegisteredSuccessfully);
-          
+          _showSuccessToast(
+            AppLocalizations.of(Get.context!)!.nip05RegisteredSuccessfully,
+          );
+
           // Add the new alias to the mailbox controller
           try {
             final mailboxController = Get.find<MailboxController>();
@@ -135,16 +204,22 @@ class Nip05Controller extends GetxController {
           } catch (e) {
             // Mailbox controller might not be initialized, that's ok
           }
-          
+
           Get.back();
         } else {
-          _showErrorToast(data['error'] ?? AppLocalizations.of(Get.context!)!.registrationFailed);
+          _showErrorToast(
+            data['error'] ??
+                AppLocalizations.of(Get.context!)!.registrationFailed,
+          );
         }
       } else if (response.statusCode == 409) {
         _showErrorToast(AppLocalizations.of(Get.context!)!.nameAlreadyTaken);
       } else {
         final errorData = jsonDecode(response.body);
-        _showErrorToast(errorData['error'] ?? AppLocalizations.of(Get.context!)!.registrationFailed);
+        _showErrorToast(
+          errorData['error'] ??
+              AppLocalizations.of(Get.context!)!.registrationFailed,
+        );
       }
     } catch (e) {
       _showErrorToast(AppLocalizations.of(Get.context!)!.networkError);
@@ -161,7 +236,10 @@ class Nip05Controller extends GetxController {
       ),
       alignment: Alignment.bottomRight,
       style: ToastificationStyle.fillColored,
-      icon: Icon(Icons.check_circle, color: Get.theme.colorScheme.onPrimaryContainer),
+      icon: Icon(
+        Icons.check_circle,
+        color: Get.theme.colorScheme.onPrimaryContainer,
+      ),
       applyBlurEffect: true,
       primaryColor: Get.theme.colorScheme.primary,
       backgroundColor: Get.theme.colorScheme.primaryContainer,

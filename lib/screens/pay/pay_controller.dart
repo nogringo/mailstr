@@ -20,17 +20,17 @@ class PayController extends GetxController {
   final RxDouble powProgress = 0.0.obs;
   final RxBool powCompleted = false.obs;
   final RxBool emailUnlocked = false.obs;
-  
+
   Timer? powTimer;
   Timer? durationTimer;
   bool shouldStopPow = false;
   DateTime? miningStartTime;
   Duration pausedDuration = Duration.zero;
-  
+
   void startProofOfWork() {
     searchingCode.value = true;
     shouldStopPow = false;
-    
+
     // Check if this is a resume or a fresh start
     if (nonce.value == 0) {
       // Fresh start
@@ -39,7 +39,9 @@ class PayController extends GetxController {
       pausedDuration = Duration.zero;
     } else {
       // Resuming
-      powStatus.value = AppLocalizations.of(Get.context!)!.resumingProofOfWork(nonce.value);
+      powStatus.value = AppLocalizations.of(
+        Get.context!,
+      )!.resumingProofOfWork(nonce.value);
       // Parse the current duration to preserve it
       final parts = miningDuration.value.split(':');
       if (parts.length == 2) {
@@ -49,26 +51,27 @@ class PayController extends GetxController {
         );
       }
     }
-    
+
     miningStartTime = DateTime.now();
-    
+
     // Start duration timer
     durationTimer = Timer.periodic(Duration(seconds: 1), (timer) {
-      final elapsed = DateTime.now().difference(miningStartTime!) + pausedDuration;
+      final elapsed =
+          DateTime.now().difference(miningStartTime!) + pausedDuration;
       final minutes = elapsed.inMinutes.toString().padLeft(2, '0');
       final seconds = (elapsed.inSeconds % 60).toString().padLeft(2, '0');
       miningDuration.value = '$minutes:$seconds';
     });
-    
+
     // Get email parameter
     final String email = Get.parameters['email'] ?? '';
-    
+
     if (email.isEmpty) {
       powStatus.value = AppLocalizations.of(Get.context!)!.invalidEmailFormat;
       searchingCode.value = false;
       return;
     }
-    
+
     // Use email directly as challenge
     _performProofOfWork(email, difficulty);
   }
@@ -78,11 +81,13 @@ class PayController extends GetxController {
     shouldStopPow = true;
     powTimer?.cancel();
     durationTimer?.cancel();
-    powStatus.value = AppLocalizations.of(Get.context!)!.proofOfWorkPaused(nonce.value);
+    powStatus.value = AppLocalizations.of(
+      Get.context!,
+    )!.proofOfWorkPaused(nonce.value);
     estimatedTimeRemaining.value = '--:--';
     // Keep the current nonce, duration and progress values
   }
-  
+
   void resetProofOfWork() {
     searchingCode.value = false;
     shouldStopPow = true;
@@ -96,39 +101,42 @@ class PayController extends GetxController {
     powStatus.value = AppLocalizations.of(Get.context!)!.proofOfWorkReset;
     hashRate.value = 0.0;
   }
-  
+
   Future<void> _performProofOfWork(String email, int difficulty) async {
     final startTime = DateTime.now();
     int attemptCount = 0;
-    
+
     // Start hash rate calculation timer
     powTimer = Timer.periodic(Duration(seconds: 1), (timer) {
       final elapsed = DateTime.now().difference(startTime).inSeconds;
       if (elapsed > 0) {
         hashRate.value = attemptCount / elapsed;
-        
+
         // Calculate estimated time remaining and progress
         if (hashRate.value > 0) {
           // Expected number of attempts for the given difficulty (2^(4*difficulty) on average)
           final expectedAttempts = 1 << (4 * difficulty);
           final remainingAttempts = expectedAttempts - nonce.value;
-          
+
           // Calculate progress (0.0 to 1.0)
           powProgress.value = nonce.value / expectedAttempts;
-          
+
           if (remainingAttempts > 0) {
-            final estimatedSecondsRemaining = remainingAttempts / hashRate.value;
-            
+            final estimatedSecondsRemaining =
+                remainingAttempts / hashRate.value;
+
             if (estimatedSecondsRemaining < 3600) {
               // Less than an hour, show MM:SS
               final minutes = (estimatedSecondsRemaining / 60).floor();
               final seconds = (estimatedSecondsRemaining % 60).floor();
-              estimatedTimeRemaining.value = '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+              estimatedTimeRemaining.value =
+                  '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
             } else {
               // More than an hour, show HH:MM
               final hours = (estimatedSecondsRemaining / 3600).floor();
               final minutes = ((estimatedSecondsRemaining % 3600) / 60).floor();
-              estimatedTimeRemaining.value = '${hours}h ${minutes.toString().padLeft(2, '0')}m';
+              estimatedTimeRemaining.value =
+                  '${hours}h ${minutes.toString().padLeft(2, '0')}m';
             }
           } else {
             estimatedTimeRemaining.value = '00:00';
@@ -136,38 +144,40 @@ class PayController extends GetxController {
         }
       }
     });
-    
+
     // Perform proof of work in smaller batches to avoid blocking UI
     while (!shouldStopPow) {
       for (int i = 0; i < 1000; i++) {
         if (shouldStopPow) break;
-        
+
         nonce.value++;
         attemptCount++;
-        
+
         // Create hash of email + nonce
         final input = '$email:${nonce.value}';
         final bytes = utf8.encode(input);
         final hash = sha256.convert(bytes);
         final hashHex = hash.toString();
-        
+
         // Check if hash meets difficulty requirement
         if (hashHex.startsWith('0' * difficulty)) {
           powTimer?.cancel();
           durationTimer?.cancel();
           searchingCode.value = false;
           powCompleted.value = true;
-          powStatus.value = AppLocalizations.of(Get.context!)!.proofOfWorkCompletedWithNonce(nonce.value);
-          
+          powStatus.value = AppLocalizations.of(
+            Get.context!,
+          )!.proofOfWorkCompletedWithNonce(nonce.value);
+
           // Call success handler with proof
           await payWithProofOfWork(email, nonce.value);
           return;
         }
       }
-      
+
       // Update status to show we're still searching
       powStatus.value = AppLocalizations.of(Get.context!)!.searchingForCode;
-      
+
       // Allow UI to update with minimal delay
       await Future.delayed(Duration(milliseconds: 1));
     }
@@ -176,37 +186,32 @@ class PayController extends GetxController {
   Future<void> payWithCashu(String token) async {
     try {
       final email = Get.parameters['email'] ?? '';
-      
+
       Get.dialog(
-        Center(
-          child: CircularProgressIndicator(),
-        ),
+        Center(child: CircularProgressIndicator()),
         barrierDismissible: false,
       );
-      
+
       final response = await http.post(
         Uri.parse(unlockWithCashuUrl),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          'email': email,
-          'cashuToken': token,
-        }),
+        body: jsonEncode({'email': email, 'cashuToken': token}),
       );
 
       Get.back(); // Close loading dialog
-      
-      
+
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         emailUnlocked.value = true;
-        
+
         toastification.show(
           title: Text(
             AppLocalizations.of(Get.context!)!.success,
             style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
           ),
           description: Text(
-            data['message'] ?? AppLocalizations.of(Get.context!)!.paymentAcceptedEmailUnlocked,
+            data['message'] ??
+                AppLocalizations.of(Get.context!)!.paymentAcceptedEmailUnlocked,
             style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
           ),
           type: ToastificationType.success,
@@ -221,13 +226,15 @@ class PayController extends GetxController {
         );
       } else {
         final error = jsonDecode(response.body);
-        String errorMessage = error['error'] ?? AppLocalizations.of(Get.context!)!.paymentFailed;
-        
+        String errorMessage =
+            error['error'] ?? AppLocalizations.of(Get.context!)!.paymentFailed;
+
         // Show trusted mints if that's the error
         if (error['trustedMints'] != null) {
-          errorMessage += '${AppLocalizations.of(Get.context!)!.trustedMints}${(error['trustedMints'] as List).join('\n')}';
+          errorMessage +=
+              '${AppLocalizations.of(Get.context!)!.trustedMints}${(error['trustedMints'] as List).join('\n')}';
         }
-        
+
         toastification.show(
           title: Text(
             AppLocalizations.of(Get.context!)!.error,
@@ -277,24 +284,21 @@ class PayController extends GetxController {
       final response = await http.post(
         Uri.parse(unlockWithProofOfWorkUrl),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          'email': email,
-          'nonce': nonce.toString(),
-        }),
+        body: jsonEncode({'email': email, 'nonce': nonce.toString()}),
       );
 
-      
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         emailUnlocked.value = true;
-        
+
         toastification.show(
           title: Text(
             AppLocalizations.of(Get.context!)!.success,
             style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
           ),
           description: Text(
-            data['message'] ?? AppLocalizations.of(Get.context!)!.emailUnlockedWithProofOfWork,
+            data['message'] ??
+                AppLocalizations.of(Get.context!)!.emailUnlockedWithProofOfWork,
             style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
           ),
           type: ToastificationType.success,
@@ -315,7 +319,8 @@ class PayController extends GetxController {
             style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
           ),
           description: Text(
-            error['error'] ?? AppLocalizations.of(Get.context!)!.failedToVerifyProofOfWork,
+            error['error'] ??
+                AppLocalizations.of(Get.context!)!.failedToVerifyProofOfWork,
             style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer),
           ),
           type: ToastificationType.error,
@@ -351,7 +356,7 @@ class PayController extends GetxController {
       );
     }
   }
-  
+
   @override
   void onClose() {
     powTimer?.cancel();

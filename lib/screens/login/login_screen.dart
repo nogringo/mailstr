@@ -77,13 +77,17 @@ class _LoginScreenState extends State<LoginScreen>
                   gradient: LinearGradient(
                     colors: [
                       Theme.of(context).colorScheme.primary,
-                      Theme.of(context).colorScheme.primary.withValues(alpha: 0.8),
+                      Theme.of(
+                        context,
+                      ).colorScheme.primary.withValues(alpha: 0.8),
                     ],
                   ),
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.primary.withValues(alpha: 0.3),
                       blurRadius: 15,
                       spreadRadius: 2,
                     ),
@@ -98,17 +102,16 @@ class _LoginScreenState extends State<LoginScreen>
               const SizedBox(height: 24),
               Text(
                 AppLocalizations.of(context)!.connectWithNostr,
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
               Text(
                 AppLocalizations.of(context)!.secureDecentralizedAuth,
                 style: TextStyle(
                   fontSize: 15,
-                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -121,7 +124,9 @@ class _LoginScreenState extends State<LoginScreen>
                   color: Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.outline.withValues(alpha: 0.2),
                   ),
                 ),
                 child: Column(
@@ -132,10 +137,14 @@ class _LoginScreenState extends State<LoginScreen>
                         padding: EdgeInsets.all(16),
                         margin: EdgeInsets.only(bottom: 24),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.3),
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.primaryContainer.withValues(alpha: 0.3),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.primary.withValues(alpha: 0.3),
                           ),
                         ),
                         child: Row(
@@ -151,28 +160,40 @@ class _LoginScreenState extends State<LoginScreen>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    AppLocalizations.of(context)!.signingCapabilityRequired,
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.signingCapabilityRequired,
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).colorScheme.primary,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
                                     ),
                                   ),
                                   SizedBox(height: 4),
                                   Text(
-                                    AppLocalizations.of(context)!.nip05AndPubkeyReadOnly,
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.nip05AndPubkeyReadOnly,
                                     style: TextStyle(
                                       fontSize: 13,
-                                      color: Theme.of(context).colorScheme.primary,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
                                       height: 1.4,
                                     ),
                                   ),
                                   SizedBox(height: 8),
                                   Text(
-                                    AppLocalizations.of(context)!.loginMethodsList,
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.loginMethodsList,
                                     style: TextStyle(
                                       fontSize: 13,
-                                      color: Theme.of(context).colorScheme.primary,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
                                       fontWeight: FontWeight.w500,
                                       height: 1.4,
                                     ),
@@ -186,9 +207,10 @@ class _LoginScreenState extends State<LoginScreen>
                     ],
                     Obx(() {
                       final authController = Get.find<AuthController>();
-                      final isComingFromMailbox = Get.arguments?['returnRoute'] == AppRoutes.mailbox;
+                      final isComingFromMailbox =
+                          Get.arguments?['returnRoute'] == AppRoutes.mailbox;
                       final isLoggedIn = authController.isLoggedIn;
-                      
+
                       return NLogin(
                         ndk: Get.find<Ndk>(),
                         onLoggedIn: controller.onLoginSuccess,

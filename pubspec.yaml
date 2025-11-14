@@ -4,20 +4,20 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.9.2
 
 dependencies:
-  crypto: ^3.0.6
+  crypto: ^3.0.7
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_svg: ^2.2.0
+  flutter_svg: ^2.2.2
   get: ^4.7.2
-  google_fonts: ^6.2.1
+  google_fonts: ^6.3.2
   http: ^1.4.0
   intl: any
-  ndk: ^0.5.0
+  ndk: ^0.6.0-dev.10
   nip01: ^0.3.0+1
   nip19: ^0.2.0
   toastification: ^3.0.3
@@ -26,14 +26,14 @@ dependencies:
   sembast_web: ^2.4.2
   path_provider: ^2.1.5
   path: ^1.9.1
-  sembast: ^3.8.5+1
+  sembast: ^3.8.5+2
   get_storage: ^2.1.1
-  nostr_widgets: ^0.0.3
+  nostr_widgets: ^1.1.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 flutter:
   generate: true

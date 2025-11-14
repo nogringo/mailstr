@@ -40,8 +40,9 @@ class MailboxLargeLayout extends StatelessWidget {
                   MailboxController.to.selectedIndex.value = i,
             ),
             Expanded(
-              child:
-                  getMailboxTabs(context)[MailboxController.to.selectedIndex.value].content,
+              child: getMailboxTabs(
+                context,
+              )[MailboxController.to.selectedIndex.value].content,
             ),
           ],
         ),

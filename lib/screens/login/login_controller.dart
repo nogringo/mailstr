@@ -11,17 +11,17 @@ class LoginController extends GetxController {
     // Update auth state
     final authController = Get.find<AuthController>();
     authController.updateAuthState();
-    
+
     // Double check if now logged in
     if (!authController.isLoggedIn) {
       // Login didn't succeed, don't navigate
       return;
     }
-    
+
     // Check if we have a return route
     final dynamic args = Get.arguments;
     final String? returnRoute = args?['returnRoute'];
-    
+
     // If returning to mailbox, check signing capability
     if (returnRoute == AppRoutes.mailbox) {
       final ndk = Get.find<Ndk>();
@@ -45,7 +45,7 @@ class LoginController extends GetxController {
         return;
       }
     }
-    
+
     if (returnRoute != null) {
       Get.offNamed(returnRoute);
     } else {
