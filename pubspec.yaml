@@ -17,7 +17,7 @@ dependencies:
   google_fonts: ^6.3.2
   http: ^1.4.0
   intl: any
-  ndk: ^0.6.0-dev.12
+  ndk: ^0.6.0
   nip01: ^0.3.0+1
   nip19: ^0.2.0
   toastification: ^3.0.3

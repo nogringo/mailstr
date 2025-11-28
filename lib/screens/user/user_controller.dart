@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:ndk/ndk.dart';
+import 'package:ndk/ndk.dart' hide Nip19;
 import 'package:nip19/nip19.dart';
 import 'package:flutter/services.dart';
 import 'package:toastification/toastification.dart';

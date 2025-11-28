@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:toastification/toastification.dart';
 import 'package:mailstr/l10n/app_localizations.dart';
 import 'package:mailstr/screens/mailbox/mailbox_controller.dart';
-import 'package:ndk/ndk.dart';
+import 'package:ndk/ndk.dart' hide Nip19;
 import 'package:nip19/nip19.dart';
 import 'package:mailstr/app_routes.dart';
 import 'package:mailstr/hex_to_base_36.dart';

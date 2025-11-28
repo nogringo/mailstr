@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:ndk/ndk.dart';
+import 'package:ndk/ndk.dart' hide Nip19;
 import 'package:nip19/nip19.dart';
 import 'package:toastification/toastification.dart';
 import 'package:mailstr/config.dart';
